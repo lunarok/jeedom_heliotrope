@@ -1,0 +1,9 @@
+==== Configuration du plugin
+
+Le plugin ne comporte pas de configuration générale.
+
+Il faut ajouter un équipement et sélectionner la commande geoloc qui servira pour le calcul.
+
+Ce plugin utilise une information venant du plugin geoloc afin de réutiliser une localisation déjà existante.
+
+Un autre paramètre est disponible pour paramétrer le zenith qu'on souhaite utiliser pour le calcul du coucher et lever du soleil uniquement (par défaut 90.58, ce qui est utilisé en général)
