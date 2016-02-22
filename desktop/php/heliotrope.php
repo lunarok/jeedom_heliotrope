@@ -120,6 +120,7 @@ $eqLogics = eqLogic::byType('heliotrope');
                             <select class="form-control eqLogicAttr configuration" id="geoloc" data-l1key="configuration" data-l2key="geoloc">
                               <option value="none">{{Aucun}}</option>
                               <?php
+                              if (class_exists('geolocCmd')) {
                               foreach (eqLogic::byType('geoloc') as $geoloc) {
                                 foreach (geolocCmd::byEqLogicId($geoloc->getId()) as $geoinfo) {
                                     if ($geoinfo->getConfiguration('mode') == 'fixe' || $geoinfo->getConfiguration('mode') == 'dynamic') {
@@ -127,6 +128,9 @@ $eqLogics = eqLogic::byType('heliotrope');
                                     }
                                 }
                               }
+                            } else {
+                              echo '<option value="">Geoloc absent</option>';
+                            }
                               ?>
                             </select>
                           </div>
