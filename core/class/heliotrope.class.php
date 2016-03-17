@@ -20,19 +20,14 @@ require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
 
 class heliotrope extends eqLogic {
 
+  public static $_widgetPossibility = array('custom' => true);
+
   public static function pull() {
     foreach (eqLogic::byType('heliotrope') as $heliotrope) {
       if ($heliotrope->getIsEnable() == 1) {
         if (null !== ($heliotrope->getConfiguration('geoloc', ''))) {
           log::add('heliotrope', 'debug', 'pull cron');
           $heliotrope->getInformations();
-          $mc = cache::byKey('heliotropeWidgetdashboard' . $heliotrope->getId());
-          $mc->remove();
-          $heliotrope->toHtml('dashboard');
-          $mc = cache::byKey('heliotropeWidgetmobile' . $heliotrope->getId());
-          $mc->remove();
-          $heliotrope->toHtml('mobile');
-          $heliotrope->refreshWidget();
         } else {
           log::add('heliotrope', 'error', 'geoloc non saisie');
         }
@@ -47,13 +42,6 @@ class heliotrope extends eqLogic {
       if (null !== ($heliotrope->getConfiguration('geoloc', ''))) {
         log::add('heliotrope', 'debug', 'info daily');
         $heliotrope->getDaily();
-        $mc = cache::byKey('heliotropeWidgetdashboard' . $heliotrope->getId());
-        $mc->remove();
-        $heliotrope->toHtml('dashboard');
-        $mc = cache::byKey('heliotropeWidgetmobile' . $heliotrope->getId());
-        $mc->remove();
-        $heliotrope->toHtml('mobile');
-        $heliotrope->refreshWidget();
       } else {
         log::add('heliotrope', 'error', 'geoloc non saisie');
       }
@@ -67,13 +55,6 @@ class heliotrope extends eqLogic {
       if (null !== ($heliotrope->getConfiguration('geoloc', ''))) {
         log::add('heliotrope', 'debug', 'info daily');
         $heliotrope->getDaily();
-        $mc = cache::byKey('heliotropeWidgetdashboard' . $heliotrope->getId());
-        $mc->remove();
-        $heliotrope->toHtml('dashboard');
-        $mc = cache::byKey('heliotropeWidgetmobile' . $heliotrope->getId());
-        $mc->remove();
-        $heliotrope->toHtml('mobile');
-        $heliotrope->refreshWidget();
       } else {
         log::add('heliotrope', 'error', 'geoloc non saisie');
       }
@@ -406,44 +387,14 @@ public function setupCron() {
 
 
 public function toHtml($_version = 'dashboard') {
-  $mc = cache::byKey('heliotropeWidget' . $_version . $this->getId());
-  if ($mc->getValue() != '') {
-    return $mc->getValue();
+  $replace = $this->preToHtml($_version);
+  if (!is_array($replace)) {
+    return $replace;
   }
-  if ($this->getIsEnable() != 1) {
-          return '';
-      }
-      if (!$this->hasRight('r')) {
-          return '';
-      }
-      $_version = jeedom::versionAlias($_version);
-      if ($this->getDisplay('hideOn' . $_version) == 1) {
-          return '';
-      }
-      $vcolor = 'cmdColor';
-      if ($_version == 'mobile') {
-          $vcolor = 'mcmdColor';
-      }
-      $parameters = $this->getDisplay('parameters');
-      $cmdColor = ($this->getPrimaryCategory() == '') ? '' : jeedom::getConfiguration('eqLogic:category:' . $this->getPrimaryCategory() . ':' . $vcolor);
-      if (is_array($parameters) && isset($parameters['background_cmd_color'])) {
-          $cmdColor = $parameters['background_cmd_color'];
-      }
-
-      if (($_version == 'dview' || $_version == 'mview') && $this->getDisplay('doNotShowNameOnView') == 1) {
-          $replace['#name#'] = '';
-          $replace['#object_name#'] = (is_object($object)) ? $object->getName() : '';
-      }
-      if (($_version == 'mobile' || $_version == 'dashboard') && $this->getDisplay('doNotShowNameOnDashboard') == 1) {
-          $replace['#name#'] = '<br/>';
-          $replace['#object_name#'] = (is_object($object)) ? $object->getName() : '';
-      }
-
-      if (is_array($parameters)) {
-          foreach ($parameters as $key => $value) {
-              $replace['#' . $key . '#'] = $value;
-          }
-      }
+  $version = jeedom::versionAlias($_version);
+  if ($this->getDisplay('hideOn' . $version) == 1) {
+    return '';
+  }
 
   $id=array();
   $value=array();
@@ -453,21 +404,12 @@ public function toHtml($_version = 'dashboard') {
     $value[$type_cmd]=$cmd->getConfiguration('value');
   }
 
-  $cmdlogic = heliotropeCmd::byEqLogicIdAndLogicalId($this->getId(),'azimuth360');
-  $datec = $cmdlogic->getCollectDate();
+  $replace['#azimuth360#'] = round($value['azimuth360'],1);
+  $replace['#azimuth360_id#'] = $id['azimuth360'];
+  $replace['#altitude#'] = round($value['altitude'],1);
+  $replace['#sunrise#'] = substr_replace($value['sunrise'],':',-2,0);
+  $replace['#sunset#'] = substr_replace($value['sunset'],':',-2,0);
 
-  $replace = array(
-    '#name#' => $this->getName(),
-    '#azimuth360#' => round($value['azimuth360'],1),
-    '#azimuth360_id#' => $id['azimuth360'],
-    '#altitude#' => round($value['altitude'],1),
-    '#sunrise#' => substr_replace($value['sunrise'],':',-2,0),
-    '#sunset#' => substr_replace($value['sunset'],':',-2,0),
-    '#id#' => $this->getId(),
-    '#collectDate#' => $datec,
-    '#background_color#' => $this->getBackgroundColor(jeedom::versionAlias($_version)),
-    '#eqLink#' => ($this->hasRight('w')) ? $this->getLinkToConfiguration() : '#',
-  );
   if (array_key_exists('daystatus', $value) && $value['daystatus']=="1") {
     $replace['#heliosun#'] = "color : rgba(255,255,255,1)";
     $replace['#heliomoon#'] = "color : rgba(255,255,255,0.3)";
@@ -476,14 +418,7 @@ public function toHtml($_version = 'dashboard') {
     $replace['#heliomoon#'] = "color : rgba(255,255,255,1)";
   }
 
-  $parameters = $this->getDisplay('parameters');
-  if (is_array($parameters)) {
-    foreach ($parameters as $key => $value) {
-      $replace['#' . $key . '#'] = $value;
-    }
-  }
   $html = template_replace($replace, getTemplate('core', $_version, 'heliotrope', 'heliotrope'));
-  cache::set('heliotropeWidget' . $_version . $this->getId(), $html, 0);
   return $html;
 }
 
