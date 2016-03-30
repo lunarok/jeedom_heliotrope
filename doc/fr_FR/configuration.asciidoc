@@ -1,9 +1,28 @@
-==== Configuration du plugin
+=== Configuration du plugin
 
-Le plugin ne comporte pas de configuration générale.
+Le plugin permet en configuration générale de paramétrer la fréquence du cron.
 
 Il faut ajouter un équipement et sélectionner la commande geoloc qui servira pour le calcul.
 
 Ce plugin utilise une information venant du plugin geoloc afin de réutiliser une localisation déjà existante.
 
 Un autre paramètre est disponible pour paramétrer le zenith qu'on souhaite utiliser pour le calcul du coucher et lever du soleil uniquement (par défaut 90.58, ce qui est utilisé en général)
+
+Le plugin apporte différentes informations, certaines sont calculées quotidiennement, d'autres rafraichit par le cron dédié.
+
+
+Informations à rafraichissement quotidien (le calcul est fait à 3h du matin, sur démarrage de la box Jeedom ou sur sauvegarde de l'équipement) :
+
+  - lever du soleil
+
+  - coucher du soleil
+
+  - durée de la journée
+
+  - zenith du soleil
+
+Les informations restantes sont recalculées à la fréquence paramétrer sur la configuration plugin :
+
+  - azimuth solaire
+
+  - altitude solaire

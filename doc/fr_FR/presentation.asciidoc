@@ -1,4 +1,4 @@
-==== Heliotrope, azimut et altitude solaire, lever et coucher du soleil
+=== Heliotrope, azimut et altitude solaire, lever et coucher du soleil
 
 Ce plugin permet d'obtenir l'azimuth et l'altitude solaire pour être utilisé dans des scénarios
 

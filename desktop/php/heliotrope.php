@@ -24,7 +24,7 @@ $eqLogics = eqLogic::byType('heliotrope');
     </div>
 
     <div class="col-lg-10 col-md-9 col-sm-8 eqLogicThumbnailDisplay" style="border-left: solid 1px #EEE; padding-left: 25px;">
-        <legend>{{Mes heliotrope}}
+        <legend><i class="fa fa-cog"></i>  {{Mes heliotrope}}
         </legend>
             <div class="eqLogicThumbnailContainer">
                       <div class="cursor eqLogicAction" data-action="add" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
@@ -112,13 +112,12 @@ $eqLogics = eqLogic::byType('heliotrope');
                 <div id="infoNode" class="col-sm-6">
                 <form class="form-horizontal">
                     <fieldset>
-                        <legend>{{Configuration}}</legend>
+                        <legend><i class="fa fa-info-circle"></i>  {{Configuration}}</legend>
 
                         <div class="form-group">
                           <label class="col-md-2 control-label">{{Géolocalisation}}</label>
                           <div class="col-md-3">
                             <select class="form-control eqLogicAttr configuration" id="geoloc" data-l1key="configuration" data-l2key="geoloc">
-                              <option value="none">{{Aucun}}</option>
                               <?php
                               if (class_exists('geolocCmd')) {
                               foreach (eqLogic::byType('geoloc') as $geoloc) {
@@ -129,7 +128,7 @@ $eqLogics = eqLogic::byType('heliotrope');
                                 }
                               }
                             } else {
-                              echo '<option value="">Geoloc absent</option>';
+                              echo '<option value="none">Geoloc absent</option>';
                             }
                               ?>
                             </select>
@@ -148,7 +147,7 @@ $eqLogics = eqLogic::byType('heliotrope');
             </div>
         </div>
 
-	<legend>{{Informations}}</legend>
+	<legend><i class="fa fa-cog"></i>  {{Informations}}</legend>
 
         <table id="table_cmd" class="table table-bordered table-condensed">
             <thead>

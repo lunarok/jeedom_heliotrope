@@ -23,44 +23,39 @@ class heliotrope extends eqLogic {
   public static $_widgetPossibility = array('custom' => true);
 
   public static function pull() {
-    foreach (eqLogic::byType('heliotrope') as $heliotrope) {
-      if ($heliotrope->getIsEnable() == 1) {
-        if (null !== ($heliotrope->getConfiguration('geoloc', ''))) {
-          log::add('heliotrope', 'debug', 'pull cron');
-          $heliotrope->getInformations();
-        } else {
-          log::add('heliotrope', 'error', 'geoloc non saisie');
-        }
+    foreach (eqLogic::byType('heliotrope', true) as $heliotrope) {
+      if (null !== ($heliotrope->getConfiguration('geoloc', '')) && $heliotrope->getConfiguration('geoloc', '') != 'none') {
+        log::add('heliotrope', 'debug', 'info daily');
+        $heliotrope->getDaily();
+        $heliotrope->getInformations();
+      } else {
+        log::add('heliotrope', 'error', 'geoloc non saisie');
       }
-    }
-
+      }
   }
 
   public static function cronHourly() {
     if (date('G')  == 3) {
-      foreach (eqLogic::byType('heliotrope') as $heliotrope) {
-        if ($heliotrope->getIsEnable() == 1) {
-          if (null !== ($heliotrope->getConfiguration('geoloc', ''))) {
+      foreach (eqLogic::byType('heliotrope', true) as $heliotrope) {
+          if (null !== ($heliotrope->getConfiguration('geoloc', '')) && $heliotrope->getConfiguration('geoloc', '') != 'none') {
             log::add('heliotrope', 'debug', 'info daily');
             $heliotrope->getDaily();
+            $heliotrope->getInformations();
           } else {
             log::add('heliotrope', 'error', 'geoloc non saisie');
           }
-        }
       }
     }
   }
 
   public static function start() {
-    foreach (eqLogic::byType('heliotrope') as $heliotrope) {
-      if ($heliotrope->getIsEnable() == 1) {
-        if (null !== ($heliotrope->getConfiguration('geoloc', ''))) {
-          log::add('heliotrope', 'debug', 'info daily');
-          $heliotrope->getDaily();
-          $heliotrope->getInformations();
-        } else {
-          log::add('heliotrope', 'error', 'geoloc non saisie');
-        }
+    foreach (eqLogic::byType('heliotrope', true) as $heliotrope) {
+      if (null !== ($heliotrope->getConfiguration('geoloc', '')) && $heliotrope->getConfiguration('geoloc', '') != 'none') {
+        log::add('heliotrope', 'debug', 'info daily');
+        $heliotrope->getDaily();
+        $heliotrope->getInformations();
+      } else {
+        log::add('heliotrope', 'error', 'geoloc non saisie');
       }
     }
   }
@@ -160,8 +155,13 @@ class heliotrope extends eqLogic {
         $heliotropeCmd->setIsHistorized(0);
         $heliotropeCmd->save();
       }
-      heliotrope::getInformations();
-      heliotrope::getDaily();
+      if (null !== ($this->getConfiguration('geoloc', '')) && $this->getConfiguration('geoloc', '') != 'none') {
+        heliotrope::getInformations();
+        heliotrope::getDaily();
+      } else {
+        log::add('heliotrope', 'error', 'geoloc non saisie');
+      }
+
     }
   }
 
@@ -209,7 +209,12 @@ class heliotrope extends eqLogic {
   public function getInformations() {
     $geoloc = $this->getConfiguration('geoloc', '');
     $geolocCmd = geolocCmd::byId($geoloc);
-    $geoloctab = explode(',', $geolocCmd->execCmd(null, 0));
+    if ($geolocCmd->getConfiguration('mode') == 'fixe') {
+      $geolocval = $geolocCmd->getConfiguration('coordinate');
+    } else {
+      $geolocval = $geolocCmd->execCmd();
+    }
+    $geoloctab = explode(',', trim($geolocval));
     $latitude = $geoloctab[0];
     $longitude = $geoloctab[1];
     if (!$this->getConfiguration('zenith', '')) {
