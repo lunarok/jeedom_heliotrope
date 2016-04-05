@@ -26,7 +26,6 @@ class heliotrope extends eqLogic {
     foreach (eqLogic::byType('heliotrope', true) as $heliotrope) {
       if (null !== ($heliotrope->getConfiguration('geoloc', '')) && $heliotrope->getConfiguration('geoloc', '') != 'none') {
         log::add('heliotrope', 'debug', 'info daily');
-        $heliotrope->getDaily();
         $heliotrope->getInformations();
       } else {
         log::add('heliotrope', 'error', 'geoloc non saisie');
