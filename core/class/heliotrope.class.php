@@ -400,7 +400,7 @@ class heliotrope extends eqLogic {
       $replace['#heliomoon#'] = "color : rgba(255,255,255,1)";
     }
 
-    $html = template_replace($replace, getTemplate('core', $_version, 'heliotrope', 'heliotrope'));
+    $html = template_replace($replace, getTemplate('core', $version, 'heliotrope', 'heliotrope'));
     return $html;
   }
 
