@@ -268,7 +268,7 @@ class heliotrope extends eqLogic {
         log::add('heliotrope', 'debug', 'Daystatus ' . $status);
       }
     }
-    return ;
+    $this->refreshWidget();
   }
 
   public function getDaily() {
@@ -331,7 +331,7 @@ class heliotrope extends eqLogic {
         log::add('heliotrope', 'debug', 'Durée ' . $daylen);
       }
     }
-    return ;
+    $this->refreshWidget();
   }
 
   public function getGeoloc($_infos = '') {
@@ -391,6 +391,8 @@ class heliotrope extends eqLogic {
     $replace['#altitude#'] = round($value['altitude'],1);
     $replace['#sunrise#'] = substr_replace($value['sunrise'],':',-2,0);
     $replace['#sunset#'] = substr_replace($value['sunset'],':',-2,0);
+
+    $replace['#collectDate#'] = $this->getStatus('lastCommunication', date('Y-m-d H:i:s'));
 
     if (array_key_exists('daystatus', $value) && $value['daystatus']=="1") {
       $replace['#heliosun#'] = "color : rgba(255,255,255,1)";
