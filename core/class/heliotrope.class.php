@@ -274,7 +274,12 @@ class heliotrope extends eqLogic {
   public function getDaily() {
     $geoloc = $this->getConfiguration('geoloc', '');
     $geolocCmd = geolocCmd::byId($geoloc);
-    $geoloctab = explode(',', $geolocCmd->execCmd(null, 0));
+    if ($geolocCmd->getConfiguration('mode') == 'fixe') {
+      $geolocval = $geolocCmd->getConfiguration('coordinate');
+    } else {
+      $geolocval = $geolocCmd->execCmd();
+    }
+    $geoloctab = explode(',', trim($geolocval));
     $latitude = $geoloctab[0];
     $longitude = $geoloctab[1];
     if (!$this->getConfiguration('zenith', '')) {
