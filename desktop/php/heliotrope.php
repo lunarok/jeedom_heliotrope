@@ -49,23 +49,32 @@ $eqLogics = eqLogic::byType('heliotrope');
 
 
     <div class="col-lg-10 col-md-9 col-sm-8 eqLogic" style="border-left: solid 1px #EEE; padding-left: 25px;display: none;">
-        <div class="row">
-            <div class="col-sm-6">
+
+      <a class="btn btn-success eqLogicAction pull-right" data-action="save"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
+      <a class="btn btn-danger eqLogicAction pull-right" data-action="remove"><i class="fa fa-minus-circle"></i> {{Supprimer}}</a>
+
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#eqlogictab" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-tachometer"></i> {{Equipement}}</a></li>
+        <li role="presentation"><a href="#commandtab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-list-alt"></i> {{Commandes}}</a></li>
+      </ul>
+
+      <div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
+        <div role="tabpanel" class="tab-pane active" id="eqlogictab">
                 <form class="form-horizontal">
             <fieldset>
                 <legend><i class="fa fa-arrow-circle-left eqLogicAction cursor" data-action="returnToThumbnailDisplay"></i>  {{Général}}
                 <i class='fa fa-cogs eqLogicAction pull-right cursor expertModeVisible' data-action='configure'></i>
                 </legend>
                 <div class="form-group">
-                    <label class="col-md-2 control-label">{{Héliotrope}}</label>
-                    <div class="col-md-3">
+                    <label class="col-sm-3 control-label">{{Héliotrope}}</label>
+                    <div class="col-sm-3">
                         <input type="text" class="eqLogicAttr form-control" data-l1key="id" style="display : none;" />
                         <input type="text" class="eqLogicAttr form-control" data-l1key="name" placeholder="{{Nom de l'équipement heliotrope}}"/>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-2 control-label" >{{Objet parent}}</label>
-                    <div class="col-md-3">
+                    <label class="col-sm-3 control-label" >{{Objet parent}}</label>
+                    <div class="col-sm-3">
                         <select class="form-control eqLogicAttr" data-l1key="object_id">
                             <option value="">{{Aucun}}</option>
                             <?php
@@ -77,8 +86,8 @@ $eqLogics = eqLogic::byType('heliotrope');
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-2 control-label">{{Catégorie}}</label>
-                    <div class="col-md-8">
+                    <label class="col-sm-3 control-label">{{Catégorie}}</label>
+                    <div class="col-sm-8">
                         <?php
                         foreach (jeedom::getConfiguration('eqLogic:category') as $key => $value) {
                             echo '<label class="checkbox-inline">';
@@ -90,33 +99,25 @@ $eqLogics = eqLogic::byType('heliotrope');
                     </div>
                 </div>
                 <div class="form-group">
-                <label class="col-sm-2 control-label" ></label>
-                <div class="col-sm-9">
-                 <input type="checkbox" class="eqLogicAttr bootstrapSwitch" data-label-text="{{Activer}}" data-l1key="isEnable" checked/>
-                  <input type="checkbox" class="eqLogicAttr bootstrapSwitch" data-label-text="{{Visible}}" data-l1key="isVisible" checked/>
-                </div>
+                <label class="col-sm-3 control-label" ></label>
+                <div class="col-sm-8">
+                 <label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="isEnable" checked/>{{Activer}}</label>
+                 <label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="isVisible" checked/>{{Visible}}</label>
+       </div>
                 </div>
 
                             <div class="form-group">
-                    <label class="col-sm-2 control-label">{{Commentaire}}</label>
-                    <div class="col-md-8">
+                    <label class="col-sm-3 control-label">{{Commentaire}}</label>
+                    <div class="col-sm-3">
                         <textarea class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="commentaire" ></textarea>
                     </div>
                 </div>
 
-            </fieldset>
 
-        </form>
-        </div>
-
-                <div id="infoNode" class="col-sm-6">
-                <form class="form-horizontal">
-                    <fieldset>
-                        <legend><i class="fa fa-info-circle"></i>  {{Configuration}}</legend>
 
                         <div class="form-group">
-                          <label class="col-md-2 control-label">{{Géolocalisation}}</label>
-                          <div class="col-md-3">
+                          <label class="col-sm-3 control-label">{{Géolocalisation}}</label>
+                          <div class="col-sm-3">
                             <select class="form-control eqLogicAttr configuration" id="geoloc" data-l1key="configuration" data-l2key="geoloc">
                               <?php
                               if (class_exists('geolocCmd')) {
@@ -136,8 +137,8 @@ $eqLogics = eqLogic::byType('heliotrope');
                         </div>
 
                 	<div class="form-group">
-                    		<label class="col-md-2 control-label">{{Zenith}}</label>
-                    		<div class="col-md-3">
+                    		<label class="col-sm-3 control-label">{{Zenith}}</label>
+                    		<div class="col-sm-3">
                         	<input type="text" class="eqLogicAttr configuration form-control" data-l1key="configuration" data-l2key="zenith" placeholder="90.58"/>
                     		</div>
                 	</div>
@@ -145,9 +146,8 @@ $eqLogics = eqLogic::byType('heliotrope');
                     </fieldset>
                 </form>
             </div>
-        </div>
 
-	<legend><i class="fa fa-cog"></i>  {{Informations}}</legend>
+          <div role="tabpanel" class="tab-pane" id="commandtab">
 
         <table id="table_cmd" class="table table-bordered table-condensed">
             <thead>
@@ -173,8 +173,10 @@ $eqLogics = eqLogic::byType('heliotrope');
             </fieldset>
         </form>
 
-    </div>
-</div>
+      </div>
+      </div>
+      </div>
+      </div>
 
 <?php include_file('desktop', 'heliotrope', 'js', 'heliotrope'); ?>
 <?php include_file('core', 'plugin.template', 'js'); ?>
