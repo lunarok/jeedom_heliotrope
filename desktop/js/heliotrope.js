@@ -54,7 +54,7 @@ function addCmdToTable(_cmd) {
         tr += '<span class="cmdAttr" data-l1key="configuration" data-l2key="value"></span>';
         tr += '</td>';
         tr += '<td>';
-        tr += '<span><input type="checkbox" data-size="mini" data-label-text="{{Historiser}}" class="cmdAttr bootstrapSwitch" data-l1key="isHistorized" /></span> ';
+ tr += '<span><label class="checkbox-inline"><input type="checkbox" class="cmdAttr checkbox-inline" data-l1key="isHistorized" checked/>{{Historiser}}</label></span> ';
         tr += '</td>';
         tr += '<td>';
         if (is_numeric(_cmd.id)) {
