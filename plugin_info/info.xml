@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<info>
-    <id>heliotrope</id>
-    <name>Héliotrope</name>
-    <licence>AGPL</licence>
-    <author>lunarok,Mika</author>
-    <require>2.1</require>
-    <category>weather</category>
-</info>
