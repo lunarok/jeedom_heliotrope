@@ -55,6 +55,7 @@ $eqLogics = eqLogic::byType('heliotrope');
 
       <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active"><a href="#eqlogictab" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-tachometer"></i> {{Equipement}}</a></li>
+        <li role="presentation"><a href="#infotab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-list-alt"></i> {{Commandes}}</a></li>
         <li role="presentation"><a href="#commandtab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-list-alt"></i> {{Commandes}}</a></li>
       </ul>
 
@@ -147,7 +148,8 @@ $eqLogics = eqLogic::byType('heliotrope');
                 </form>
             </div>
 
-          <div role="tabpanel" class="tab-pane" id="commandtab">
+          <div role="tabpanel" class="tab-pane" id="infotab">
+            
 
         <table id="table_cmd" class="table table-bordered table-condensed">
             <thead>
@@ -163,15 +165,37 @@ $eqLogics = eqLogic::byType('heliotrope');
 
             </tbody>
         </table>
+        
+        
 
-        <form class="form-horizontal">
-            <fieldset>
-                <div class="form-actions">
-                    <a class="btn btn-danger eqLogicAction" data-action="remove"><i class="fa fa-minus-circle"></i> {{Supprimer}}</a>
-                    <a class="btn btn-success eqLogicAction" data-action="save"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
-                </div>
-            </fieldset>
-        </form>
+      </div>
+      
+      <div role="tabpanel" class="tab-pane" id="commandtab">
+              
+            <form class="form-horizontal">
+        <fieldset>
+          <div class="form-actions">
+            <a class="btn btn-info btn-sm cmdAction" data-action="add"><i class="fa fa-plus-circle"></i> {{Ajouter une commande}}</a><br/><br/>
+          </div>
+        </fieldset>
+</form>
+
+        <table id="table_cmd" class="table table-bordered table-condensed">
+            <thead>
+                <tr>
+                    <th style="width: 50px;">#</th>
+                    <th style="width: 300px;">{{Nom}}</th>
+                    <th style="width: 250px;">{{Info}}</th>
+                    <th style="width: 200px;">{{Action}}</th>
+                    <th style="width: 100px;"></th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+        
+        
 
       </div>
       </div>
