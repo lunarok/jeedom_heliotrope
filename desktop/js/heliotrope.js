@@ -43,14 +43,10 @@ function addCmdToTable(_cmd) {
     tr += '</tr>';
     $('#table_cmd tbody').append(tr);
     $('#table_cmd tbody tr:last').setValues(_cmd, '.cmdAttr');
-    /*if (isset(_cmd.type)) {
-    $('#table_cmd tbody tr:last .cmdAttr[data-l1key=type]').value(init(_cmd.type));
-  }
-  jeedom.cmd.changeType($('#table_cmd tbody tr:last'), init(_cmd.subType));*/
+
 }
 
-if (init(_cmd.type) == 'action') {
-  var disabled = (init(_cmd.configuration.virtualAction) == '1') ? 'disabled' : '';
+if (init(_cmd.type) == 'scenar') {
   var tr = '<tr class="cmd" data-cmd_id="' + init(_cmd.id) + '">';
   tr += '<td>';
   tr += '<span class="cmdAttr" data-l1key="id"></span>';
@@ -75,3 +71,13 @@ if (init(_cmd.type) == 'action') {
 }
 
 }
+
+$('.addEvent').on('click',function(){
+    $('#md_modal').dialog({title: "{{Configuration du scénario}}"});
+    $('#md_modal').load('index.php?v=d&plugin=heliotrope&modal=scenar&id='+$('.eqLogicAttr[data-l1key=id]').value()+'&scenar=new&type=event'.dialog('open');
+});
+
+$('.addCondition').on('click',function(){
+    $('#md_modal').dialog({title: "{{Configuration du scénario}}"});
+    $('#md_modal').load('index.php?v=d&plugin=heliotrope&modal=scenar&id='+$('.eqLogicAttr[data-l1key=id]').value()+'&scenar=new&type=condition'.dialog('open');
+});

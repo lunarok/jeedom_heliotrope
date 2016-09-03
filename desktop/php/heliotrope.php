@@ -175,9 +175,9 @@ $eqLogics = eqLogic::byType('heliotrope');
         <form class="form-horizontal">
           <fieldset>
             <div class="form-actions">
-              <a class="btn btn-info btn-sm cmdAction" data-action="add"><i class="fa fa-plus-circle"></i> {{Ajouter une commande sur évènement}}</a><br/><br/>
+              <a class="btn btn-info btn-sm" id="addEvent"><i class="fa fa-plus-circle"></i> {{Ajouter un déclenchement sur un évènement solaire}}</a><br/><br/>
 
-              <a class="btn btn-info btn-sm cmdAction" data-action="add"><i class="fa fa-plus-circle"></i> {{Ajouter une commande sur position}}</a><br/><br/>
+              <a class="btn btn-info btn-sm" id="addCondition"><i class="fa fa-plus-circle"></i> {{Ajouter un déclenchement sur une position solaire}}</a><br/><br/>
             </div>
           </fieldset>
         </form>
@@ -189,7 +189,6 @@ $eqLogics = eqLogic::byType('heliotrope');
               <th style="width: 250px;">{{Nom}}</th>
               <th style="width: 200px;">{{Type}}</th>
               <th style="width: 200px;">{{Condition}}</th>
-              <th style="width: 300px;">{{Action}}</th>
               <th style="width: 100px;"></th>
             </tr>
           </thead>
