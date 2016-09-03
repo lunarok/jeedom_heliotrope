@@ -56,18 +56,12 @@ if (init(_cmd.type) == 'action') {
   tr += '<span class="cmdAttr" data-l1key="id"></span>';
   tr += '</td>';
   tr += '<td>';
-  tr += '<input class="cmdAttr form-control input-sm" data-l1key="name" style="width : 140px;" placeholder="{{Nom de la commande}}"></td>';        tr += '<td>';
-  tr += '<select class="cmdAttr" data-l1key="configuration" data-l2key="type" style="height : 33px; width : 60%;display : inline-block;">';
-    tr += '<option value="sunrise">Lever du Soleil</option>';
-    tr += '<option value="sunrise">Coucher du Soleil</option>';
-    tr += '<option value="position">Position du Soleil</option>';
-tr +='</select>';
+  tr += '<input class="cmdAttr form-control input-sm" data-l1key="name" style="width : 140px;" placeholder="{{Nom de la commande}}"></td>';
+  tr += '<td>';
+  tr += '<span class="cmdAttr" data-l1key="type"></span>';
   tr += '</td>';
   tr += '<td>';
-  tr += '<input class="cmdAttr form-control input-sm" data-l1key="condition" style="width : 140px;" placeholder="{{Condition de déclenchement}}"></td>';        tr += '<td>';
-  tr += '</td>';
-  tr += '<td>';
-  tr += '<input class="cmdAttr form-control input-sm" data-l1key="action" style="width : 140px;" placeholder="{{Action déclenchée}}"></td>';        tr += '<td>';
+  tr += '<a class="btn btn-info btn-sm cmdAction" data-action="add">{{Editer les conditions}}</a><br/><br/>';
   tr += '</td>';
   tr += '<td>';
   if (is_numeric(_cmd.id)) {
@@ -78,10 +72,6 @@ tr +='</select>';
   tr += '</tr>';
   $('#action_cmd tbody').append(tr);
   $('#action_cmd tbody tr:last').setValues(_cmd, '.cmdAttr');
-  /*if (isset(_cmd.type)) {
-  $('#table_cmd tbody tr:last .cmdAttr[data-l1key=type]').value(init(_cmd.type));
-}
-jeedom.cmd.changeType($('#table_cmd tbody tr:last'), init(_cmd.subType));*/
 }
 
 }

@@ -176,13 +176,7 @@ $eqLogics = eqLogic::byType('heliotrope');
           <fieldset>
             <div class="form-actions">
               <a class="btn btn-info btn-sm cmdAction" data-action="add"><i class="fa fa-plus-circle"></i> {{Ajouter une commande sur évènement}}</a><br/><br/>
-            </div>
-          </fieldset>
-        </form>
 
-        <form class="form-horizontal">
-          <fieldset>
-            <div class="form-actions">
               <a class="btn btn-info btn-sm cmdAction" data-action="add"><i class="fa fa-plus-circle"></i> {{Ajouter une commande sur position}}</a><br/><br/>
             </div>
           </fieldset>
