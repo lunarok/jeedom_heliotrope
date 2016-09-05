@@ -74,10 +74,23 @@ if (init(_cmd.type) == 'scenar') {
 
 $('.addEvent').on('click',function(){
     $('#md_modal').dialog({title: "{{Configuration du scénario}}"});
-    $('#md_modal').load('index.php?v=d&plugin=heliotrope&modal=scenar&id='+$('.eqLogicAttr[data-l1key=id]').value()+'&scenar=new&type=event'.dialog('open');
+    $('#md_modal').load('index.php?v=d&plugin=heliotrope&modal=scenar.event&id='+$('.eqLogicAttr[data-l1key=id]').value()+'&scenar=new').dialog('open');
 });
 
 $('.addCondition').on('click',function(){
     $('#md_modal').dialog({title: "{{Configuration du scénario}}"});
-    $('#md_modal').load('index.php?v=d&plugin=heliotrope&modal=scenar&id='+$('.eqLogicAttr[data-l1key=id]').value()+'&scenar=new&type=condition'.dialog('open');
+    $('#md_modal').load('index.php?v=d&plugin=heliotrope&modal=scenar.condition&id='+$('.eqLogicAttr[data-l1key=id]').value()+'&scenar=new').dialog('open');
+});
+
+
+$('body').on('rflink::includeDevice', function (_event,_options) {
+    if (modifyWithoutSave) {
+        $('#div_inclusionAlert').showAlert({message: '{{Une commande vient d\'être ajoutée. Veuillez réactualiser la page}}', level: 'warning'});
+    } else {
+        if (_options == '') {
+            window.location.reload();
+        } else {
+            window.location.href = 'index.php?v=d&p=rflink&m=rflink&id=' + _options + '#commandtab';
+        }
+    }
 });
