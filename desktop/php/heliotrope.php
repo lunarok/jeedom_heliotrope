@@ -182,7 +182,7 @@ $eqLogics = eqLogic::byType('heliotrope');
           </fieldset>
         </form>
 
-        <table id="table_cmd" class="table table-bordered table-condensed">
+        <table id="action_cmd" class="table table-bordered table-condensed">
           <thead>
             <tr>
               <th style="width: 50px;">#</th>

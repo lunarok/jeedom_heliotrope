@@ -46,6 +46,30 @@ function addCmdToTable(_cmd) {
 
 }
 
+if (init(_cmd.type) == 'scenar') {
+  var tr = '<tr class="cmd" data-cmd_id="' + init(_cmd.id) + '">';
+  tr += '<td>';
+  tr += '<span class="cmdAttr" data-l1key="id"></span>';
+  tr += '</td>';
+  tr += '<td>';
+  tr += '<input class="cmdAttr form-control input-sm" data-l1key="name" style="width : 140px;" placeholder="{{Nom de la commande}}"></td>';
+  tr += '<td>';
+  tr += '<span class="cmdAttr" data-l1key="type"></span>';
+  tr += '</td>';
+  tr += '<td>';
+  tr += '<a class="btn btn-info btn-sm cmdAction" data-action="add">{{Editer les conditions}}</a><br/><br/>';
+  tr += '</td>';
+  tr += '<td>';
+  if (is_numeric(_cmd.id)) {
+    tr += '<a class="btn btn-default btn-xs cmdAction expertModeVisible" data-action="configure"><i class="fa fa-cogs"></i></a> ';
+  }
+  tr += '<i class="fa fa-minus-circle pull-right cmdAction cursor" data-action="remove"></i></td>';
+  tr += '</td>';
+  tr += '</tr>';
+  $('#action_cmd tbody').append(tr);
+  $('#action_cmd tbody tr:last').setValues(_cmd, '.cmdAttr');
+}
+
 }
 
 $('.addEvent').on('click',function(){
