@@ -20,8 +20,12 @@ if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
 
-$event = 'zenith';
-$adjust = 'plus';
+$selsunrise = '';
+$selzenith = '';
+$selsunset = 'selected ';
+$selnone = '';
+$selplus = '';
+$selminus = 'selected ';
 $minutes = '17';
 
 
@@ -38,9 +42,9 @@ echo '<div class="form-group">';
 echo '<label class="col-sm-2 control-label">Evènement</label>';
 echo '<div class="col-sm-3">';
 echo '<select class="cmdAttr" data-l1key="configuration" data-l2key="event" style="height : 33px; width : 60%;display : inline-block;" value="' . $event . '">';
-echo '<option value="sunrise">Lever du soleil</option>';
-echo '<option value="zenith">Zenith du soleil</option>';
-echo '<option value="sunset">Coucher du soleil</option>';
+echo '<option ' . $selsunrise . 'value="sunrise">Lever du soleil</option>';
+echo '<option ' . $selzenith . 'value="zenith">Zenith du soleil</option>';
+echo '<option ' . $selsunset . 'value="sunset">Coucher du soleil</option>';
 echo '</select>';
 echo '</div>';
 echo '<div class="col-sm-3 alert alert-info">';
@@ -52,9 +56,9 @@ echo '<div class="form-group">';
 echo '<label class="col-sm-2 control-label">Ajustement</label>';
 echo '<div class="col-sm-3">';
 echo '<select class="cmdAttr" data-l1key="configuration" data-l2key="adjust" style="height : 33px; width : 60%;display : inline-block;" value="' . $adjust . '">';
-echo '<option value="none">Aucun</option>';
-echo '<option value="plus">Après le déclencheur</option>';
-echo '<option value="minus">Avant le déclencheur</option>';
+echo '<option  ' . $selnone . 'value="none">Aucun</option>';
+echo '<option  ' . $selplus . 'value="plus">Après le déclencheur</option>';
+echo '<option  ' . $selminus . 'value="minus">Avant le déclencheur</option>';
 echo '</select>';
 echo '</div>';
 echo '<div class="col-sm-3 alert alert-info">';

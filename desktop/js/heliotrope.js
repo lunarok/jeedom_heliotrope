@@ -72,10 +72,11 @@ if (init(_cmd.type) == 'scenar') {
 
 }
 
-$('.addEvent').on('click',function(){
+$('#addEvent').on('click',function(){
     $('#md_modal').dialog({title: "{{Configuration du scénario}}"});
     $('#md_modal').load('index.php?v=d&plugin=heliotrope&modal=event&scenar=new&id=').dialog('open');
 });
+/*
 
 $('.addCondition').on('click',function(){
     $('#md_modal').dialog({title: "{{Configuration du scénario}}"});
@@ -94,3 +95,4 @@ $('body').on('rflink::includeDevice', function (_event,_options) {
         }
     }
 });
+*/
