@@ -32,6 +32,10 @@ try {
 		    ajax::success(heliotrope::setupCron());
     }
 
+    if (init('action') == 'setEvent') {
+      ajax::success(heliotrope::setEvent(init('id'),init('cmd'),init('name'),init('adjust'),init('minutes'),init('command')));
+    }
+
      if (init('action') == 'getHeliotrope') {
         $heliotrope = heliotrope::byId(init('id'));
         if (!is_object($heliotrope)) {

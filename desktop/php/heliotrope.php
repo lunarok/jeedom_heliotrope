@@ -176,8 +176,6 @@ $eqLogics = eqLogic::byType('heliotrope');
           <fieldset>
             <div class="form-actions">
               <a class="btn btn-info btn-sm" id="addEvent"><i class="fa fa-plus-circle"></i> {{Ajouter un déclenchement sur un évènement solaire}}</a><br/><br/>
-
-              <a class="btn btn-info btn-sm" id="addCondition"><i class="fa fa-plus-circle"></i> {{Ajouter un déclenchement sur une position solaire}}</a><br/><br/>
             </div>
           </fieldset>
         </form>

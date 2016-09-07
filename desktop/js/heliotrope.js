@@ -46,7 +46,7 @@ function addCmdToTable(_cmd) {
 
 }
 
-if (init(_cmd.type) == 'scenar') {
+if (init(_cmd.type) == 'action') {
   var tr = '<tr class="cmd" data-cmd_id="' + init(_cmd.id) + '">';
   tr += '<td>';
   tr += '<span class="cmdAttr" data-l1key="id"></span>';
@@ -54,7 +54,7 @@ if (init(_cmd.type) == 'scenar') {
   tr += '<td>';
   tr += '<input class="cmdAttr form-control input-sm" data-l1key="name" style="width : 140px;" placeholder="{{Nom de la commande}}"></td>';
   tr += '<td>';
-  tr += '<span class="cmdAttr" data-l1key="type"></span>';
+  tr += '<span class="cmdAttr" data-l1key="configuration" data-l2key="type"></span>';
   tr += '</td>';
   tr += '<td>';
   tr += '<a class="btn btn-info btn-sm cmdAction" data-action="add">{{Editer les conditions}}</a><br/><br/>';
@@ -74,12 +74,12 @@ if (init(_cmd.type) == 'scenar') {
 
 $('#addEvent').on('click',function(){
     $('#md_modal').dialog({title: "{{Configuration du scénario}}"});
-    $('#md_modal').load('index.php?v=d&plugin=heliotrope&modal=event&scenar=new&id=').dialog('open');
+    $('#md_modal').load('index.php?v=d&plugin=heliotrope&modal=event&cmd=new&id='+$('.eqLogicAttr[data-l1key=id]').value()).dialog('open');
 });
 
 $('#addCondition').on('click',function(){
     $('#md_modal').dialog({title: "{{Configuration du scénario}}"});
-    $('#md_modal').load('index.php?v=d&plugin=heliotrope&modal=condition&scenar=new&id='+$('.eqLogicAttr[data-l1key=id]').value()).dialog('open');
+    $('#md_modal').load('index.php?v=d&plugin=heliotrope&modal=condition&cmd=new&id='+$('.eqLogicAttr[data-l1key=id]').value()).dialog('open');
 });
 
 
