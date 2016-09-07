@@ -62,7 +62,8 @@ if (is_object($cmdlogic)) {
 
 echo '<div id="div_alertConfigureScene"></div>';
 echo '<div id="div_configureParam">';
-echo '<input class="eqLogicAttr" data-l1key="id" style="display:none;" value="' . init('id') . '" />';
+echo '<input class="eqLogicAttr" id="id" style="display:none;" value="' . init('id') . '" />';
+echo '<input class="eqLogicAttr" id="cmd" style="display:none;" value="' . init('cmd') . '" />';
 echo '<legend>Configuration de la condition';
 echo '<a class="btn btn-success btn-xs pull-right" id="bt_configureParamSave"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>';
 echo '</legend>';
@@ -130,29 +131,29 @@ $('#bt_configureParamSave').off('click').on('click',function(){
 	var minutes = $('#minutes').val();
 	var command = $('#command').val();
 	$.ajax({// fonction permettant de faire de l'ajax
-		type: "POST", // methode de transmission des données au fichier php
-		url: "plugins/heliotrope/core/ajax/heliotrope.ajax.php", // url du fichier php
-		data: {
-			action: "setEvent",
-			id: id,
-			cmd: cmd,
-			name: name,
-			adjust: adjust,
-			minutes: minutes,
-			command: command,
-		},
-		dataType: 'json',
-		error: function (request, status, error) {
-			handleAjaxError(request, status, error);
-		},
-		success: function (data) { // si l'appel a bien fonctionné
-		if (data.state != 'ok') {
-			$('#div_alert').showAlert({message: data.result, level: 'danger'});
-			return;
-		} else {
-			window.location.href = 'index.php?v=d&p=rflink&m=rflink&id=' + id + '#commandtab';
-		}
-
-		});
+	type: "POST", // methode de transmission des données au fichier php
+	url: "plugins/heliotrope/core/ajax/heliotrope.ajax.php", // url du fichier php
+	data: {
+		action: "setEvent",
+		id: id,
+		cmd: cmd,
+		name: name,
+		adjust: adjust,
+		minutes: minutes,
+		command: command,
+	},
+	dataType: 'json',
+	error: function (request, status, error) {
+		handleAjaxError(request, status, error);
+	},
+	success: function (data) { // si l'appel a bien fonctionné
+	if (data.state != 'ok') {
+		$('#div_alert').showAlert({message: data.result, level: 'danger'});
+		return;
+	} else {
+		window.location.href = 'index.php?v=d&p=rflink&m=rflink&id=' + id + '#commandtab';
+	}
+}
+});
 });
 </script>
