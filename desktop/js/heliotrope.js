@@ -76,9 +76,8 @@ $('#addEvent').on('click',function(){
     $('#md_modal').dialog({title: "{{Configuration du scénario}}"});
     $('#md_modal').load('index.php?v=d&plugin=heliotrope&modal=event&scenar=new&id=').dialog('open');
 });
-/*
 
-$('.addCondition').on('click',function(){
+$('#addCondition').on('click',function(){
     $('#md_modal').dialog({title: "{{Configuration du scénario}}"});
     $('#md_modal').load('index.php?v=d&plugin=heliotrope&modal=condition&scenar=new&id='+$('.eqLogicAttr[data-l1key=id]').value()).dialog('open');
 });
@@ -95,4 +94,3 @@ $('body').on('rflink::includeDevice', function (_event,_options) {
         }
     }
 });
-*/
