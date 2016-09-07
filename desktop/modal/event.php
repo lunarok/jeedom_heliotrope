@@ -53,7 +53,7 @@ if (is_object($cmdlogic)) {
 	}
 	$name = $cmdlogic->getName();
 } else {
-	$cmdlogic = eqLogic::byId(init('id'));
+	$eqLogic = eqLogic::byId(init('id'));
 	$cmds = $eqLogic->getCmd();
 	$name = 'Event ' . count($cmds);
 }
