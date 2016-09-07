@@ -33,7 +33,7 @@ try {
     }
 
     if (init('action') == 'setEvent') {
-      ajax::success(heliotrope::setEvent(init('id'),init('cmd'),init('name'),init('adjust'),init('minutes'),init('command')));
+      ajax::success(heliotrope::setEvent(init('id'),init('cmd'),init('name'),init('event'),init('adjust'),init('minutes'),init('command')));
     }
 
      if (init('action') == 'getHeliotrope') {

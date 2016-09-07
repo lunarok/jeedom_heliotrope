@@ -75,9 +75,6 @@ echo '<label class="col-sm-2 control-label">Nom</label>';
 echo '<div class="col-sm-3">';
 echo '<input type="text" class="eqLogicAttr form-control" id="name" style="height : 33px; width : 60%;display : inline-block;" value="' . $name . '" />';
 echo '</div>';
-echo '<div class="col-sm-3 alert alert-info">';
-echo "Combien d'heure(s)";
-echo '</div>';
 echo '</div>';
 
 echo '<div class="form-group">';
@@ -127,6 +124,7 @@ $('#bt_configureParamSave').off('click').on('click',function(){
 	var id = $('#id').val();
 	var cmd = $('#cmd').val();
 	var name = $('#name').val();
+	var event = $('#event').val();
 	var adjust = $('#adjust').val();
 	var minutes = $('#minutes').val();
 	var command = $('#command').val();
@@ -151,7 +149,7 @@ $('#bt_configureParamSave').off('click').on('click',function(){
 		$('#div_alert').showAlert({message: data.result, level: 'danger'});
 		return;
 	} else {
-		window.location.href = 'index.php?v=d&p=rflink&m=rflink&id=' + id + '#commandtab';
+		window.location.href = 'index.php?v=d&p=heliotrope&m=heliotrope&id=' + id + '#commandtab';
 	}
 }
 });

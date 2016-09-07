@@ -90,7 +90,7 @@ $('body').on('rflink::includeDevice', function (_event,_options) {
         if (_options == '') {
             window.location.reload();
         } else {
-            window.location.href = 'index.php?v=d&p=rflink&m=rflink&id=' + _options + '#commandtab';
+            window.location.href = 'index.php?v=d&p=heliotrope&m=heliotrope&id=' + _options + '#commandtab';
         }
     }
 });

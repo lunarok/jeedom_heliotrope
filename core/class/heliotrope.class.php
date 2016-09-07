@@ -353,7 +353,7 @@ class heliotrope extends eqLogic {
     return $return;
   }
 
-  public function setEvent($eqlogic,$cmd,$name,$adjust,$minutes,$command) {
+  public function setEvent($eqlogic,$cmd,$name,$event,$adjust,$minutes,$command) {
     $heliotropeCmd = heliotropeCmd::byId($cmd);
     if (!is_object($heliotropeCmd)) {
       $heliotropeCmd = new heliotropeCmd();
@@ -361,13 +361,16 @@ class heliotrope extends eqLogic {
       $heliotropeCmd->setType('action');
       $heliotropeCmd->setSubType('other');
       $heliotropeCmd->setConfiguration('type','event');
-      
+
     }
     $heliotropeCmd->setName($name);
+    $heliotropeCmd->setConfiguration('event',$event);
     $heliotropeCmd->setConfiguration('adjust',$adjust);
     $heliotropeCmd->setConfiguration('minutes',$minutes);
     $heliotropeCmd->setConfiguration('command',$command);
     $heliotropeCmd->save();
+
+    log::add('heliotrope', 'debug', 'Durée ' . $name . ' ' . $adjust . ' ' . $minutes . ' ' . $command);
 
   }
 
