@@ -140,13 +140,24 @@ $('#bt_selectCmd').on('click', function () {
 });
 
 $('#bt_configureParamSave').off('click').on('click',function(){
-
+	var id = $('#id').val();
+	var cmd = $('#cmd').val();
+	var name = $('#name').val();
+	var event = $('#event').val();
+	var adjust = $('#adjust').val();
+	var minutes = $('#minutes').val();
+	var command = $('#command').val();
 	$.ajax({// fonction permettant de faire de l'ajax
 	type: "POST", // methode de transmission des données au fichier php
 	url: "plugins/heliotrope/core/ajax/heliotrope.ajax.php", // url du fichier php
 	data: {
 		action: "setEvent",
 		id: id,
+		cmd: cmd,
+		name: name,
+		adjust: adjust,
+		minutes: minutes,
+		command: command,
 	},
 	dataType: 'json',
 	error: function (request, status, error) {

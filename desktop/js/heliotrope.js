@@ -83,7 +83,7 @@ $('#addCondition').on('click',function(){
 });
 
 
-$('body').on('rflink::includeDevice', function (_event,_options) {
+$('body').on('heliotrope::includeDevice', function (_event,_options) {
     if (modifyWithoutSave) {
         $('#div_inclusionAlert').showAlert({message: '{{Une commande vient d\'être ajoutée. Veuillez réactualiser la page}}', level: 'warning'});
     } else {
