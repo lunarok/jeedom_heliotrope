@@ -118,14 +118,10 @@ echo '</div>';
 echo '<div class="form-group">';
 echo '<label class="col-sm-2 control-label">Commande à éxécuter</label>';
 echo '<div class="col-sm-3">';
-echo '<input type="text"  class="eqLogicAttr configuration form-control" id="command" />';
+echo '<input type="text"  class="eqLogicAttr configuration form-control" style="height : 33px; width : 60%;display : inline-block;" id="command" />';
 echo '<span class="input-group-btn">';
 echo '<a class="btn btn-default cursor" title="Rechercher une commande" id="bt_selectCmd"><i class="fa fa-list-alt"></i></a>';
 echo '</span>';
-echo '</div>';
-echo '<div class="col-sm-3 alert alert-info">';
-echo "Combien d'heure(s)";
-echo '</div>';
 echo '</div>';
 
 echo '</fieldset>';
@@ -134,7 +130,7 @@ echo '</form>';
 
 <script>
 $('#bt_selectCmd').on('click', function () {
-    jeedom.cmd.getSelectModal({cmd: {type: 'action', subType: 'message'}}, function (result) {
+    jeedom.cmd.getSelectModal({cmd: {type: 'action'}}, function (result) {
         $('#command').atCaret('insert', result.human);
     });
 });

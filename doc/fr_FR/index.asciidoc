@@ -12,7 +12,3 @@ include::exemple.asciidoc[]
 '''
 == FAQ
 include::faq.asciidoc[]
-
-'''
-== Troubleshoting
-include::troubleshoting.asciidoc[]

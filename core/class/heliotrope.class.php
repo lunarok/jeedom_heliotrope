@@ -171,8 +171,6 @@ class heliotrope extends eqLogic {
     return (0.017/tan(deg2rad($d + 10.3/($d+5.11))));
   }
 
-
-
   // Return the right ascension of the sun at Unix epoch t.
   // http://bodmas.org/kepler/sun.html
   public function sunAbsolutePositionDeg($t) {
@@ -371,7 +369,34 @@ class heliotrope extends eqLogic {
     $heliotropeCmd->save();
 
     log::add('heliotrope', 'debug', 'Durée ' . $name . ' ' . $adjust . ' ' . $minutes . ' ' . $command);
+  }
 
+  public function setCron($cmd) {
+    $heliotropeCmd = heliotropeCmd::byId($cmd);
+    $cmdlogic = heliotropeCmd::byEqLogicIdAndLogicalId($heliotrope->getId(),$heliotropeCmd->getConfiguration('event'));
+    $time = $cmdlogic->getConfiguration('value');
+    $hour = substr($time,0,-2);
+    $minute = substr($time,-2);
+    if ($heliotropeCmd->getConfiguration('event') == 'plus') {
+      //
+    } else if ($heliotropeCmd->getConfiguration('event') == 'minus') {
+      //
+    }
+    //else nothing
+
+    $cron = cron::byClassAndFunction('heliotrope', $heliotropeCmd->getId(););
+    if (!is_object($cron)) {
+      $cron = new cron();
+      $cron->setClass('heliotrope');
+      $cron->setFunction('pull');
+      $cron->setEnable(1);
+      $cron->setDeamon(0);
+    }
+    $cron->setSchedule('* * * * *');
+    $cron->setOption(array('cmd_id' => $cmd));
+    $cron->save();
+
+    log::add('heliotrope', 'debug', 'Durée ' . $name . ' ' . $adjust . ' ' . $minutes . ' ' . $command);
   }
 
   public function setupCron() {

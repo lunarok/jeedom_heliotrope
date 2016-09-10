@@ -6,7 +6,7 @@ Il faut ajouter un équipement et sélectionner la commande geoloc qui servira p
 
 Ce plugin utilise une information venant du plugin geoloc afin de réutiliser une localisation déjà existante.
 
-Un autre paramètre est disponible pour paramétrer le zenith qu'on souhaite utiliser pour le calcul du coucher et lever du soleil uniquement (par défaut 90.58, ce qui est utilisé en général)
+Un autre paramètre est disponible pour paramétrer l'angle qu'on souhaite utiliser pour le calcul du coucher et lever du soleil uniquement (par défaut 90.58, ce qui est utilisé en général)
 
 Le plugin apporte différentes informations, certaines sont calculées quotidiennement, d'autres rafraichit par le cron dédié.
 
@@ -26,3 +26,5 @@ Les informations restantes sont recalculées à la fréquence paramétrer sur la
   - azimuth solaire
 
   - altitude solaire
+
+Il est également possible d'ajouter des commandes sur le plugin, ces commandes permettent d'éxécuter des tâches planifiées à un horaire dépendant soit du lever, du coucher ou du zenith du soleiss

@@ -9,3 +9,9 @@ Non, le plugin fait le calcul en interne par rapport aux coordonnées.
 --
 Oui, il utilise un équipement du plugin geoloc.
 --
+
+[panel,danger]
+.Je n'ai pas d'informations qui remontent
+--
+Il faut bien créer un équipement et remplir les informations du lieu pour lequel on souhaite avoir les horaires.
+--

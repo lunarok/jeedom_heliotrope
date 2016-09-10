@@ -138,7 +138,7 @@ $eqLogics = eqLogic::byType('heliotrope');
             </div>
 
             <div class="form-group">
-              <label class="col-sm-3 control-label">{{Zenith}}</label>
+              <label class="col-sm-3 control-label">{{Angle de calcul}}</label>
               <div class="col-sm-3">
                 <input type="text" class="eqLogicAttr configuration form-control" data-l1key="configuration" data-l2key="zenith" placeholder="90.58"/>
               </div>
