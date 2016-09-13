@@ -371,7 +371,7 @@ class heliotrope extends eqLogic {
     log::add('heliotrope', 'debug', 'Durée ' . $name . ' ' . $adjust . ' ' . $minutes . ' ' . $command);
   }
 
-  public function setCron($cmd) {
+  /*public function setCron($cmd) {
     $heliotropeCmd = heliotropeCmd::byId($cmd);
     $cmdlogic = heliotropeCmd::byEqLogicIdAndLogicalId($heliotrope->getId(),$heliotropeCmd->getConfiguration('event'));
     $time = $cmdlogic->getConfiguration('value');
@@ -397,7 +397,7 @@ class heliotrope extends eqLogic {
     $cron->save();
 
     log::add('heliotrope', 'debug', 'Durée ' . $name . ' ' . $adjust . ' ' . $minutes . ' ' . $command);
-  }
+  }*/
 
   public function setupCron() {
     $setting = config::byKey('cron','heliotrope');
