@@ -163,4 +163,4 @@ $('#bt_configureParamSave').off('click').on('click',function(){
 });
 </script>
 <?php include_file('core', 'scenario.class', 'js'); ?>
-<?php include_file('desktop', 'js/scenario', 'js'); ?>
+<?php include_file('desktop', 'js/scenario'); ?>
