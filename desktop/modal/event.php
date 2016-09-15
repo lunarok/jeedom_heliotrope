@@ -118,7 +118,7 @@ echo '</div>';
 echo '<div class="form-group">';
 echo '<label class="col-sm-2 control-label">Commande à éxécuter</label>';
 echo '<div class="col-sm-3">';
-echo '<input autocomplete="off" class="expressionAttr form-control ui-autocomplete-input" data-l1key="expression" value="#105#" style="font-weight:bold;">';
+echo '<input autocomplete="off" class="expressionAttr form-control ui-autocomplete-input" data-l1key="expression" value="" style="font-weight:bold;">';
 echo '</input>';
 echo '</div>';
 echo '<div class="col-sm-3">';
@@ -163,4 +163,4 @@ $('#bt_configureParamSave').off('click').on('click',function(){
 });
 </script>
 <?php include_file('core', 'scenario.class', 'js'); ?>
-<?php //include_file('desktop', 'js/scenario'); ?>
+<?php include_file('desktop', 'scenario', 'js'); ?>
