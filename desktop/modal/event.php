@@ -118,10 +118,13 @@ echo '</div>';
 echo '<div class="form-group">';
 echo '<label class="col-sm-2 control-label">Commande à éxécuter</label>';
 echo '<div class="col-sm-3">';
-echo '<input type="text"  class="eqLogicAttr configuration form-control" style="height : 33px; width : 60%;display : inline-block;" id="command" />';
-echo '<span class="input-group-btn">';
-echo '<a class="btn btn-default cursor" title="Rechercher une commande" id="bt_selectCmd"><i class="fa fa-list-alt"></i></a>';
-echo '</span>';
+echo '<input autocomplete="off" class="expressionAttr form-control ui-autocomplete-input" data-l1key="expression" value="#105#" style="font-weight:bold;">';
+echo '</input>';
+echo '</div>';
+echo '<div class="col-sm-3">';
+echo '<span class="input-group-btn"><button class="btn btn-default bt_selectOtherActionExpression" type="button" title="Sélectionner un mot-clé"><i class="fa fa-tasks"></i></button><button class="btn btn-default bt_selectCmdExpression" type="button" title="Sélectionner la commande"><i class="fa fa-list-alt"></i></button></span>';
+echo '<div class="col-xs-7 expressionOptions" style="margin-top: 4px"></div>';
+echo '</div>';
 echo '</div>';
 
 echo '</fieldset>';
@@ -159,3 +162,5 @@ $('#bt_configureParamSave').off('click').on('click',function(){
 });
 });
 </script>
+<?php include_file('core', 'scenario.class', 'js'); ?>
+<?php include_file('desktop', 'js/scenario', 'js'); ?>
