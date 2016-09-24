@@ -170,7 +170,7 @@ $eqLogics = eqLogic::byType('heliotrope');
 
       </div>
 
-      <div role="tabpanel" class="tab-pane" id="commandtab">
+      <!--<div role="tabpanel" class="tab-pane" id="commandtab">
 
         <form class="form-horizontal">
           <fieldset>
@@ -197,7 +197,7 @@ $eqLogics = eqLogic::byType('heliotrope');
 
 
 
-      </div>
+      </div>-->
     </div>
   </div>
 </div>
