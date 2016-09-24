@@ -15,3 +15,9 @@ Oui, il utilise un équipement du plugin geoloc.
 --
 Il faut bien créer un équipement et remplir les informations du lieu pour lequel on souhaite avoir les horaires.
 --
+
+[panel,primary]
+.Est-ce que je peux me servir des heures calculées pour déclencher des scénarios ?
+--
+Oui, il suffit de saisir la commande voulue comme déclencheur pui de créer une condition A #commande##heure##voulue#
+--

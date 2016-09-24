@@ -26,5 +26,3 @@ Les informations restantes sont recalculées à la fréquence paramétrer sur la
   - azimuth solaire
 
   - altitude solaire
-
-Il est également possible d'ajouter des commandes sur le plugin, ces commandes permettent d'éxécuter des tâches planifiées à un horaire dépendant soit du lever, du coucher ou du zenith du soleiss
