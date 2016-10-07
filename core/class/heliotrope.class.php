@@ -339,9 +339,27 @@ class heliotrope extends eqLogic {
     if ($actual > $sunrise && $actual < $sunset) {
       $status = 1;
       $texte = "Jour";
+    } elseif ($actual > $aubeciv && $actual <= $sunrise) {
+      $status = 2;
+      $texte = "Aube Civile";
+    } elseif ($actual > $aubenau && $actual <= $aubeciv) {
+      $status = 3;
+      $texte = "Aube Nautique";
+    } elseif ($actual > $aubeast && $actual <= $aubenau) {
+      $status = 4;
+      $texte = "Aube Astronomique";
+    } elseif ($actual >= $sunset && $actual < $crepciv) {
+      $status = 5;
+      $texte = "Crépuscule Civile";
+    } elseif ($actual >= $crepciv && $actual < $crepnau) {
+      $status = 6;
+      $texte = "Crépuscule Nautique";
+    } elseif ($actual >= $crepnau && $actual < $crepast) {
+      $status = 7;
+      $texte = "Crépuscule Astronomique";
     } else {
       $status = 0;
-      $texte = "Jour";
+      $texte = "Nuit";
     }
 
     log::add('heliotrope', 'info', 'getInformations');
