@@ -317,15 +317,31 @@ class heliotrope extends eqLogic {
     $azimuth360 = $az360;
     $altitude = $alt;
     //date_default_timezone_set("GMT");
-    $sunrisef = date_sunrise(time(), SUNFUNCS_RET_STRING, $latitude, $longitude, $zenith, $offset);
-    $sunrise = str_replace(':','',$sunrisef);
-    $sunsetf = date_sunset(time(), SUNFUNCS_RET_STRING, $latitude, $longitude, $zenith, $offset);
-    $sunset = str_replace(':','',$sunsetf);
+
+    $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($this->getId(),'aubeast');
+    $aubeast = $heliotropeCmd->getConfiguration('value');
+    $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($this->getId(),'crepast');
+    $crepast = $heliotropeCmd->getConfiguration('value');
+    $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($this->getId(),'aubenau');
+    $aubenau = $heliotropeCmd->getConfiguration('value');
+    $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($this->getId(),'crepnau');
+    $crepnau = $heliotropeCmd->getConfiguration('value');
+    $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($this->getId(),'aubeciv');
+    $aubeciv = $heliotropeCmd->getConfiguration('value');
+    $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($this->getId(),'crepciv');
+    $crepciv = $heliotropeCmd->getConfiguration('value');
+    $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($this->getId(),'sunrise');
+    $sunrise = $heliotropeCmd->getConfiguration('value');
+    $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($this->getId(),'sunset');
+    $sunset = $heliotropeCmd->getConfiguration('value');
+
     $actual =  date('Hi');
     if ($actual > $sunrise && $actual < $sunset) {
       $status = 1;
+      $texte = "Jour";
     } else {
       $status = 0;
+      $texte = "Jour";
     }
 
     log::add('heliotrope', 'info', 'getInformations');
@@ -381,6 +397,25 @@ class heliotrope extends eqLogic {
     $sunrise = str_replace(':','',$sunrisef);
     $sunsetf = date_sunset(time(), SUNFUNCS_RET_STRING, $latitude, $longitude, $zenith, $offset);
     $sunset = str_replace(':','',$sunsetf);
+
+    $zenith = $zenith + 6;
+    $aubecivf = date_sunrise(time(), SUNFUNCS_RET_STRING, $latitude, $longitude, $zenith, $offset);
+    $aubeciv = str_replace(':','',$aubecivf);
+    $crepcivf = date_sunset(time(), SUNFUNCS_RET_STRING, $latitude, $longitude, $zenith, $offset);
+    $crepciv = str_replace(':','',$crepcivf);
+
+    $zenith = $zenith + 6;
+    $aubenauf = date_sunrise(time(), SUNFUNCS_RET_STRING, $latitude, $longitude, $zenith, $offset);
+    $aubenau = str_replace(':','',$aubenauf);
+    $crepnauf = date_sunset(time(), SUNFUNCS_RET_STRING, $latitude, $longitude, $zenith, $offset);
+    $crepnau = str_replace(':','',$crepnauf);
+
+    $zenith = $zenith + 6;
+    $aubeastf = date_sunrise(time(), SUNFUNCS_RET_STRING, $latitude, $longitude, $zenith, $offset);
+    $aubeast = str_replace(':','',$aubeastf);
+    $crepastf = date_sunset(time(), SUNFUNCS_RET_STRING, $latitude, $longitude, $zenith, $offset);
+    $crepast = str_replace(':','',$crepastf);
+
     $sunrisef = new DateTime($sunrisef);
     $sunsetf = new DateTime($sunsetf);
     $interval = $sunrisef->diff($sunsetf);
@@ -390,24 +425,6 @@ class heliotrope extends eqLogic {
     $sun_info = date_sun_info(time(), $latitude, $longitude);
     $zenithf = date("H:i", $sun_info['transit']);
     $zenith = str_replace(':','',$zenithf);
-
-    $offset = $offset + 6;
-    $aubecivf = date_sunrise(time(), SUNFUNCS_RET_STRING, $latitude, $longitude, $zenith, $offset);
-    $aubeciv = str_replace(':','',$aubecivf);
-    $crecivf = date_sunset(time(), SUNFUNCS_RET_STRING, $latitude, $longitude, $zenith, $offset);
-    $creciv = str_replace(':','',$crecivf);
-
-    $offset = $offset + 6;
-    $aubenauf = date_sunrise(time(), SUNFUNCS_RET_STRING, $latitude, $longitude, $zenith, $offset);
-    $aubenau = str_replace(':','',$aubenauf);
-    $crenauf = date_sunset(time(), SUNFUNCS_RET_STRING, $latitude, $longitude, $zenith, $offset);
-    $crenau = str_replace(':','',$crenauf);
-
-    $offset = $offset + 6;
-    $aubeastf = date_sunrise(time(), SUNFUNCS_RET_STRING, $latitude, $longitude, $zenith, $offset);
-    $aubeast = str_replace(':','',$aubeastf);
-    $creastf = date_sunset(time(), SUNFUNCS_RET_STRING, $latitude, $longitude, $zenith, $offset);
-    $creast = str_replace(':','',$creastf);
 
     log::add('heliotrope', 'info', 'getDaily');
 
@@ -427,31 +444,31 @@ class heliotrope extends eqLogic {
         $cmd->save();
         $cmd->event($aubenau);
         log::add('heliotrope', 'debug', 'Aube Nautique ' . $aubenau);
-      }elseif($cmd->getLogicalId()=="crenau"){
-        $cmd->setConfiguration('value', $crenau);
+      }elseif($cmd->getLogicalId()=="crepnau"){
+        $cmd->setConfiguration('value', $crepnau);
         $cmd->save();
-        $cmd->event($crenau);
-        log::add('heliotrope', 'debug', 'Crepuscule Nautique ' . $crenau);
+        $cmd->event($crepnau);
+        log::add('heliotrope', 'debug', 'Crepuscule Nautique ' . $crepnau);
       }elseif($cmd->getLogicalId()=="aubeciv"){
         $cmd->setConfiguration('value', $aubeciv);
         $cmd->save();
         $cmd->event($aubeciv);
         log::add('heliotrope', 'debug', 'Aube Civile ' . $aubeciv);
-      }elseif($cmd->getLogicalId()=="creciv"){
-        $cmd->setConfiguration('value', $creciv);
+      }elseif($cmd->getLogicalId()=="crepciv"){
+        $cmd->setConfiguration('value', $crepciv);
         $cmd->save();
-        $cmd->event($creciv);
-        log::add('heliotrope', 'debug', 'Crepuscule Civile ' . $creciv);
+        $cmd->event($crepciv);
+        log::add('heliotrope', 'debug', 'Crepuscule Civile ' . $crepciv);
       }elseif($cmd->getLogicalId()=="aubeast"){
         $cmd->setConfiguration('value', $aubeast);
         $cmd->save();
         $cmd->event($aubeast);
         log::add('heliotrope', 'debug', 'Aube Astronomique ' . $aubeast);
-      }elseif($cmd->getLogicalId()=="creast"){
-        $cmd->setConfiguration('value', $creast);
+      }elseif($cmd->getLogicalId()=="crepast"){
+        $cmd->setConfiguration('value', $crepast);
         $cmd->save();
-        $cmd->event($creast);
-        log::add('heliotrope', 'debug', 'Crepuscule Astronomique ' . $creast);
+        $cmd->event($crepast);
+        log::add('heliotrope', 'debug', 'Crepuscule Astronomique ' . $crepast);
       }elseif($cmd->getLogicalId()=="zenith"){
         $cmd->setConfiguration('value', $zenith);
         $cmd->save();
