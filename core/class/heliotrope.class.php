@@ -380,6 +380,11 @@ class heliotrope extends eqLogic {
         $cmd->save();
         $cmd->event($status);
         log::add('heliotrope', 'debug', 'Daystatus ' . $status);
+      }elseif($cmd->getLogicalId()=="daytext"){
+        $cmd->setConfiguration('value', $texte);
+        $cmd->save();
+        $cmd->event($texte);
+        log::add('heliotrope', 'debug', 'Daystatus ' . $texte);
       }
     }
     $this->refreshWidget();
