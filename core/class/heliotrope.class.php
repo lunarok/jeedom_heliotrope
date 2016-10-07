@@ -67,93 +67,175 @@ class heliotrope extends eqLogic {
 
   public function postUpdate() {
     foreach (eqLogic::byType('heliotrope') as $heliotrope) {
-      $cmdlogic = heliotropeCmd::byEqLogicIdAndLogicalId($heliotrope->getId(),'azimuth360');
-      if (!is_object($cmdlogic)) {
+      $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($heliotrope->getId(),'azimuth360');
+      if (!is_object($heliotropeCmd)) {
         $heliotropeCmd = new heliotropeCmd();
         $heliotropeCmd->setName(__('Azimuth 360 du Soleil', __FILE__));
         $heliotropeCmd->setEqLogic_id($this->id);
         $heliotropeCmd->setLogicalId('azimuth360');
-        $heliotropeCmd->setConfiguration('data', 'azimuth360');
         $heliotropeCmd->setType('info');
         $heliotropeCmd->setSubType('numeric');
-        $heliotropeCmd->setIsHistorized(0);
-        $heliotropeCmd->save();
       }
+      $heliotropeCmd->setConfiguration('type', 'position');
+      $heliotropeCmd->save();
 
-      $cmdlogic = heliotropeCmd::byEqLogicIdAndLogicalId($heliotrope->getId(),'altitude');
-      if (!is_object($cmdlogic)) {
+      $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($heliotrope->getId(),'altitude');
+      if (!is_object($heliotropeCmd)) {
         $heliotropeCmd = new heliotropeCmd();
         $heliotropeCmd->setName(__('Altitude du Soleil', __FILE__));
         $heliotropeCmd->setEqLogic_id($this->id);
         $heliotropeCmd->setLogicalId('altitude');
-        $heliotropeCmd->setConfiguration('data', 'altitude');
         $heliotropeCmd->setType('info');
         $heliotropeCmd->setSubType('numeric');
-        $heliotropeCmd->setIsHistorized(0);
-        $heliotropeCmd->save();
       }
+      $heliotropeCmd->setConfiguration('type', 'position');
+      $heliotropeCmd->save();
 
 
-      $cmdlogic = heliotropeCmd::byEqLogicIdAndLogicalId($heliotrope->getId(),'sunrise');
-      if (!is_object($cmdlogic)) {
+      $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($heliotrope->getId(),'sunrise');
+      if (!is_object($heliotropeCmd)) {
         $heliotropeCmd = new heliotropeCmd();
         $heliotropeCmd->setName(__('Lever du Soleil', __FILE__));
         $heliotropeCmd->setEqLogic_id($this->id);
         $heliotropeCmd->setLogicalId('sunrise');
-        $heliotropeCmd->setConfiguration('data', 'sunrise');
         $heliotropeCmd->setType('info');
         $heliotropeCmd->setSubType('numeric');
-        $heliotropeCmd->setIsHistorized(0);
-        $heliotropeCmd->save();
       }
-      $cmdlogic = heliotropeCmd::byEqLogicIdAndLogicalId($heliotrope->getId(),'sunset');
-      if (!is_object($cmdlogic)) {
+      $heliotropeCmd->setConfiguration('type', 'lever');
+      $heliotropeCmd->save();
+
+      $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($heliotrope->getId(),'sunset');
+      if (!is_object($heliotropeCmd)) {
         $heliotropeCmd = new heliotropeCmd();
         $heliotropeCmd->setName(__('Coucher du Soleil', __FILE__));
         $heliotropeCmd->setEqLogic_id($this->id);
         $heliotropeCmd->setLogicalId('sunset');
-        $heliotropeCmd->setConfiguration('data', 'sunset');
         $heliotropeCmd->setType('info');
         $heliotropeCmd->setSubType('numeric');
-        $heliotropeCmd->setIsHistorized(0);
-        $heliotropeCmd->save();
       }
-      $cmdlogic = heliotropeCmd::byEqLogicIdAndLogicalId($heliotrope->getId(),'zenith');
-      if (!is_object($cmdlogic)) {
+      $heliotropeCmd->setConfiguration('type', 'coucher');
+      $heliotropeCmd->save();
+
+      $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($heliotrope->getId(),'aubeciv');
+      if (!is_object($heliotropeCmd)) {
+        $heliotropeCmd = new heliotropeCmd();
+        $heliotropeCmd->setName(__('Aube Civile', __FILE__));
+        $heliotropeCmd->setEqLogic_id($this->id);
+        $heliotropeCmd->setLogicalId('aubeciv');
+        $heliotropeCmd->setType('info');
+        $heliotropeCmd->setSubType('numeric');
+      }
+      $heliotropeCmd->setConfiguration('type', 'lever');
+      $heliotropeCmd->save();
+
+      $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($heliotrope->getId(),'crepciv');
+      if (!is_object($heliotropeCmd)) {
+        $heliotropeCmd = new heliotropeCmd();
+        $heliotropeCmd->setName(__('Crépuscule Civile', __FILE__));
+        $heliotropeCmd->setEqLogic_id($this->id);
+        $heliotropeCmd->setLogicalId('crepciv');
+        $heliotropeCmd->setType('info');
+        $heliotropeCmd->setSubType('numeric');
+      }
+      $heliotropeCmd->setConfiguration('type', 'coucher');
+      $heliotropeCmd->save();
+
+      $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($heliotrope->getId(),'aubenau');
+      if (!is_object($heliotropeCmd)) {
+        $heliotropeCmd = new heliotropeCmd();
+        $heliotropeCmd->setName(__('Aube Nautique', __FILE__));
+        $heliotropeCmd->setEqLogic_id($this->id);
+        $heliotropeCmd->setLogicalId('aubenau');
+        $heliotropeCmd->setType('info');
+        $heliotropeCmd->setSubType('numeric');
+      }
+      $heliotropeCmd->setConfiguration('type', 'lever');
+      $heliotropeCmd->save();
+
+      $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($heliotrope->getId(),'crepnau');
+      if (!is_object($heliotropeCmd)) {
+        $heliotropeCmd = new heliotropeCmd();
+        $heliotropeCmd->setName(__('Crépuscule Nautique', __FILE__));
+        $heliotropeCmd->setEqLogic_id($this->id);
+        $heliotropeCmd->setLogicalId('crepnau');
+        $heliotropeCmd->setType('info');
+        $heliotropeCmd->setSubType('numeric');
+      }
+      $heliotropeCmd->setConfiguration('type', 'coucher');
+      $heliotropeCmd->save();
+
+      $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($heliotrope->getId(),'aubeast');
+      if (!is_object($heliotropeCmd)) {
+        $heliotropeCmd = new heliotropeCmd();
+        $heliotropeCmd->setName(__('Aube Astronomique', __FILE__));
+        $heliotropeCmd->setEqLogic_id($this->id);
+        $heliotropeCmd->setLogicalId('aubeast');
+        $heliotropeCmd->setType('info');
+        $heliotropeCmd->setSubType('numeric');
+      }
+      $heliotropeCmd->setConfiguration('type', 'lever');
+      $heliotropeCmd->save();
+
+      $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($heliotrope->getId(),'crepast');
+      if (!is_object($heliotropeCmd)) {
+        $heliotropeCmd = new heliotropeCmd();
+        $heliotropeCmd->setName(__('Crépuscule Astronomique', __FILE__));
+        $heliotropeCmd->setEqLogic_id($this->id);
+        $heliotropeCmd->setLogicalId('crepast');
+        $heliotropeCmd->setType('info');
+        $heliotropeCmd->setSubType('numeric');
+      }
+      $heliotropeCmd->setConfiguration('type', 'coucher');
+      $heliotropeCmd->save();
+
+      $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($heliotrope->getId(),'zenith');
+      if (!is_object($heliotropeCmd)) {
         $heliotropeCmd = new heliotropeCmd();
         $heliotropeCmd->setName(__('Zenith du Soleil', __FILE__));
         $heliotropeCmd->setEqLogic_id($this->id);
         $heliotropeCmd->setLogicalId('zenith');
-        $heliotropeCmd->setConfiguration('data', 'zenith');
         $heliotropeCmd->setType('info');
         $heliotropeCmd->setSubType('numeric');
-        $heliotropeCmd->setIsHistorized(0);
-        $heliotropeCmd->save();
       }
-      $cmdlogic = heliotropeCmd::byEqLogicIdAndLogicalId($heliotrope->getId(),'daylen');
-      if (!is_object($cmdlogic)) {
+      $heliotropeCmd->setConfiguration('type', 'time');
+      $heliotropeCmd->save();
+
+      $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($heliotrope->getId(),'daylen');
+      if (!is_object($heliotropeCmd)) {
         $heliotropeCmd = new heliotropeCmd();
         $heliotropeCmd->setName(__('Durée du Jour', __FILE__));
         $heliotropeCmd->setEqLogic_id($this->id);
         $heliotropeCmd->setLogicalId('daylen');
-        $heliotropeCmd->setConfiguration('data', 'daylen');
         $heliotropeCmd->setType('info');
         $heliotropeCmd->setSubType('numeric');
-        $heliotropeCmd->setIsHistorized(0);
-        $heliotropeCmd->save();
       }
-      $cmdlogic = heliotropeCmd::byEqLogicIdAndLogicalId($heliotrope->getId(),'daystatus');
-      if (!is_object($cmdlogic)) {
+      $heliotropeCmd->setConfiguration('type', 'time');
+      $heliotropeCmd->save();
+
+      $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($heliotrope->getId(),'daystatus');
+      if (!is_object($heliotropeCmd)) {
         $heliotropeCmd = new heliotropeCmd();
-        $heliotropeCmd->setName(__('Jour en cours', __FILE__));
+        $heliotropeCmd->setName(__('Phase du jour en cours numérique', __FILE__));
         $heliotropeCmd->setEqLogic_id($this->id);
         $heliotropeCmd->setLogicalId('daystatus');
-        $heliotropeCmd->setConfiguration('data', 'daystatus');
         $heliotropeCmd->setType('info');
         $heliotropeCmd->setSubType('binary');
-        $heliotropeCmd->setIsHistorized(0);
-        $heliotropeCmd->save();
       }
+      $heliotropeCmd->setConfiguration('type', 'time');
+      $heliotropeCmd->save();
+
+      $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($heliotrope->getId(),'daytext');
+      if (!is_object($heliotropeCmd)) {
+        $heliotropeCmd = new heliotropeCmd();
+        $heliotropeCmd->setName(__('Phase du jour en cours texte', __FILE__));
+        $heliotropeCmd->setEqLogic_id($this->id);
+        $heliotropeCmd->setLogicalId('daystatus');
+        $heliotropeCmd->setType('info');
+        $heliotropeCmd->setSubType('binary');
+      }
+      $heliotropeCmd->setConfiguration('type', 'time');
+      $heliotropeCmd->save();
+
       if (null !== ($this->getConfiguration('geoloc', '')) && $this->getConfiguration('geoloc', '') != 'none') {
         heliotrope::getInformations();
         heliotrope::getDaily();
@@ -249,17 +331,17 @@ class heliotrope extends eqLogic {
     log::add('heliotrope', 'info', 'getInformations');
 
     foreach ($this->getCmd() as $cmd) {
-      if($cmd->getConfiguration('data')=="azimuth360"){
-        $cmd->setConfiguration('value', $azimuth360);
+      if($cmd->getLogicalId()=="azimuth360"){
+        $cmd->setConfiguration('value', round($azimuth360,0));
         $cmd->save();
         $cmd->event($azimuth360);
         log::add('heliotrope', 'debug', 'Azimuth360 ' . $azimuth360);
-      }elseif($cmd->getConfiguration('data')=="altitude"){
-        $cmd->setConfiguration('value', $altitude);
+      }elseif($cmd->getLogicalId()=="altitude"){
+        $cmd->setConfiguration('value', round($altitude,0));
         $cmd->save();
         $cmd->event($altitude);
         log::add('heliotrope', 'debug', 'Altitude ' . $altitude);
-      }elseif($cmd->getConfiguration('data')=="daystatus"){
+      }elseif($cmd->getLogicalId()=="daystatus"){
         $cmd->setConfiguration('value', $status);
         $cmd->save();
         $cmd->event($status);
@@ -312,22 +394,22 @@ class heliotrope extends eqLogic {
     log::add('heliotrope', 'info', 'getDaily');
 
     foreach ($this->getCmd() as $cmd) {
-      if($cmd->getConfiguration('data')=="sunrise"){
+      if($cmd->getLogicalId()=="sunrise"){
         $cmd->setConfiguration('value', $sunrise);
         $cmd->save();
         $cmd->event($sunrise);
         log::add('heliotrope', 'debug', 'Sunrise ' . $sunrise);
-      }elseif($cmd->getConfiguration('data')=="sunset"){
+      }elseif($cmd->getLogicalId()=="sunset"){
         $cmd->setConfiguration('value', $sunset);
         $cmd->save();
         $cmd->event($sunset);
         log::add('heliotrope', 'debug', 'Sunset ' . $sunset);
-      }elseif($cmd->getConfiguration('data')=="zenith"){
+      }elseif($cmd->getLogicalId()=="zenith"){
         $cmd->setConfiguration('value', $zenith);
         $cmd->save();
         $cmd->event($zenith);
         log::add('heliotrope', 'debug', 'Zenith ' . $zenith);
-      }elseif($cmd->getConfiguration('data')=="daylen"){
+      }elseif($cmd->getLogicalId()=="daylen"){
         $cmd->setConfiguration('value', $daylen);
         $cmd->save();
         $cmd->event($daylen);

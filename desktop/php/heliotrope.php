@@ -56,9 +56,8 @@ $eqLogics = eqLogic::byType('heliotrope');
     <ul class="nav nav-tabs" role="tablist">
       <li role="presentation" class="active"><a href="#eqlogictab" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-tachometer"></i> {{Equipement}}</a></li>
       <li role="presentation"><a href="#infotab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-list-alt"></i> {{Position du Soleil}}</a></li>
-      <li role="presentation"><a href="#timetab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-list-alt"></i> {{Heures de Lever/Coucher}}</a></li>
-      <!--<li role="presentation"><a href="#commandtab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-list-alt"></i> {{Commandes sur conditions}}</a></li>
-      !-->
+      <li role="presentation"><a href="#levertab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-list-alt"></i> {{Lever du Soleil}}</a></li>
+      <li role="presentation"><a href="#couchertab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-list-alt"></i> {{Coucher du Soleil}}</a></li>
     </ul>
 
     <div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
@@ -167,13 +166,13 @@ $eqLogics = eqLogic::byType('heliotrope');
         </table>
 
         <span>{{Les informations de position du soleil permettent de créer des scénarios ayant besoin de se déclencher sur une orientation ou une altitude du soleil.}}</span>
-        <span>{{Une utilisation classique est la gestion des volets par rapport au soleil. Si la direction du soleil est dans un angle de 180 du store par exemple (-90 et +90) on peut le fermer pour éviter que le soleil chauffe en été ou inversement pour les périodes froides. On peut affiner en utilisant la hauteur du soleil.}}</span>
-        <span>{{La position est recalculé à la fréquence sélectionnée sur la page de configuration du plugin. Pour utiliser la direction dans un scénario, il faut utilisé le mode déclenché avec la direction et utiliser une condition SI #Direction# > Orientation baie - 90}}</span>
+        <br><span>{{Une utilisation classique est la gestion des volets par rapport au soleil. Si la direction du soleil est dans un angle de 180 du store par exemple (-90 et +90) on peut le fermer pour éviter que le soleil chauffe en été ou inversement pour les périodes froides. On peut affiner en utilisant la hauteur du soleil.}}</span>
+        <br><span>{{La position est recalculé à la fréquence sélectionnée sur la page de configuration du plugin. Pour utiliser la direction dans un scénario, il faut utilisé le mode déclenché avec la direction et utiliser une condition SI #Direction# > Orientation baie - 90}}</span>
 
       </div>
 
-      <div role="tabpanel" class="tab-pane" id="timetab">
-        <table id="table_time" class="table table-bordered table-condensed">
+      <div role="tabpanel" class="tab-pane" id="levertab">
+        <table id="table_lever" class="table table-bordered table-condensed">
           <thead>
             <tr>
               <th style="width: 50px;">#</th>
@@ -189,28 +188,19 @@ $eqLogics = eqLogic::byType('heliotrope');
         </table>
 
         <span>{{Les heures de lever et coucher du soleil permettent de créer des scénarios ayant besoin de se déclencher en fonction de si il fait jour ou non.}}</span>
-        <span>{{Une utilisation classique est la gestion des volets par rapport au soleil. Quand le soleil se couche on ferme les volets par exemple.}}</span>
-        <span>{{Les horaires sont calculés de façon journalière. Pour utiliser une heure dans un scénario, il faut utilisé le mode déclenché avec la bonne heure et utiliser une condition A #Heure#}}</span>
+        <br><span>{{Une utilisation classique est la gestion des volets par rapport au soleil. Quand le soleil se couche on ferme les volets par exemple.}}</span>
+        <br><span>{{Les horaires sont calculés de façon journalière. Pour utiliser une heure dans un scénario, il faut utilisé le mode déclenché avec la bonne heure et utiliser une condition A #Heure#}}</span>
 
       </div>
 
-      <!--<div role="tabpanel" class="tab-pane" id="commandtab">
-
-        <form class="form-horizontal">
-          <fieldset>
-            <div class="form-actions">
-              <a class="btn btn-info btn-sm" id="addEvent"><i class="fa fa-plus-circle"></i> {{Ajouter un déclenchement sur un évènement solaire}}</a><br/><br/>
-            </div>
-          </fieldset>
-        </form>
-
-        <table id="action_cmd" class="table table-bordered table-condensed">
+      <div role="tabpanel" class="tab-pane" id="couchertab">
+        <table id="table_coucher" class="table table-bordered table-condensed">
           <thead>
             <tr>
               <th style="width: 50px;">#</th>
-              <th style="width: 250px;">{{Nom}}</th>
-              <th style="width: 200px;">{{Type}}</th>
-              <th style="width: 200px;">{{Condition}}</th>
+              <th style="width: 300px;">{{Nom}}</th>
+              <th style="width: 250px;">{{Valeur}}</th>
+              <th style="width: 200px;">{{Paramètres}}</th>
               <th style="width: 100px;"></th>
             </tr>
           </thead>
@@ -219,9 +209,11 @@ $eqLogics = eqLogic::byType('heliotrope');
           </tbody>
         </table>
 
+        <span>{{Les heures de lever et coucher du soleil permettent de créer des scénarios ayant besoin de se déclencher en fonction de si il fait jour ou non.}}</span>
+        <br><span>{{Une utilisation classique est la gestion des volets par rapport au soleil. Quand le soleil se couche on ferme les volets par exemple.}}</span>
+        <br><span>{{Les horaires sont calculés de façon journalière. Pour utiliser une heure dans un scénario, il faut utilisé le mode déclenché avec la bonne heure et utiliser une condition A #Heure#}}</span>
 
-
-      </div>-->
+      </div>
     </div>
   </div>
 </div>
