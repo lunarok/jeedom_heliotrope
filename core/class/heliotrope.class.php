@@ -554,7 +554,7 @@ class heliotrope extends eqLogic {
     $id=array();
     $value=array();
     foreach($this->getCmd() as $cmd){
-      $type_cmd=$cmd->getConfiguration('data');
+      $type_cmd=$cmd->getLogicalId();
       $id[$type_cmd]=$cmd->getId();
       $value[$type_cmd]=$cmd->getConfiguration('value');
     }
