@@ -188,8 +188,11 @@ $eqLogics = eqLogic::byType('heliotrope');
         </table>
 
         <span>{{Les heures de lever et coucher du soleil permettent de créer des scénarios ayant besoin de se déclencher en fonction de si il fait jour ou non.}}</span>
-        <br><span>{{Une utilisation classique est la gestion des volets par rapport au soleil. Quand le soleil se couche on ferme les volets par exemple.}}</span>
-        <br><span>{{Les horaires sont calculés de façon journalière. Pour utiliser une heure dans un scénario, il faut utilisé le mode déclenché avec la bonne heure et utiliser une condition A #Heure#}}</span>
+        <br><span>{{Une utilisation classique est la gestion des volets par rapport au soleil. Quand le soleil se lève on ouvre les volets par exemple.}}</span>
+        <br><span>{{Les horaires sont calculés de façon journalière. Pour utiliser une heure dans un scénario : }}</span>
+        <br><span>{{ - sélectionner le mode déclenché et ajouter un déclencheur avec la commande voulue, ex : #Objet##Equipement##Aube Civile#}}</span>
+        <br><span>{{ - ajouter un bloc avec et choisir le type A, là on peut choisir son heure pour activation par exemple avec une commande info : #Objet##Equipement##Aube Civile#}}</span>
+        <br><span>{{ - si on souhaite modifier la valeur de la commande il existe la commande time_op qui permet par exemple de faire +10}}</span>
 
       </div>
 
@@ -211,8 +214,10 @@ $eqLogics = eqLogic::byType('heliotrope');
 
         <span>{{Les heures de lever et coucher du soleil permettent de créer des scénarios ayant besoin de se déclencher en fonction de si il fait jour ou non.}}</span>
         <br><span>{{Une utilisation classique est la gestion des volets par rapport au soleil. Quand le soleil se couche on ferme les volets par exemple.}}</span>
-        <br><span>{{Les horaires sont calculés de façon journalière. Pour utiliser une heure dans un scénario, il faut utilisé le mode déclenché avec la bonne heure et utiliser une condition A #Heure#}}</span>
-
+        <br><span>{{Les horaires sont calculés de façon journalière. Pour utiliser une heure dans un scénario : }}</span>
+        <br><span>{{ - sélectionner le mode déclenché et ajouter un déclencheur avec la commande voulue, ex : #Objet##Equipement##Coucher du Soleil#}}</span>
+        <br><span>{{ - ajouter un bloc avec et choisir le type A, là on peut choisir son heure pour activation par exemple avec une commande info : #Objet##Equipement##Coucher du Soleil#}}</span>
+        <br><span>{{ - si on souhaite modifier la valeur de la commande il existe la commande time_op qui permet par exemple de faire +10}}</span>
       </div>
     </div>
   </div>
