@@ -15,11 +15,9 @@
 * You should have received a copy of the GNU General Public License
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
-
 require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
 
 class heliotrope extends eqLogic {
-
   public static $_widgetPossibility = array('custom' => true);
 
   public static function pull() {
@@ -131,7 +129,7 @@ class heliotrope extends eqLogic {
       $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($heliotrope->getId(),'crepciv');
       if (!is_object($heliotropeCmd)) {
         $heliotropeCmd = new heliotropeCmd();
-        $heliotropeCmd->setName(__('Crépuscule Civile', __FILE__));
+        $heliotropeCmd->setName(__('Crépuscule Civil', __FILE__));
         $heliotropeCmd->setEqLogic_id($this->id);
         $heliotropeCmd->setLogicalId('crepciv');
         $heliotropeCmd->setType('info');
@@ -481,7 +479,7 @@ class heliotrope extends eqLogic {
         $cmd->setConfiguration('value', $crepciv);
         $cmd->save();
         $cmd->event($crepciv);
-        log::add('heliotrope', 'debug', 'Crepuscule Civile ' . $crepciv);
+        log::add('heliotrope', 'debug', 'Crepuscule Civil ' . $crepciv);
       }elseif($cmd->getLogicalId()=="aubeast"){
         $cmd->setConfiguration('value', $aubeast);
         $cmd->save();
