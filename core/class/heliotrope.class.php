@@ -350,7 +350,7 @@ class heliotrope extends eqLogic {
       $texte = "Aube Astronomique";
     } elseif ($actual >= $sunset && $actual < $crepciv) {
       $status = 5;
-      $texte = "Crépuscule Civile";
+      $texte = "Crépuscule Civil";
     } elseif ($actual >= $crepciv && $actual < $crepnau) {
       $status = 6;
       $texte = "Crépuscule Nautique";

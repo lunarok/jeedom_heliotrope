@@ -17,12 +17,46 @@ Informations à rafraichissement quotidien (le calcul est fait à 3h du matin, s
 
   - coucher du soleil
 
-  - durée de la journée
+  - durée de la journée (entre lever du soleil et coucher du soleil)
 
   - zenith du soleil
+
+  - aube astronomique (lever du soleil -18°)
+
+  - aube nautique (lever du soleil -12°)
+
+  - aube cvile (lever su soleil -6°)
+
+  - crépuscule astronomique (lever du soleil +18°)
+
+  - crépuscule nautique (lever du soleil +12°)
+
+  - crépuscule cvil (lever su soleil +6°)
 
 Les informations restantes sont recalculées à la fréquence paramétrer sur la configuration plugin :
 
   - azimuth solaire
 
   - altitude solaire
+
+  - phase du jour numérique
+
+  - phase du jour texte
+
+  Les valeurs de la phase du jour sont :
+
+    - 0 : Nuit
+
+    - 1 : Jour
+
+    - 2 : Aube Civile
+
+    - 3 : Aube Nautique
+
+    - 4 : Aube Astronomique
+
+    - 5 : Crépuscule Civil
+
+    - 6 : Crépuscule Nautique
+
+    - 7 : Crépuscule Astronomique
