@@ -217,8 +217,8 @@ class heliotrope extends eqLogic {
         $heliotropeCmd->setEqLogic_id($this->id);
         $heliotropeCmd->setLogicalId('daystatus');
         $heliotropeCmd->setType('info');
-        $heliotropeCmd->setSubType('binary');
       }
+      $heliotropeCmd->setSubType('numeric');
       $heliotropeCmd->setConfiguration('type', 'time');
       $heliotropeCmd->save();
 
