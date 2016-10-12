@@ -50,6 +50,9 @@ function heliotrope_update() {
     if (is_object($cron)) {
         $cron->remove();
     }
+    foreach (eqLogic::byType('heliotrope') as $heliotrope) {
+      $heliotrope->save();
+    }
 }
 
 function heliotrope_remove() {

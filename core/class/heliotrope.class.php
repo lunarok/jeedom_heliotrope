@@ -64,7 +64,7 @@ class heliotrope extends eqLogic {
   }
 
   public function postUpdate() {
-    foreach (eqLogic::byType('heliotrope') as $heliotrope) {
+    foreach (eqLogic::byType('heliotrope', true) as $heliotrope) {
       $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($heliotrope->getId(),'azimuth360');
       if (!is_object($heliotropeCmd)) {
         $heliotropeCmd = new heliotropeCmd();
