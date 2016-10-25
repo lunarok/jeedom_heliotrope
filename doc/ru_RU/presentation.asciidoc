@@ -1,0 +1,7 @@
+=== Heliotrope : lever, coucher, zenith, azimuth et altitude du soleil
+
+Ce plugin permet d'obtenir l'azimuth et l'altitude solaire pour être utilisé dans des scénarios
+
+Il permet également de récupérer l'heure du coucher et lever du soleil avec un calcul local (sans API) et paramétrable
+
+Il permet de lancer des tâches aux heures calculées
