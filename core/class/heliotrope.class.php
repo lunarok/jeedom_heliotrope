@@ -292,8 +292,8 @@ class heliotrope extends eqLogic {
       $geolocval = $geolocCmd->execCmd();
     }
     $geoloctab = explode(',', trim($geolocval));
-    $latitude = $geoloctab[0];
-    $longitude = $geoloctab[1];
+    $latitude = trim($geoloctab[0]);
+    $longitude = trim($geoloctab[1]);
     if (!$this->getConfiguration('zenith', '')) {
       $zenith = '90.58';
     } else {
