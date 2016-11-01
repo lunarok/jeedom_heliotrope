@@ -41,6 +41,24 @@ Le soleil va se déplacer vers l'ouest et cessera d'éclairer la façade lorsqu'
 
 Heliotrope calcule ces informations quotidiennement. Les utiliser en tant que déclencheurs seuls, aura pour effet de déclencher le scénario à 3h00 du matin (ou au reboot), pas vraiment l'effet souhaiter
 
-Il faut utiliser le déclencheur en combinaison avec une condition A. On pourra utiliser time_op pour ajouter 30mn à l'heure du coucher par exemple, comme sur la capture suivante
+Il faut utiliser le déclencheur en combinaison avec une condition A.
 
-image::../images/Heliotrope_sample2.png[Illustration]
+On pourra utiliser time_op pour ajouter 30mn à l'heure du coucher par exemple, comme sur la capture suivante
+
+image::../images/Heliotrope_sample2.jpg[Illustration]
+
+Il est possible également de déclencher alors un scénario différent pour garder d'autres moyens de contrôles comme la commande manuelle.
+
+Exemple :
+
+  - un scénario héliotrope avec :
+
+    * une info d'horaire du plugin en déclencheur
+
+    * un bloc A avec l'heure de l'aube qui déclence un scénario "ouverture des volets"
+
+    * un bloc A avec l'heure du crépuscule qui déclenche un scénario "fermeture des volets"
+
+    * on peut imaginer différents blocs A pour différents scénarios. Par exemple en utilisant différents crépuscule, le nautique pour les volets, le civil pour les lampes
+
+  - les scénarios "ouverture des volets" ou "fermeture des volets" pourront être déclenchés directement par l'app aussi pour garder un controle manuel
