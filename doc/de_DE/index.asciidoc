@@ -1,12 +1,12 @@
-== Description
+== Beschreibung
 include::presentation.asciidoc[]
 
 '''
-== Configuration
+== Konfiguration
 include::configuration.asciidoc[]
 
 '''
-== Exemple
+== Beispiel
 include::exemple.asciidoc[]
 
 '''

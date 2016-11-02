@@ -5,7 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.3.dev">
-<title>Description</title>
+<title>Beschreibung</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -415,17 +415,17 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table des matières</div>
 <ul class="sectlevel1">
-<li><a href="#_description">1. Description</a>
+<li><a href="#_beschreibung">1. Beschreibung</a>
 <ul class="sectlevel2">
 <li><a href="#_heliotrope_lever_coucher_zenith_azimuth_et_altitude_du_soleil">1.1. Heliotrope : lever, coucher, zenith, azimuth et altitude du soleil</a></li>
 </ul>
 </li>
-<li><a href="#_configuration">2. Configuration</a>
+<li><a href="#_konfiguration">2. Konfiguration</a>
 <ul class="sectlevel2">
 <li><a href="#_configuration_du_plugin">2.1. Configuration du plugin</a></li>
 </ul>
 </li>
-<li><a href="#_exemple">3. Exemple</a>
+<li><a href="#_beispiel">3. Beispiel</a>
 <ul class="sectlevel2">
 <li><a href="#_exemple_d_utilisation">3.1. Exemple d&#8217;utilisation</a>
 <ul class="sectlevel3">
@@ -441,7 +441,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_description">1. Description</h2>
+<h2 id="_beschreibung">1. Beschreibung</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_heliotrope_lever_coucher_zenith_azimuth_et_altitude_du_soleil">1.1. Heliotrope : lever, coucher, zenith, azimuth et altitude du soleil</h3>
@@ -459,7 +459,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_configuration">2. Configuration</h2>
+<h2 id="_konfiguration">2. Konfiguration</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_configuration_du_plugin">2.1. Configuration du plugin</h3>
@@ -568,7 +568,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_exemple">3. Exemple</h2>
+<h2 id="_beispiel">3. Beispiel</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_exemple_d_utilisation">3.1. Exemple d&#8217;utilisation</h3>
@@ -632,12 +632,47 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Heliotrope calcule ces informations quotidiennement. Les utiliser en tant que déclencheurs seuls, aura pour effet de déclencher le scénario à 3h00 du matin (ou au reboot), pas vraiment l&#8217;effet souhaiter</p>
 </div>
 <div class="paragraph">
-<p>Il faut utiliser le déclencheur en combinaison avec une condition A. On pourra utiliser time_op pour ajouter 30mn à l&#8217;heure du coucher par exemple, comme sur la capture suivante</p>
+<p>Il faut utiliser le déclencheur en combinaison avec une condition A.</p>
+</div>
+<div class="paragraph">
+<p>On pourra utiliser time_op pour ajouter 30mn à l&#8217;heure du coucher par exemple, comme sur la capture suivante</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/Heliotrope_sample2.png" alt="Illustration">
+<img src="../images/Heliotrope_sample2.jpg" alt="Illustration">
 </div>
+</div>
+<div class="paragraph">
+<p>Il est possible également de déclencher alors un scénario différent pour garder d&#8217;autres moyens de contrôles comme la commande manuelle.</p>
+</div>
+<div class="paragraph">
+<p>Exemple :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>un scénario héliotrope avec :</p>
+<div class="ulist">
+<ul>
+<li>
+<p>une info d&#8217;horaire du plugin en déclencheur</p>
+</li>
+<li>
+<p>un bloc A avec l&#8217;heure de l&#8217;aube qui déclence un scénario "ouverture des volets"</p>
+</li>
+<li>
+<p>un bloc A avec l&#8217;heure du crépuscule qui déclenche un scénario "fermeture des volets"</p>
+</li>
+<li>
+<p>on peut imaginer différents blocs A pour différents scénarios. Par exemple en utilisant différents crépuscule, le nautique pour les volets, le civil pour les lampes</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>les scénarios "ouverture des volets" ou "fermeture des volets" pourront être déclenchés directement par l&#8217;app aussi pour garder un controle manuel</p>
+</li>
+</ul>
 </div>
 <hr>
 </div>

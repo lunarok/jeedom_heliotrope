@@ -632,12 +632,47 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Heliotrope calcule ces informations quotidiennement. Les utiliser en tant que déclencheurs seuls, aura pour effet de déclencher le scénario à 3h00 du matin (ou au reboot), pas vraiment l&#8217;effet souhaiter</p>
 </div>
 <div class="paragraph">
-<p>Il faut utiliser le déclencheur en combinaison avec une condition A. On pourra utiliser time_op pour ajouter 30mn à l&#8217;heure du coucher par exemple, comme sur la capture suivante</p>
+<p>Il faut utiliser le déclencheur en combinaison avec une condition A.</p>
+</div>
+<div class="paragraph">
+<p>On pourra utiliser time_op pour ajouter 30mn à l&#8217;heure du coucher par exemple, comme sur la capture suivante</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/Heliotrope_sample2.png" alt="Illustration">
+<img src="../images/Heliotrope_sample2.jpg" alt="Illustration">
 </div>
+</div>
+<div class="paragraph">
+<p>Il est possible également de déclencher alors un scénario différent pour garder d&#8217;autres moyens de contrôles comme la commande manuelle.</p>
+</div>
+<div class="paragraph">
+<p>Exemple :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>un scénario héliotrope avec :</p>
+<div class="ulist">
+<ul>
+<li>
+<p>une info d&#8217;horaire du plugin en déclencheur</p>
+</li>
+<li>
+<p>un bloc A avec l&#8217;heure de l&#8217;aube qui déclence un scénario "ouverture des volets"</p>
+</li>
+<li>
+<p>un bloc A avec l&#8217;heure du crépuscule qui déclenche un scénario "fermeture des volets"</p>
+</li>
+<li>
+<p>on peut imaginer différents blocs A pour différents scénarios. Par exemple en utilisant différents crépuscule, le nautique pour les volets, le civil pour les lampes</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>les scénarios "ouverture des volets" ou "fermeture des volets" pourront être déclenchés directement par l&#8217;app aussi pour garder un controle manuel</p>
+</li>
+</ul>
 </div>
 <hr>
 </div>
