@@ -311,6 +311,7 @@ class heliotrope extends eqLogic {
     $alt=$alt+heliotrope::correctForRefraction($alt);
     $az360=$az;
     if (0 > $az360)  $az360 = $az360 + 360;
+    log::add('heliotrope', 'debug', 'Bug de nuit : az360 ' . $az360 . ' az ' . $az);
 
     $azimuth360 = $az360;
     $altitude = $alt;
