@@ -1,11 +1,11 @@
 [panel,primary]
-.Est-ce que le plugin s'appuie sur des API tiers ?
+. Is the plugin relies on third-party API?
 --
 Non, le plugin fait le calcul en interne par rapport aux coordonnées.
 --
 
 [panel,primary]
-.Est-ce que le plugin s'appuie sur des plugins tiers ?
+. Is the plugin relies on third-party plugins?
 --
 Oui, il utilise un équipement du plugin geoloc.
 --
