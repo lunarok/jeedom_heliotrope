@@ -1,4 +1,4 @@
-=== Exemple d'utilisation
+=== Use samples
 
 Définitions :
   - Azimut : angle absolu par rapport au nord (le nord étant à 0° et les valeurs augmentant en tournant dans le sens des aiguilles d'une montre, lorsqu'on regarde le sol depuis le ciel)

@@ -1,6 +1,6 @@
 {
     "plugins\/heliotrope\/plugin_info\/configuration.php": {
-        "Fréquence de calcul de la position solaire": "Fréquence de calcul de la position solaire",
+        "Fréquence de calcul de la position solaire": "Frequency of calculation of the solar position",
         "1 mn": "1 mn",
         "5 mn": "5 mn",
         "15 mn": "15 mn",
