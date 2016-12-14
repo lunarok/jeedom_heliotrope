@@ -1,6 +1,6 @@
 === Use samples
 
-Définitions :
+Definitions:
   - Azimut : angle absolu par rapport au nord (le nord étant à 0° et les valeurs augmentant en tournant dans le sens des aiguilles d'une montre, lorsqu'on regarde le sol depuis le ciel)
   - Altitude : angle sous lequel on voit le soleil, par rapport à l'horizon qui est la référence.
 
