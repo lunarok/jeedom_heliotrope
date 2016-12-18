@@ -1,4 +1,4 @@
-=== Heliotrope : lever, coucher, zenith, azimuth et altitude du soleil
+= Heliotrope: lift, bedroom, zenith, azimuth and altitude of the Sun
 
 Ce plugin permet d'obtenir l'azimuth et l'altitude solaire pour être utilisé dans des scénarios
 
