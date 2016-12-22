@@ -1,6 +1,6 @@
 === The plugin configuration
 
-Le plugin permet en configuration générale de paramétrer la fréquence du cron.
+The plugin allows to set the cron frequency in general configuration.
 
 Il faut ajouter un équipement et sélectionner la commande geoloc qui servira pour le calcul.
 
