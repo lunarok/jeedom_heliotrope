@@ -75,6 +75,7 @@ class heliotrope extends eqLogic {
         $heliotropeCmd->setSubType('numeric');
       }
       $heliotropeCmd->setConfiguration('type', 'position');
+      $heliotropeCmd->setConfiguration('repeatEventManagement','always');
       $heliotropeCmd->save();
 
       $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($heliotrope->getId(),'altitude');
@@ -87,6 +88,7 @@ class heliotrope extends eqLogic {
         $heliotropeCmd->setSubType('numeric');
       }
       $heliotropeCmd->setConfiguration('type', 'position');
+      $heliotropeCmd->setConfiguration('repeatEventManagement','always');
       $heliotropeCmd->save();
 
 
@@ -100,6 +102,7 @@ class heliotrope extends eqLogic {
         $heliotropeCmd->setSubType('numeric');
       }
       $heliotropeCmd->setConfiguration('type', 'lever');
+      $heliotropeCmd->setConfiguration('repeatEventManagement','always');
       $heliotropeCmd->save();
 
       $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($heliotrope->getId(),'sunset');
@@ -112,6 +115,7 @@ class heliotrope extends eqLogic {
         $heliotropeCmd->setSubType('numeric');
       }
       $heliotropeCmd->setConfiguration('type', 'coucher');
+      $heliotropeCmd->setConfiguration('repeatEventManagement','always');
       $heliotropeCmd->save();
 
       $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($heliotrope->getId(),'aubeciv');
@@ -124,6 +128,7 @@ class heliotrope extends eqLogic {
         $heliotropeCmd->setSubType('numeric');
       }
       $heliotropeCmd->setConfiguration('type', 'lever');
+      $heliotropeCmd->setConfiguration('repeatEventManagement','always');
       $heliotropeCmd->save();
 
       $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($heliotrope->getId(),'crepciv');
@@ -136,6 +141,7 @@ class heliotrope extends eqLogic {
         $heliotropeCmd->setSubType('numeric');
       }
       $heliotropeCmd->setConfiguration('type', 'coucher');
+      $heliotropeCmd->setConfiguration('repeatEventManagement','always');
       $heliotropeCmd->save();
 
       $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($heliotrope->getId(),'aubenau');
@@ -148,6 +154,7 @@ class heliotrope extends eqLogic {
         $heliotropeCmd->setSubType('numeric');
       }
       $heliotropeCmd->setConfiguration('type', 'lever');
+      $heliotropeCmd->setConfiguration('repeatEventManagement','always');
       $heliotropeCmd->save();
 
       $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($heliotrope->getId(),'crepnau');
@@ -160,6 +167,7 @@ class heliotrope extends eqLogic {
         $heliotropeCmd->setSubType('numeric');
       }
       $heliotropeCmd->setConfiguration('type', 'coucher');
+      $heliotropeCmd->setConfiguration('repeatEventManagement','always');
       $heliotropeCmd->save();
 
       $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($heliotrope->getId(),'aubeast');
@@ -172,6 +180,7 @@ class heliotrope extends eqLogic {
         $heliotropeCmd->setSubType('numeric');
       }
       $heliotropeCmd->setConfiguration('type', 'lever');
+      $heliotropeCmd->setConfiguration('repeatEventManagement','always');
       $heliotropeCmd->save();
 
       $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($heliotrope->getId(),'crepast');
@@ -184,6 +193,7 @@ class heliotrope extends eqLogic {
         $heliotropeCmd->setSubType('numeric');
       }
       $heliotropeCmd->setConfiguration('type', 'coucher');
+      $heliotropeCmd->setConfiguration('repeatEventManagement','always');
       $heliotropeCmd->save();
 
       $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($heliotrope->getId(),'zenith');
@@ -196,6 +206,7 @@ class heliotrope extends eqLogic {
         $heliotropeCmd->setSubType('numeric');
       }
       $heliotropeCmd->setConfiguration('type', 'time');
+      $heliotropeCmd->setConfiguration('repeatEventManagement','always');
       $heliotropeCmd->save();
 
       $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($heliotrope->getId(),'daylen');
@@ -208,6 +219,7 @@ class heliotrope extends eqLogic {
         $heliotropeCmd->setSubType('numeric');
       }
       $heliotropeCmd->setConfiguration('type', 'time');
+      $heliotropeCmd->setConfiguration('repeatEventManagement','always');
       $heliotropeCmd->save();
 
       $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($heliotrope->getId(),'daystatus');
