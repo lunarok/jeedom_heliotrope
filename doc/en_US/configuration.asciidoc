@@ -2,7 +2,7 @@
 
 The plugin allows to set the cron frequency in general configuration.
 
-Il faut ajouter un équipement et sélectionner la commande geoloc qui servira pour le calcul.
+Must add equipment and select the geoloc control that will be used for the calculation.
 
 Ce plugin utilise une information venant du plugin geoloc afin de réutiliser une localisation déjà existante.
 

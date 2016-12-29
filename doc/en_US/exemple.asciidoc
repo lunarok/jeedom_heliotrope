@@ -1,7 +1,7 @@
 === Use samples
 
 Definitions:
-  - Azimut : angle absolu par rapport au nord (le nord étant à 0° et les valeurs augmentant en tournant dans le sens des aiguilles d'une montre, lorsqu'on regarde le sol depuis le ciel)
+  -Azimuth: absolute angle to the North (North being at 0 ° and increasing values by turning in the clockwise sense, when you look at the ground from the sky)
   - Altitude : angle sous lequel on voit le soleil, par rapport à l'horizon qui est la référence.
 
 Il y a deux notations possibles pour l'azimut : azimut (de 0 à 180 puis de -180 à -0) ou azimut360 (de 0 à 360). Vous utiliserez celui qui vous convient le plus.

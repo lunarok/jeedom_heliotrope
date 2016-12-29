@@ -2,6 +2,6 @@
 
 This plugin allows to obtain the azimuth and the solar altitude to be used in scenarios
 
-Il permet également de récupérer l'heure du coucher et lever du soleil avec un calcul local (sans API) et paramétrable
+It also allows to retrieve the time of sunset and sunrise with a local calculation (without API) and customizable
 
 Il permet de lancer des tâches aux heures calculées
