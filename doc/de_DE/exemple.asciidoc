@@ -1,6 +1,6 @@
-=== Exemple d'utilisation
+=== Beispiel für die Verwendung
 
-Définitions :
+Definitionen :
   - Azimut : angle absolu par rapport au nord (le nord étant à 0° et les valeurs augmentant en tournant dans le sens des aiguilles d'une montre, lorsqu'on regarde le sol depuis le ciel)
   - Altitude : angle sous lequel on voit le soleil, par rapport à l'horizon qui est la référence.
 
@@ -49,7 +49,7 @@ image::../images/Heliotrope_sample2.jpg[Illustration]
 
 Il est possible également de déclencher alors un scénario différent pour garder d'autres moyens de contrôles comme la commande manuelle.
 
-Exemple :
+Beispiel :
 
   - un scénario héliotrope avec :
 

@@ -1,5 +1,5 @@
 [panel,primary]
-.Est-ce que le plugin s'appuie sur des API tiers ?
+.Stützt sich das Plugin auf APIs Dritter ?
 --
 Non, le plugin fait le calcul en interne par rapport aux coordonnées.
 --
