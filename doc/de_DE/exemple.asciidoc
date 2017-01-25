@@ -6,7 +6,7 @@ Definitionen :
 
 Il y a deux notations possibles pour l'azimut : azimut (de 0 à 180 puis de -180 à -0) ou azimut360 (de 0 à 360). Vous utiliserez celui qui vous convient le plus.
 
-Exemples :
+Beispiele :
   Le soleil se couche à l'ouest, soit 270°.
   Le soleil à la verticale parfaite aura une altitude de 90°. un soleil qui a disparu sous l'horizon aura une altitude négative.
 

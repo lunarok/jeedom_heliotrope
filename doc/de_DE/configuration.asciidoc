@@ -15,7 +15,7 @@ Informations à rafraichissement quotidien (le calcul est fait à 3h du matin, s
 
   - lever du soleil
 
-  - coucher du soleil
+  - Sonnenuntergang
 
   - durée de la journée (entre lever du soleil et coucher du soleil)
 
@@ -47,7 +47,7 @@ Les informations restantes sont recalculées à la fréquence paramétrer sur la
 
     - 0 : Nuit
 
-    - 1 : Jour
+    - 1 : Tag
 
     - 2 : Aube Civile
 
