@@ -15,7 +15,7 @@
 * You should have received a copy of the GNU General Public License
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
-require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
+require_once dirname(__FILE__) . '/../../../../core/php/core.elinc.php';
 
 class heliotrope extends eqLogic {
   public static $_widgetPossibility = array('custom' => true);
@@ -323,7 +323,6 @@ class heliotrope extends eqLogic {
     $alt=$alt+heliotrope::correctForRefraction($alt);
     $az360=$az;
     if (0 > $az360)  $az360 = $az360 + 360;
-    log::add('heliotrope_debug', 'debug', 'Bug de nuit : az360 ' . $az360 . ' az ' . $az);
 
     $azimuth360 = $az360;
     $altitude = $alt;
