@@ -32,7 +32,9 @@ function addCmdToTable(_cmd) {
     tr += '<span class="cmdAttr" data-l1key="configuration" data-l2key="value"></span>';
     tr += '</td>';
     tr += '<td>';
-    tr += '<span><label class="checkbox-inline"><input type="checkbox" class="cmdAttr checkbox-inline" data-l1key="isHistorized" checked/>{{Historiser}}</label></span> ';
+    if (_cmd.subType == 'numeric') {
+      tr += '<span><label class="checkbox-inline"><input type="checkbox" class="cmdAttr checkbox-inline" data-l1key="isHistorized" checked/>{{Historiser}}</label></span> ';
+    }
     tr += '</td>';
     tr += '<td>';
     if (is_numeric(_cmd.id)) {
@@ -58,7 +60,9 @@ if (init(_cmd.configuration.type) == 'lever') {
   tr += '<span class="cmdAttr" data-l1key="configuration" data-l2key="value"></span>';
   tr += '</td>';
   tr += '<td>';
-  tr += '<span><label class="checkbox-inline"><input type="checkbox" class="cmdAttr checkbox-inline" data-l1key="isHistorized" checked/>{{Historiser}}</label></span> ';
+  if (_cmd.subType == 'numeric') {
+    tr += '<span><label class="checkbox-inline"><input type="checkbox" class="cmdAttr checkbox-inline" data-l1key="isHistorized" checked/>{{Historiser}}</label></span> ';
+  }
   tr += '</td>';
   tr += '<td>';
   if (is_numeric(_cmd.id)) {
@@ -84,7 +88,9 @@ if (init(_cmd.configuration.type) == 'coucher') {
   tr += '<span class="cmdAttr" data-l1key="configuration" data-l2key="value"></span>';
   tr += '</td>';
   tr += '<td>';
-  tr += '<span><label class="checkbox-inline"><input type="checkbox" class="cmdAttr checkbox-inline" data-l1key="isHistorized" checked/>{{Historiser}}</label></span> ';
+  if (_cmd.subType == 'numeric') {
+    tr += '<span><label class="checkbox-inline"><input type="checkbox" class="cmdAttr checkbox-inline" data-l1key="isHistorized" checked/>{{Historiser}}</label></span> ';
+  }
   tr += '</td>';
   tr += '<td>';
   if (is_numeric(_cmd.id)) {
