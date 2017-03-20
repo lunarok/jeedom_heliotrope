@@ -33,14 +33,13 @@ function addCmdToTable(_cmd) {
     tr += '</td>';
     tr += '<td>';
     if (_cmd.subType == 'numeric') {
-      tr += '<span><label class="checkbox-inline"><input type="checkbox" class="cmdAttr checkbox-inline" data-l1key="isHistorized" checked/>{{Historiser}}</label></span> ';
+      tr += '<span><label class="checkbox-inline"><input type="checkbox" class="cmdAttr checkbox-inline" data-l1key="isHistorized" checked/>{{Historiser}}</label></span>';
     }
     tr += '</td>';
     tr += '<td>';
     if (is_numeric(_cmd.id)) {
       tr += '<a class="btn btn-default btn-xs cmdAction expertModeVisible" data-action="configure"><i class="fa fa-cogs"></i></a> ';
     }
-    tr += '<i class="fa fa-minus-circle pull-right cmdAction cursor" data-action="remove"></i></td>';
     tr += '</td>';
     tr += '</tr>';
     $('#table_cmd tbody').append(tr);
@@ -61,14 +60,13 @@ if (init(_cmd.configuration.type) == 'lever') {
   tr += '</td>';
   tr += '<td>';
   if (_cmd.subType == 'numeric') {
-    tr += '<span><label class="checkbox-inline"><input type="checkbox" class="cmdAttr checkbox-inline" data-l1key="isHistorized" checked/>{{Historiser}}</label></span> ';
+    tr += '<span><label class="checkbox-inline"><input type="checkbox" class="cmdAttr checkbox-inline" data-l1key="isHistorized" checked/>{{Historiser}}</label></span>';
   }
   tr += '</td>';
   tr += '<td>';
   if (is_numeric(_cmd.id)) {
     tr += '<a class="btn btn-default btn-xs cmdAction expertModeVisible" data-action="configure"><i class="fa fa-cogs"></i></a> ';
   }
-  tr += '<i class="fa fa-minus-circle pull-right cmdAction cursor" data-action="remove"></i></td>';
   tr += '</td>';
   tr += '</tr>';
   $('#table_lever tbody').append(tr);
@@ -89,14 +87,13 @@ if (init(_cmd.configuration.type) == 'coucher') {
   tr += '</td>';
   tr += '<td>';
   if (_cmd.subType == 'numeric') {
-    tr += '<span><label class="checkbox-inline"><input type="checkbox" class="cmdAttr checkbox-inline" data-l1key="isHistorized" checked/>{{Historiser}}</label></span> ';
+    tr += '<span><label class="checkbox-inline"><input type="checkbox" class="cmdAttr checkbox-inline" data-l1key="isHistorized" checked/>{{Historiser}}</label></span>';
   }
   tr += '</td>';
   tr += '<td>';
   if (is_numeric(_cmd.id)) {
     tr += '<a class="btn btn-default btn-xs cmdAction expertModeVisible" data-action="configure"><i class="fa fa-cogs"></i></a> ';
   }
-  tr += '<i class="fa fa-minus-circle pull-right cmdAction cursor" data-action="remove"></i></td>';
   tr += '</td>';
   tr += '</tr>';
   $('#table_coucher tbody').append(tr);
