@@ -246,7 +246,7 @@ class heliotrope extends eqLogic {
       $heliotropeCmd->setConfiguration('type', 'time');
       $heliotropeCmd->save();
 
-      if (null !== ($this->getConfiguration('geoloc', '')) && $this->getConfiguration('geoloc', '') != 'none') {
+      if ($this->getConfiguration('geoloc', 'none') != 'none') {
         heliotrope::getInformations();
         heliotrope::getDaily();
       } else {
