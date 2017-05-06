@@ -34,7 +34,7 @@ class heliotrope extends eqLogic {
   public static function cronHourly() {
     if (date('G')  == 3) {
       foreach (eqLogic::byType('heliotrope', true) as $heliotrope) {
-        if (heliotrope->getConfiguration('geoloc', 'none') != 'none') {
+        if ($heliotrope->getConfiguration('geoloc', 'none') != 'none') {
           log::add('heliotrope', 'debug', 'info daily');
           $heliotrope->getDaily();
           $heliotrope->getInformations();
