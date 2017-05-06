@@ -22,7 +22,7 @@ class heliotrope extends eqLogic {
 
   public static function pull() {
     foreach (eqLogic::byType('heliotrope', true) as $heliotrope) {
-      if (null !== ($heliotrope->getConfiguration('geoloc', '')) && $heliotrope->getConfiguration('geoloc', '') != 'none') {
+      if ($heliotrope->getConfiguration('geoloc', 'none') != 'none') {
         log::add('heliotrope', 'debug', 'info daily');
         $heliotrope->getInformations();
       } else {
@@ -34,7 +34,7 @@ class heliotrope extends eqLogic {
   public static function cronHourly() {
     if (date('G')  == 3) {
       foreach (eqLogic::byType('heliotrope', true) as $heliotrope) {
-        if (null !== ($heliotrope->getConfiguration('geoloc', '')) && $heliotrope->getConfiguration('geoloc', '') != 'none') {
+        if (heliotrope->getConfiguration('geoloc', 'none') != 'none') {
           log::add('heliotrope', 'debug', 'info daily');
           $heliotrope->getDaily();
           $heliotrope->getInformations();
@@ -47,7 +47,7 @@ class heliotrope extends eqLogic {
 
   public static function start() {
     foreach (eqLogic::byType('heliotrope', true) as $heliotrope) {
-      if (null !== ($heliotrope->getConfiguration('geoloc', '')) && $heliotrope->getConfiguration('geoloc', '') != 'none') {
+      if ($heliotrope->getConfiguration('geoloc', 'none') != 'none') {
         log::add('heliotrope', 'debug', 'info daily');
         $heliotrope->getDaily();
         $heliotrope->getInformations();
@@ -58,7 +58,7 @@ class heliotrope extends eqLogic {
   }
 
   public function preUpdate() {
-    if ($this->getConfiguration('geoloc') == '') {
+    if ($this->getConfiguration('geoloc', '') == '') {
       throw new Exception(__('La géolocalisation ne peut etre vide',__FILE__));
     }
   }
