@@ -24,33 +24,9 @@ try {
         throw new Exception(__('401 - Accès non autorisé', __FILE__));
     }
 
-    if (init('action') == 'getGeoloc') {
-      ajax::success(heliotrope::getGeoloc());
-    }
-
     if (init('action') == 'postSave') {
 		    ajax::success(heliotrope::setupCron());
     }
-
-    if (init('action') == 'setEvent') {
-      ajax::success(heliotrope::setEvent(init('id'),init('cmd'),init('name'),init('event'),init('adjust'),init('minutes'),init('command')));
-    }
-
-     if (init('action') == 'getHeliotrope') {
-        $heliotrope = heliotrope::byId(init('id'));
-        if (!is_object($heliotrope)) {
-            throw new Exception(__('Heliotrope inconnu verifié l\'id', __FILE__));
-        }
-        $return = utils::o2a($heliotrope);
-        $return['cmd'] = array();
-        foreach ($heliotrope->getCmd() as $cmd) {
-            $cmd_info = utils::o2a($cmd);
-            $cmd_info['value'] = $cmd->execCmd(null, 0);
-            $return['cmd'][] = $cmd_info;
-        }
-        ajax::success($return);
-     }
-
 
     throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));
     /*     * *********Catch exeption*************** */

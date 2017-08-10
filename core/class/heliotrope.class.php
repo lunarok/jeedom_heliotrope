@@ -297,11 +297,16 @@ class heliotrope extends eqLogic {
 
   public function getInformations() {
     $geoloc = $this->getConfiguration('geoloc', '');
-    $geolocCmd = geolocCmd::byId($geoloc);
-    if ($geolocCmd->getConfiguration('mode') == 'fixe') {
-      $geolocval = $geolocCmd->getConfiguration('coordinate');
+    if (strrpos('geotrav'),$geoloc) {
+        $geolocEq = geotravCmd::byId(str_replace('geotrav','',$geoloc));
+        $geolocval = $geolocEq('coordinate');
     } else {
-      $geolocval = $geolocCmd->execCmd();
+        $geolocCmd = geolocCmd::byId($geoloc);
+        if ($geolocCmd->getConfiguration('mode') == 'fixe') {
+          $geolocval = $geolocCmd->getConfiguration('coordinate');
+        } else {
+          $geolocval = $geolocCmd->execCmd();
+        }
     }
     $geoloctab = explode(',', trim($geolocval));
     $latitude = trim($geoloctab[0]);
@@ -328,22 +333,14 @@ class heliotrope extends eqLogic {
     $altitude = $alt;
     //date_default_timezone_set("GMT");
 
-    $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($this->getId(),'aubeast');
-    $aubeast = $heliotropeCmd->getConfiguration('value');
-    $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($this->getId(),'crepast');
-    $crepast = $heliotropeCmd->getConfiguration('value');
-    $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($this->getId(),'aubenau');
-    $aubenau = $heliotropeCmd->getConfiguration('value');
-    $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($this->getId(),'crepnau');
-    $crepnau = $heliotropeCmd->getConfiguration('value');
-    $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($this->getId(),'aubeciv');
-    $aubeciv = $heliotropeCmd->getConfiguration('value');
-    $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($this->getId(),'crepciv');
-    $crepciv = $heliotropeCmd->getConfiguration('value');
-    $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($this->getId(),'sunrise');
-    $sunrise = $heliotropeCmd->getConfiguration('value');
-    $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($this->getId(),'sunset');
-    $sunset = $heliotropeCmd->getConfiguration('value');
+    $aubeast = heliotropeCmd::byEqLogicIdAndLogicalId($this->getId(),'aubeast')->execCmd();
+    $crepast = heliotropeCmd::byEqLogicIdAndLogicalId($this->getId(),'crepast')->execCmd();
+    $aubenau = heliotropeCmd::byEqLogicIdAndLogicalId($this->getId(),'aubenau')->execCmd();
+    $crepnau = heliotropeCmd::byEqLogicIdAndLogicalId($this->getId(),'crepnau')->execCmd();
+    $aubeciv = heliotropeCmd::byEqLogicIdAndLogicalId($this->getId(),'aubeciv')->execCmd();
+    $crepciv = heliotropeCmd::byEqLogicIdAndLogicalId($this->getId(),'crepciv')->execCmd();
+    $sunrise = heliotropeCmd::byEqLogicIdAndLogicalId($this->getId(),'sunrise')->execCmd();
+    $sunset = heliotropeCmd::byEqLogicIdAndLogicalId($this->getId(),'sunset')->execCmd();
 
     $actual =  date('Hi');
     if ($actual > $sunrise && $actual < $sunset) {
@@ -372,41 +369,26 @@ class heliotrope extends eqLogic {
       $texte = "Nuit";
     }
 
-    log::add('heliotrope', 'info', 'getInformations');
-
-    foreach ($this->getCmd() as $cmd) {
-      if($cmd->getLogicalId()=="azimuth360"){
-        $cmd->setConfiguration('value', round($azimuth360));
-        $cmd->save();
-        $cmd->event($azimuth360);
-        log::add('heliotrope', 'debug', 'Azimuth360 ' . $azimuth360);
-      }elseif($cmd->getLogicalId()=="altitude"){
-        $cmd->setConfiguration('value', round($altitude));
-        $cmd->save();
-        $cmd->event($altitude);
-        log::add('heliotrope', 'debug', 'Altitude ' . $altitude);
-      }elseif($cmd->getLogicalId()=="daystatus"){
-        $cmd->setConfiguration('value', $status);
-        $cmd->save();
-        $cmd->event($status);
-        log::add('heliotrope', 'debug', 'Daystatus ' . $status);
-      }elseif($cmd->getLogicalId()=="daytext"){
-        $cmd->setConfiguration('value', $texte);
-        $cmd->save();
-        $cmd->event($texte);
-        log::add('heliotrope', 'debug', 'Daystatus ' . $texte);
-      }
-    }
+    $this->checkAndUpdateCmd('azimuth360',round($azimuth360));
+    $this->checkAndUpdateCmd('altitude',round($altitude));
+    $this->checkAndUpdateCmd('daystatus',$status);
+    $this->checkAndUpdateCmd('daytext',$texte);
+    log::add('heliotrope', 'debug', 'Statut ' . $status . ' ' . $texte . ' ' . round($azimuth360) . ' ' . round($altitude));
     $this->refreshWidget();
   }
 
   public function getDaily() {
     $geoloc = $this->getConfiguration('geoloc', '');
-    $geolocCmd = geolocCmd::byId($geoloc);
-    if ($geolocCmd->getConfiguration('mode') == 'fixe') {
-      $geolocval = $geolocCmd->getConfiguration('coordinate');
+    if (strrpos('geotrav'),$geoloc) {
+        $geolocEq = geotravCmd::byId(str_replace('geotrav','',$geoloc));
+        $geolocval = $geolocEq('coordinate');
     } else {
-      $geolocval = $geolocCmd->execCmd();
+        $geolocCmd = geolocCmd::byId($geoloc);
+        if ($geolocCmd->getConfiguration('mode') == 'fixe') {
+          $geolocval = $geolocCmd->getConfiguration('coordinate');
+        } else {
+          $geolocval = $geolocCmd->execCmd();
+        }
     }
     $geoloctab = explode(',', trim($geolocval));
     $latitude = trim($geoloctab[0]);
@@ -461,59 +443,16 @@ class heliotrope extends eqLogic {
 
     log::add('heliotrope', 'info', 'getDaily');
 
-    foreach ($this->getCmd() as $cmd) {
-      if($cmd->getLogicalId()=="sunrise"){
-        $cmd->setConfiguration('value', $sunrise);
-        $cmd->save();
-        $cmd->event($sunrise);
-        log::add('heliotrope', 'debug', 'Sunrise ' . $sunrise);
-      }elseif($cmd->getLogicalId()=="sunset"){
-        $cmd->setConfiguration('value', $sunset);
-        $cmd->save();
-        $cmd->event($sunset);
-        log::add('heliotrope', 'debug', 'Sunset ' . $sunset);
-      }elseif($cmd->getLogicalId()=="aubenau"){
-        $cmd->setConfiguration('value', $aubenau);
-        $cmd->save();
-        $cmd->event($aubenau);
-        log::add('heliotrope', 'debug', 'Aube Nautique ' . $aubenau);
-      }elseif($cmd->getLogicalId()=="crepnau"){
-        $cmd->setConfiguration('value', $crepnau);
-        $cmd->save();
-        $cmd->event($crepnau);
-        log::add('heliotrope', 'debug', 'Crepuscule Nautique ' . $crepnau);
-      }elseif($cmd->getLogicalId()=="aubeciv"){
-        $cmd->setConfiguration('value', $aubeciv);
-        $cmd->save();
-        $cmd->event($aubeciv);
-        log::add('heliotrope', 'debug', 'Aube Civile ' . $aubeciv);
-      }elseif($cmd->getLogicalId()=="crepciv"){
-        $cmd->setConfiguration('value', $crepciv);
-        $cmd->save();
-        $cmd->event($crepciv);
-        log::add('heliotrope', 'debug', 'Crepuscule Civil ' . $crepciv);
-      }elseif($cmd->getLogicalId()=="aubeast"){
-        $cmd->setConfiguration('value', $aubeast);
-        $cmd->save();
-        $cmd->event($aubeast);
-        log::add('heliotrope', 'debug', 'Aube Astronomique ' . $aubeast);
-      }elseif($cmd->getLogicalId()=="crepast"){
-        $cmd->setConfiguration('value', $crepast);
-        $cmd->save();
-        $cmd->event($crepast);
-        log::add('heliotrope', 'debug', 'Crepuscule Astronomique ' . $crepast);
-      }elseif($cmd->getLogicalId()=="zenith"){
-        $cmd->setConfiguration('value', $zenith);
-        $cmd->save();
-        $cmd->event($zenith);
-        log::add('heliotrope', 'debug', 'Zenith ' . $zenith);
-      }elseif($cmd->getLogicalId()=="daylen"){
-        $cmd->setConfiguration('value', $daylen);
-        $cmd->save();
-        $cmd->event($daylen);
-        log::add('heliotrope', 'debug', 'Durée ' . $daylen);
-      }
-    }
+    $this->checkAndUpdateCmd('sunrise',$sunrise);
+    $this->checkAndUpdateCmd('sunset',$sunset);
+    $this->checkAndUpdateCmd('aubenau',$aubenau);
+    $this->checkAndUpdateCmd('crepnau',$crepnau);
+    $this->checkAndUpdateCmd('aubeciv',$aubeciv);
+    $this->checkAndUpdateCmd('crepciv',$crepciv);
+    $this->checkAndUpdateCmd('aubeast',$aubeast);
+    $this->checkAndUpdateCmd('crepast',$crepast);
+    $this->checkAndUpdateCmd('zenith',$zenith);
+    $this->checkAndUpdateCmd('daylen',$daylen);
     $this->refreshWidget();
   }
 
@@ -566,7 +505,7 @@ class heliotrope extends eqLogic {
     foreach($this->getCmd() as $cmd){
       $type_cmd=$cmd->getLogicalId();
       $id[$type_cmd]=$cmd->getId();
-      $value[$type_cmd]=$cmd->getConfiguration('value');
+      $value[$type_cmd]=$cmd->execCmd();
     }
 
     $replace['#azimuth360#'] = $value['azimuth360'];
