@@ -296,18 +296,10 @@ class heliotrope extends eqLogic {
   }
 
   public function getInformations() {
-    $geoloc = $this->getConfiguration('geoloc', '');
-    if (strrpos('geotrav'),$geoloc) {
-        $geolocEq = geotravCmd::byId(str_replace('geotrav','',$geoloc));
-        $geolocval = $geolocEq('coordinate');
-    } else {
-        $geolocCmd = geolocCmd::byId($geoloc);
-        if ($geolocCmd->getConfiguration('mode') == 'fixe') {
-          $geolocval = $geolocCmd->getConfiguration('coordinate');
-        } else {
-          $geolocval = $geolocCmd->execCmd();
-        }
-    }
+      if ($this->getConfiguration('geoloc', 'none') == 'none') {
+          return;
+      }
+      $geolocval = geotravCmd::byEqLogicIdAndLogicalId($this->getConfiguration('geoloc'),'location:coordinate');
     $geoloctab = explode(',', trim($geolocval));
     $latitude = trim($geoloctab[0]);
     $longitude = trim($geoloctab[1]);

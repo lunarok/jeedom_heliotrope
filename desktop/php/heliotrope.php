@@ -120,17 +120,10 @@ $eqLogics = eqLogic::byType('heliotrope');
                             <div class="col-sm-3">
                                 <select class="form-control eqLogicAttr configuration" id="geoloc" data-l1key="configuration" data-l2key="geoloc">
                                     <?php
-                                    if (class_exists('geolocCmd') || class_exists('geotravCmd')) {
+                                    if (class_exists('geotravCmd')) {
                                         foreach (eqLogic::byType('geotrav') as $geoloc) {
                                             if ($geoloc->getConfiguration('type') == 'location') {
-                                                echo '<option value="' . $geoloc->getId() . 'geotrav">' . $geoloc->getName() . '</option>';
-                                            }
-                                        }
-                                        foreach (eqLogic::byType('geoloc') as $geoloc) {
-                                            foreach (geolocCmd::byEqLogicId($geoloc->getId()) as $geoinfo) {
-                                                if ($geoinfo->getConfiguration('mode') == 'fixe' || $geoinfo->getConfiguration('mode') == 'dynamic') {
-                                                    echo '<option value="' . $geoinfo->getId() . '">' . $geoinfo->getName() . '</option>';
-                                                }
+                                                echo '<option value="' . $geoloc->getId() . '">' . $geoloc->getName() . '</option>';
                                             }
                                         }
                                     } else {
