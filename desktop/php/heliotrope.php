@@ -152,7 +152,6 @@ $eqLogics = eqLogic::byType('heliotrope');
                         <tr>
                             <th style="width: 50px;">#</th>
                             <th style="width: 300px;">{{Nom}}</th>
-                            <th style="width: 250px;">{{Valeur}}</th>
                             <th style="width: 200px;">{{Paramètres}}</th>
                             <th style="width: 100px;"></th>
                         </tr>

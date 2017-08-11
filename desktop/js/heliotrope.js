@@ -56,9 +56,6 @@ if (init(_cmd.configuration.type) == 'lever') {
   tr += '<td>';
   tr += '<span class="cmdAttr" data-l1key="name"></span></td>';
   tr += '<td>';
-  tr += '<span class="cmdAttr" data-l1key="configuration" data-l2key="value"></span>';
-  tr += '</td>';
-  tr += '<td>';
   if (_cmd.subType == 'numeric') {
     tr += '<span><label class="checkbox-inline"><input type="checkbox" class="cmdAttr checkbox-inline" data-l1key="isHistorized" checked/>{{Historiser}}</label></span>';
   }
@@ -66,6 +63,7 @@ if (init(_cmd.configuration.type) == 'lever') {
   tr += '<td>';
   if (is_numeric(_cmd.id)) {
     tr += '<a class="btn btn-default btn-xs cmdAction expertModeVisible" data-action="configure"><i class="fa fa-cogs"></i></a> ';
+    tr += '<a class="btn btn-default btn-xs cmdAction" data-action="test"><i class="fa fa-rss"></i>{{Tester}}</a>';
   }
   tr += '</td>';
   tr += '</tr>';
