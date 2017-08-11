@@ -299,7 +299,7 @@ class heliotrope extends eqLogic {
       if ($this->getConfiguration('geoloc', 'none') == 'none') {
           return;
       }
-      $geolocval = geotravCmd::byEqLogicIdAndLogicalId($this->getConfiguration('geoloc'),'location:coordinate');
+      $geolocval = geotravCmd::byEqLogicIdAndLogicalId($this->getConfiguration('geoloc'),'location:coordinate')->execCmd();
     $geoloctab = explode(',', trim($geolocval));
     $latitude = trim($geoloctab[0]);
     $longitude = trim($geoloctab[1]);
