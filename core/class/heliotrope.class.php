@@ -46,9 +46,11 @@ class heliotrope extends eqLogic {
     }
 
     public function preUpdate() {
-        if ($this->getConfiguration('geoloc', '') == '') {
-            throw new Exception(__('La géolocalisation ne peut etre vide',__FILE__));
-        }
+        $geotrav = eqLogic::byId($this->getConfiguration('geoloc'));
+       if (!(isobject($geotrav) && $geotrav->getEqType_name() == 'geotrav')) {
+           throw new Exception(__('Vous devez sélectionner un équipement de localisation geotrav',__FILE__));
+           return;
+       }
     }
 
     public function postUpdate() {
@@ -234,13 +236,8 @@ class heliotrope extends eqLogic {
             $heliotropeCmd->setConfiguration('type', 'time');
             $heliotropeCmd->save();
 
-            if ($this->getConfiguration('geoloc', 'none') != 'none') {
                 heliotrope::getInformations();
                 heliotrope::getDaily();
-            } else {
-                log::add('heliotrope', 'error', 'geoloc non saisie');
-            }
-
         }
     }
 
@@ -286,7 +283,6 @@ class heliotrope extends eqLogic {
     public function getInformations() {
         $geotrav = eqLogic::byId($this->getConfiguration('geoloc'));
         if (!(isobject($geotrav) && $geotrav->getEqType_name() == 'geotrav')) {
-            log::add('heliotrope', 'error', 'localisation invalide, veuillez sélectionner un équipement geotrav valide');
             return;
         }
         $geolocval = geotravCmd::byEqLogicIdAndLogicalId($this->getConfiguration('geoloc'),'location:coordinate')->execCmd();
