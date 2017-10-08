@@ -348,7 +348,7 @@ class heliotrope extends eqLogic {
         }
 
         $this->checkAndUpdateCmd('azimuth360',round($azimuth360));
-        $this->checkAndUpdateCmd('altitude',round($altitude));
+        $this->checkAndUpdateCmd('altitude',round($altitude,1));
         $this->checkAndUpdateCmd('daystatus',$status);
         $this->checkAndUpdateCmd('daytext',$texte);
         log::add('heliotrope', 'debug', 'Statut ' . $status . ' ' . $texte . ' ' . round($azimuth360) . ' ' . round($altitude));
