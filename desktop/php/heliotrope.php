@@ -57,8 +57,8 @@ $eqLogics = eqLogic::byType('heliotrope');
             <li role="presentation"><a href="#" class="eqLogicAction" aria-controls="home" role="tab" data-toggle="tab" data-action="returnToThumbnailDisplay"><i class="fa fa-arrow-circle-left"></i></a></li>
             <li role="presentation" class="active"><a href="#eqlogictab" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-tachometer"></i> {{Equipement}}</a></li>
             <li role="presentation"><a href="#infotab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-list-alt"></i> {{Position du Soleil}}</a></li>
-            <li role="presentation"><a href="#levertab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-list-alt"></i> {{Lever Soleil}}</a></li>
-            <li role="presentation"><a href="#couchertab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-list-alt"></i> {{Coucher Soleil}}</a></li>
+            <li role="presentation"><a href="#levertab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-sun-o"></i> {{Lever Soleil}}</a></li>
+            <li role="presentation"><a href="#couchertab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-moon-o"></i> {{Coucher Soleil}}</a></li>
         </ul>
         <div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
             <div role="tabpanel" class="tab-pane active" id="eqlogictab">
