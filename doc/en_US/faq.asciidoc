@@ -7,7 +7,7 @@ No, the plugin did the math internally from the coordinates.
 [panel,primary]
 . Is the plugin relies on third-party plugins?
 --
-Yes, it uses the geoloc plugin equipment.
+Oui, il utilise un équipement du plugin geotrav
 --
 
 [panel,danger]
