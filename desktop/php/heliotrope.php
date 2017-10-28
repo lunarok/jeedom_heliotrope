@@ -163,7 +163,7 @@ $eqLogics = eqLogic::byType('heliotrope');
 
                 <span>{{Les informations de position du soleil permettent de créer des scénarios ayant besoin de se déclencher sur une orientation ou une altitude du soleil.}}</span>
                 <br><span>{{Une utilisation classique est la gestion des volets par rapport au soleil. Si la direction du soleil est dans un angle de 180 du store par exemple (-90 et +90) on peut le fermer pour éviter que le soleil chauffe en été ou inversement pour les périodes froides. On peut affiner en utilisant la hauteur du soleil.}}</span>
-                <br><span>{{La position est recalculé à la fréquence sélectionnée sur la page de configuration du plugin. Pour utiliser la direction dans un scénario, il faut utilisé le mode déclenché avec la direction et utiliser une condition SI #Direction# > Orientation baie - 90}}</span>
+                <br><span>{{La position est recalculée à la fréquence sélectionnée sur la page de configuration du plugin. Pour utiliser la direction dans un scénario, il faut utiliser le mode déclenché avec la direction et utiliser une condition SI #Direction# > Orientation baie - 90}}</span>
 
             </div>
 
