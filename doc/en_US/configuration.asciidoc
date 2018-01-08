@@ -8,7 +8,7 @@ Ce plugin utilise une information venant du plugin Localisation et Trajets (geot
 
 Un autre paramètre est disponible pour paramétrer l'angle qu'on souhaite utiliser pour le calcul du coucher et lever du soleil uniquement (par défaut 90.58, ce qui est utilisé en général)
 
-Le plugin apporte différentes informations, certaines sont calculées quotidiennement, d'autres rafraichit par le cron dédié.
+Le plugin apporte différentes informations, certaines sont calculées quotidiennement, d'autres sont rafraichit par le cron dédié.
 
 
 Informations à rafraichissement quotidien (le calcul est fait à 3h du matin, sur démarrage de la box Jeedom ou sur sauvegarde de l'équipement) :
@@ -25,15 +25,15 @@ Informations à rafraichissement quotidien (le calcul est fait à 3h du matin, s
 
   - aube nautique (lever du soleil -12°)
 
-  - aube cvile (lever su soleil -6°)
+  - aube civile (lever du soleil -6°)
 
   - crépuscule astronomique (lever du soleil +18°)
 
   - crépuscule nautique (lever du soleil +12°)
 
-  - crépuscule cvil (lever su soleil +6°)
+  - crépuscule civil (lever du soleil +6°)
 
-Les informations restantes sont recalculées à la fréquence paramétrer sur la configuration plugin :
+Les informations restantes sont recalculées à la fréquence paramétrée sur la configuration plugin :
 
   - azimuth solaire
 

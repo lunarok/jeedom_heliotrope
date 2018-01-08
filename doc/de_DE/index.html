@@ -429,8 +429,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel2">
 <li><a href="#_beispiel_für_die_verwendung">3.1. Beispiel für die Verwendung</a>
 <ul class="sectlevel3">
-<li><a href="#_comment_utiliser_les_valeurs_azimuth_altitude_dans_un_sénario">3.1.1. Comment utiliser les valeurs azimuth/altitude dans un sénario ?</a></li>
-<li><a href="#_comment_utiliser_les_valeurs_de_lever_coucher_du_soleil_dans_un_sénario">3.1.2. Comment utiliser les valeurs de lever/coucher du soleil dans un sénario ?</a></li>
+<li><a href="#_comment_utiliser_les_valeurs_azimut_altitude_dans_un_scénario">3.1.1. Comment utiliser les valeurs azimut/altitude dans un scénario ?</a></li>
+<li><a href="#_comment_utiliser_les_valeurs_de_lever_coucher_du_soleil_dans_un_scénario">3.1.2. Comment utiliser les valeurs de lever/coucher du soleil dans un scénario ?</a></li>
 </ul>
 </li>
 </ul>
@@ -476,7 +476,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Un autre paramètre est disponible pour paramétrer l&#8217;angle qu&#8217;on souhaite utiliser pour le calcul du coucher et lever du soleil uniquement (par défaut 90.58, ce qui est utilisé en général)</p>
 </div>
 <div class="paragraph">
-<p>Le plugin apporte différentes informations, certaines sont calculées quotidiennement, d&#8217;autres rafraichit par le cron dédié.</p>
+<p>Le plugin apporte différentes informations, certaines sont calculées quotidiennement, d&#8217;autres sont rafraichit par le cron dédié.</p>
 </div>
 <div class="paragraph">
 <p>Informations à rafraichissement quotidien (le calcul est fait à 3h du matin, sur démarrage de la box Jeedom ou sur sauvegarde de l&#8217;équipement) :</p>
@@ -502,7 +502,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>aube nautique (lever du soleil -12°)</p>
 </li>
 <li>
-<p>aube cvile (lever su soleil -6°)</p>
+<p>aube civile (lever du soleil -6°)</p>
 </li>
 <li>
 <p>crépuscule astronomique (lever du soleil +18°)</p>
@@ -511,12 +511,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>crépuscule nautique (lever du soleil +12°)</p>
 </li>
 <li>
-<p>crépuscule cvil (lever su soleil +6°)</p>
+<p>crépuscule civil (lever du soleil +6°)</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Les informations restantes sont recalculées à la fréquence paramétrer sur la configuration plugin :</p>
+<p>Les informations restantes sont recalculées à la fréquence paramétrée sur la configuration plugin :</p>
 </div>
 <div class="ulist">
 <ul>
@@ -583,10 +583,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="paragraph">
 <p>Beispiele :
   Le soleil se couche à l&#8217;ouest, soit 270°.
-  Le soleil à la verticale parfaite aura une altitude de 90°. un soleil qui a disparu sous l&#8217;horizon aura une altitude négative.</p>
+  Le soleil à la verticale parfaite aura une altitude de 90°, un soleil qui a disparu sous l&#8217;horizon aura une altitude négative.</p>
 </div>
 <div class="sect3">
-<h4 id="_comment_utiliser_les_valeurs_azimuth_altitude_dans_un_sénario">3.1.1. Comment utiliser les valeurs azimuth/altitude dans un sénario ?</h4>
+<h4 id="_comment_utiliser_les_valeurs_azimut_altitude_dans_un_scénario">3.1.1. Comment utiliser les valeurs azimut/altitude dans un scénario ?</h4>
 <div class="paragraph">
 <p>Voici un exemple, basé sur l&#8217;excellente photo de Masterfion :</p>
 </div>
@@ -616,7 +616,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Dans ce cas, dès le lever du soleil, il éclaire la façade (sous un angle de 10°). Il faut donc fermer le volet 5 dès le lever du soleil.</p>
 </div>
 <div class="paragraph">
-<p>On peut utiliser l&#8217;altitude pour décider qu&#8217;il est levé : regardez la valeur de l&#8217;altitude sur le plugin lorsqu&#8217;il se lève et commence à éclairer et notez la comme valeur de déclenchement du scénario.</p>
+<p>On peut utiliser l&#8217;altitude pour décider qu&#8217;il est levé : regardez la valeur de l&#8217;altitude sur le plugin lorsqu&#8217;il se lève et commence à éclairer et notez-la comme valeur de déclenchement du scénario.</p>
 </div>
 <div class="paragraph">
 <p>Sinon, utilisez un théodolite qui permet de relever des angles par rapport à l&#8217;horizontale.</p>
@@ -627,9 +627,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect3">
-<h4 id="_comment_utiliser_les_valeurs_de_lever_coucher_du_soleil_dans_un_sénario">3.1.2. Comment utiliser les valeurs de lever/coucher du soleil dans un sénario ?</h4>
+<h4 id="_comment_utiliser_les_valeurs_de_lever_coucher_du_soleil_dans_un_scénario">3.1.2. Comment utiliser les valeurs de lever/coucher du soleil dans un scénario ?</h4>
 <div class="paragraph">
-<p>Heliotrope calcule ces informations quotidiennement. Les utiliser en tant que déclencheurs seuls, aura pour effet de déclencher le scénario à 3h00 du matin (ou au reboot), pas vraiment l&#8217;effet souhaiter</p>
+<p>Héliotrope calcule ces informations quotidiennement. Les utiliser en tant que déclencheurs seuls, aura pour effet de déclencher le scénario à 3h00 du matin (ou au reboot), pas vraiment l&#8217;effet souhaité.</p>
 </div>
 <div class="paragraph">
 <p>Il faut utiliser le déclencheur en combinaison avec une condition A.</p>
@@ -658,19 +658,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>une info d&#8217;horaire du plugin en déclencheur</p>
 </li>
 <li>
-<p>un bloc A avec l&#8217;heure de l&#8217;aube qui déclence un scénario "ouverture des volets"</p>
+<p>un bloc A avec l&#8217;heure de l&#8217;aube qui déclenche un scénario "ouverture des volets"</p>
 </li>
 <li>
 <p>un bloc A avec l&#8217;heure du crépuscule qui déclenche un scénario "fermeture des volets"</p>
 </li>
 <li>
-<p>on peut imaginer différents blocs A pour différents scénarios. Par exemple en utilisant différents crépuscule, le nautique pour les volets, le civil pour les lampes</p>
+<p>on peut imaginer différents blocs A pour différents scénarios. Par exemple en utilisant différents crépuscules, le nautique pour les volets, le civil pour les lampes.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>les scénarios "ouverture des volets" ou "fermeture des volets" pourront être déclenchés directement par l&#8217;app aussi pour garder un controle manuel</p>
+<p>les scénarios "ouverture des volets" ou "fermeture des volets" pourront être déclenchés directement par l&#8217;app aussi pour garder un contrôle manuel.</p>
 </li>
 </ul>
 </div>

@@ -8,9 +8,9 @@ Il y a deux notations possibles pour l'azimut : azimut (de 0 à 180 puis de -180
 
 Beispiele :
   Le soleil se couche à l'ouest, soit 270°.
-  Le soleil à la verticale parfaite aura une altitude de 90°. un soleil qui a disparu sous l'horizon aura une altitude négative.
+  Le soleil à la verticale parfaite aura une altitude de 90°, un soleil qui a disparu sous l'horizon aura une altitude négative.
 
-==== Comment utiliser les valeurs azimuth/altitude dans un sénario ?
+==== Comment utiliser les valeurs azimut/altitude dans un scénario ?
 
 Voici un exemple, basé sur l'excellente photo de Masterfion :
 
@@ -30,16 +30,16 @@ La façade contenant le volet 5 a une perpendiculaire ayant un azimut de 170°. 
 
 Dans ce cas, dès le lever du soleil, il éclaire la façade (sous un angle de 10°). Il faut donc fermer le volet 5 dès le lever du soleil.
 
-On peut utiliser l'altitude pour décider qu'il est levé : regardez la valeur de l'altitude sur le plugin lorsqu'il se lève et commence à éclairer et notez la comme valeur de déclenchement du scénario.
+On peut utiliser l'altitude pour décider qu'il est levé : regardez la valeur de l'altitude sur le plugin lorsqu'il se lève et commence à éclairer et notez-la comme valeur de déclenchement du scénario.
 
 Sinon, utilisez un théodolite qui permet de relever des angles par rapport à l'horizontale.
 
 
 Le soleil va se déplacer vers l'ouest et cessera d'éclairer la façade lorsqu'il arrivera à l'azimut (170°+90°) 260°. Là il sera possible d'ouvrir à nouveau le volet 5 pour profiter des dernières lueurs du jour (260°, c'est presque un soleil couché).
 
-==== Comment utiliser les valeurs de lever/coucher du soleil dans un sénario ?
+==== Comment utiliser les valeurs de lever/coucher du soleil dans un scénario ?
 
-Heliotrope calcule ces informations quotidiennement. Les utiliser en tant que déclencheurs seuls, aura pour effet de déclencher le scénario à 3h00 du matin (ou au reboot), pas vraiment l'effet souhaiter
+Héliotrope calcule ces informations quotidiennement. Les utiliser en tant que déclencheurs seuls, aura pour effet de déclencher le scénario à 3h00 du matin (ou au reboot), pas vraiment l'effet souhaité.
 
 Il faut utiliser le déclencheur en combinaison avec une condition A.
 
@@ -55,10 +55,10 @@ Beispiel :
 
     * une info d'horaire du plugin en déclencheur
 
-    * un bloc A avec l'heure de l'aube qui déclence un scénario "ouverture des volets"
+    * un bloc A avec l'heure de l'aube qui déclenche un scénario "ouverture des volets"
 
     * un bloc A avec l'heure du crépuscule qui déclenche un scénario "fermeture des volets"
 
-    * on peut imaginer différents blocs A pour différents scénarios. Par exemple en utilisant différents crépuscule, le nautique pour les volets, le civil pour les lampes
+    * on peut imaginer différents blocs A pour différents scénarios. Par exemple en utilisant différents crépuscules, le nautique pour les volets, le civil pour les lampes.
 
-  - les scénarios "ouverture des volets" ou "fermeture des volets" pourront être déclenchés directement par l'app aussi pour garder un controle manuel
+  - les scénarios "ouverture des volets" ou "fermeture des volets" pourront être déclenchés directement par l'app aussi pour garder un contrôle manuel.
