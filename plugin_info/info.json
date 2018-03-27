@@ -4,5 +4,7 @@
 	"licence" : "AGPL",
 	"author" : "lunarok",
 	"require" : "2.4",
-	"category" : "weather"
+	"category" : "weather",
+    "changelog" : "https://lunarok.github.io/jeedom_docs/plugins/heliotrope/changelog.html",
+    "documentation" : "https://lunarok.github.io/jeedom_docs/plugins/heliotrope/"
 }
