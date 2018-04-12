@@ -408,7 +408,7 @@ class heliotrope extends eqLogic {
         $interval = $sunrisef->diff($sunsetf);
         $minutes = $interval->format('%i');
         $hours = $interval->format('%h	');
-        $daylen = $hours*60 + $minutes;
+        $daylen = (int)$hours*60 + (int)$minutes;
         $sun_info = date_sun_info(time(), $latitude, $longitude);
         $zenithf = date("H:i", $sun_info['transit']);
         $zenith = str_replace(':','',$zenithf);
