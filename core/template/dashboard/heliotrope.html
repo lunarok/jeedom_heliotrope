@@ -1,22 +1,22 @@
 <div class="eqLogic-widget eqLogic allowResize" style="height: #height#;width: #width#;border:#border#;border-radius:#border-radius#;background-color: #background-color#;color: #color#;#style#" data-eqLogic_id="#id#" data-eqLogic_uid="#uid#" data-version="#version#" >
-	<center class="widget-name"><a href="#eqLink#" style="font-size : 1.5em;#hideEqLogicName#">#name_display#</a></strong></center><br />
-
-<div class="pull-right" style="margin-right: 35px;margin-top: 5px;">
-		<div id="azimuth#id#" style="width: 80px; height: 80px;" class="cmd noRefresh" data-type="info" data-subtype="numeric" data-cmd_id="#azimuth360_id#"></div>
+	<center class="widget-name"><a href="#eqLink#" style="font-size : 1.5em;#hideEqLogicName#">#name_display#</a></center><br />
+  <div style="position : relative; left : 10px;">
+    <div class="pull-right" style="margin-right: 35px;margin-top: 5px;">
+      <div id="azimuth#id#" style="width: 80px; height: 80px;" class="cmd noRefresh" data-type="info" data-subtype="numeric" data-cmd_id="#azimuth360_id#"></div>
     </div>
-	<div class="pull-left" style="margin-left: 15px;margin-top: 5px;">
-		<div id="sunAlt#id#" style="width: 80px; height: 80px;" class="cmd noRefresh" data-type="info" data-subtype="numeric" data-cmd_id="#sunAlt_id#"></div>
+    <div class="pull-left" style="margin-left: 15px;margin-top: 5px;">
+      <div id="sunAlt#id#" style="width: 80px; height: 80px;" class="cmd noRefresh" data-type="info" data-subtype="numeric" data-cmd_id="#sunAlt_id#"></div>
     </div><br/>
-	<div style="margin-top: 0px;">
-		<center style="left:0px;"><i style="#heliosun#;" class="fa fa-sun-o fa-3x"></i> | <i style="#heliomoon#;" class="fa fa-moon-o fa-3x"></i></center>
-		<center style="font-size: 1em; position: relative;left:3px;cursor:default;">#sunrise# | #sunset#</center>
-	</div>
-</div><br/>
+    <div style="margin-top: 0px;">
+      <center style="left:0px;"><i style="#heliosun#;" class="fa fa-sun-o fa-3x"></i> | <i style="#heliomoon#;" class="fa fa-moon-o fa-3x"></i></center>
+      <center style="font-size: 1em; position: relative;left:3px;cursor:default;">#sunrise# | #sunset#</center>
+    </div>
+  </div><br/>
 <script>
 var chart1;
 var chart2;
 if($('#azimuth#id#').html() != undefined){
-	chart1 = new Highcharts.Chart({
+    chart1 = new Highcharts.Chart({
         chart: {
             renderTo: 'azimuth#id#',
             type: 'gauge',
@@ -101,7 +101,7 @@ if($('#azimuth#id#').html() != undefined){
 }
 if($('#sunAlt#id#').html() != undefined){
 
-	chart2 = new Highcharts.Chart({
+    chart2 = new Highcharts.Chart({
         chart: {
             renderTo: 'sunAlt#id#',
             type: 'gauge',
@@ -170,11 +170,11 @@ if($('#sunAlt#id#').html() != undefined){
                                 return '<span style="color : #FFFFFF;font-weight:bold;"></span>';
                             } else if (this.value == 90) {
                                 return '<span style="color : #FFFFFF;font-weight:bold;">90</span>';
-							} else if (this.value == -45) {
+              } else if (this.value == -45) {
                                 return '<span style="color : #FFFFFF;font-weight:bold;"></span>';
-							} else if (this.value == -90) {
+              } else if (this.value == -90) {
                                 return '<span style="color : #FFFFFF;font-weight:bold;">-90</span>';
-							}
+              }
                         }
                     },
                     title: {
