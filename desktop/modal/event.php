@@ -65,7 +65,7 @@ echo '<div id="div_configureParam">';
 echo '<input class="eqLogicAttr" id="id" style="display:none;" value="' . init('id') . '" />';
 echo '<input class="eqLogicAttr" id="cmd" style="display:none;" value="' . init('cmd') . '" />';
 echo '<legend>Configuration de la condition';
-echo '<a class="btn btn-success btn-xs pull-right" id="bt_configureParamSave"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>';
+echo '<a class="btn btn-success btn-xs pull-right" id="bt_configureParamSave"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>';
 echo '</legend>';
 echo '<form class="form-horizontal">';
 echo '<fieldset>';
@@ -122,7 +122,7 @@ echo '<input autocomplete="off" class="expressionAttr form-control ui-autocomple
 echo '</input>';
 echo '</div>';
 echo '<div class="col-sm-3">';
-echo '<span class="input-group-btn"><button class="btn btn-default bt_selectOtherActionExpression" type="button" title="Sélectionner un mot-clé"><i class="fa fa-tasks"></i></button><button class="btn btn-default bt_selectCmdExpression" type="button" title="Sélectionner la commande"><i class="fa fa-list-alt"></i></button></span>';
+echo '<span class="input-group-btn"><button class="btn btn-default bt_selectOtherActionExpression" type="button" title="Sélectionner un mot-clé"><i class="fas fa-tasks"></i></button><button class="btn btn-default bt_selectCmdExpression" type="button" title="Sélectionner la commande"><i class="fas fa-list-alt"></i></button></span>';
 echo '<div class="col-xs-7 expressionOptions" style="margin-top: 4px"></div>';
 echo '</div>';
 echo '</div>';

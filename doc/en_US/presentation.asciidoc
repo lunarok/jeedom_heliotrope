@@ -1,7 +1,0 @@
-= Heliotrope: lift, bedroom, zenith, azimuth and altitude of the Sun
-
-This plugin allows to obtain the azimuth and the solar altitude to be used in scenarios
-
-It also allows to retrieve the time of sunset and sunrise with a local calculation (without API) and customizable
-
-Il permet de lancer des tâches aux heures calculées
