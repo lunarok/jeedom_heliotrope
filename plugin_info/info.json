@@ -4,7 +4,7 @@
 	"description" : "Permet de calculer plusieurs valeurs relatives au soleil sans API, tout le calcul est fait en local. Les valeurs utiles : altitude : la hauteur du soleil a l'instant t, azimuth : la direction du soleil a l'instant t, sunrise : le lever du soleil du jour, sunset : le coucher du soleil du jour. L'altitude et l'azimuth servent principalement a agir sur l'ouverture/fermeture de volets pour se protéger ou récupérer la chaleur du soleil.",
 	"licence" : "AGPL",
 	"author" : "lunarok",
-	"require" : "2.4",
+	"require" : "3.3.24",
 	"category" : "weather",
 	"language" : ["fr_FR","en_US"],
 	"compatibility" : ["miniplus","smart","rpi","docker","diy","mobile"],
