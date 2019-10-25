@@ -489,11 +489,11 @@ class heliotrope extends eqLogic {
         $replace['#collectDate#'] = $this->getStatus('lastCommunication', date('Y-m-d H:i:s'));
 
         if (array_key_exists('daystatus', $value) && $value['daystatus']=="1") {
-            $replace['#heliosun#'] = "color : rgba(255,255,255,1)";
-            $replace['#heliomoon#'] = "color : rgba(255,255,255,0.3)";
+            $replace['#heliosun#'] = "opacity : 1";
+            $replace['#heliomoon#'] = "opacity : 0.3";
         } else {
-            $replace['#heliosun#'] = "color : rgba(255,255,255,0.3)";
-            $replace['#heliomoon#'] = "color : rgba(255,255,255,1)";
+            $replace['#heliosun#'] = "opacity : 0.3";
+            $replace['#heliomoon#'] = "opacity : 1";
         }
 
         return $this->postToHtml($_version, template_replace($replace, getTemplate('core', $version, 'heliotrope', 'heliotrope')));
