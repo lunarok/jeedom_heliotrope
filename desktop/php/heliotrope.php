@@ -107,15 +107,6 @@ $eqLogics = eqLogic::byType('heliotrope');
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">{{Commentaire}}</label>
-                            <div class="col-sm-3">
-                                <textarea class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="commentaire" ></textarea>
-                            </div>
-                        </div>
-
-
-
-                        <div class="form-group">
                             <label class="col-sm-3 control-label">{{Géolocalisation}}</label>
                             <div class="col-sm-3">
                                 <select class="form-control eqLogicAttr configuration" id="geoloc" data-l1key="configuration" data-l2key="geoloc">
