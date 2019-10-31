@@ -44,7 +44,31 @@ if($('#azimuth#id#').html() != undefined){
         exporting : {
             enabled: false
         },
-        // the value axis
+        plotOptions: {
+            series: {
+                dataLabels: {
+                    enabled: false
+                },
+                color: '#FFFFFF',
+            },
+            gauge: {
+                dial: {
+                    radius: '90%',
+                    backgroundColor: 'silver',
+                    borderColor: 'silver',
+                    borderWidth: 1,
+                    baseWidth: 6,
+                    topWidth: 1,
+                            baseLength: '75%', // of radius
+                            rearLength: '15%'
+                        },
+                        pivot: {
+                            backgroundColor: 'white',
+                            radius: 0,
+                        }
+                    }
+                },
+                pane: {background: [{backgroundColor: 'transparent'}]},
         yAxis: {
             min: -90,
             max: 90,
@@ -69,8 +93,8 @@ tickWidth: 2,
                         text: null
                     }},
         series: [{
-            name: 'Azimuth',
-            data: [#azimuth360#]
+            name: '',
+            data: [#azimuth360#] °
         }]
                 });
 }
