@@ -267,7 +267,9 @@ class heliotrope extends eqLogic {
     // http://answers.yahoo.com/question/index?qid=20070830185150AAoNT4i
     // http://www.jgiesen.de/astro/astroJS/siderealClock/
 
-    public function absoluteToRelativeDeg($t, $rightAscensionDeg, $declinationDeg, $latitude, $longitude){
+    public function absoluteToRelativeDeg($t, $rightAscensionDeg, $declinationDeg, $latitude, $longitude){$latitude = (float) $latitude;
+      	$longitude = (float) $longitude;
+        $latitude = (float) $latitude;
         $dSec = $t - 946728000;
         $midnightUtc = $dSec - fmod($dSec,86400);
         $siderialUtcHours = fmod((18.697374558 + 0.06570982441908*$midnightUtc/86400 + (1.00273790935*(fmod($dSec,86400))/3600)),24);
