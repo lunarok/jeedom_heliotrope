@@ -284,8 +284,8 @@ class heliotrope extends eqLogic {
 
     public function getInformations() {
         if ($this->getConfiguration('geoloc') == 'jeedom') {
-            $latitude = config::byKey('info::lat');
-            $longitude = config::byKey('info::lon');
+            $latitude = config::byKey('info::latitude');
+            $longitude = config::byKey('info::longitude');
         } else {
             $geotrav = eqLogic::byId($this->getConfiguration('geoloc'));
             if (!(is_object($geotrav) && $geotrav->getEqType_name() == 'geotrav')) {
@@ -364,8 +364,8 @@ class heliotrope extends eqLogic {
 
     public function getDaily() {
         if ($this->getConfiguration('geoloc') == 'jeedom') {
-            $latitude = config::byKey('info::lat');
-            $longitude = config::byKey('info::lon');
+            $latitude = config::byKey('info::latitude');
+            $longitude = config::byKey('info::longitude');
         } else {
             $geotrav = eqLogic::byId($this->getConfiguration('geoloc'));
             if (!(is_object($geotrav) && $geotrav->getEqType_name() == 'geotrav')) {
