@@ -130,7 +130,7 @@ $eqLogics = eqLogic::byType('heliotrope');
                                             }
                                         }
                                     } 
-                                    if ((config::byKey('info::lat','core','0') != '0') && (config::byKey('info::lon','core','0') != '0')) {
+                                    if ((config::byKey('info::latitude','core','0') != '0') && (config::byKey('info::longitude','core','0') != '0')) {
                                         echo '<option value="jeedom">Configuration Jeedom</option>';
                                         $none = 1;
                                     }
