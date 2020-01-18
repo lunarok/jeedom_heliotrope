@@ -45,14 +45,6 @@ class heliotrope extends eqLogic {
         }
     }
 
-    public function preUpdate() {
-        $geotrav = eqLogic::byId($this->getConfiguration('geoloc'));
-       if (!(is_object($geotrav) && $geotrav->getEqType_name() == 'geotrav')) {
-           throw new Exception(__('Vous devez sélectionner un équipement de localisation geotrav',__FILE__));
-           return;
-       }
-    }
-
     public function postUpdate() {
         foreach (eqLogic::byType('heliotrope', true) as $heliotrope) {
             $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($heliotrope->getId(),'azimuth360');
