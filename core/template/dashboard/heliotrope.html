@@ -1,6 +1,8 @@
 <div class="eqLogic-widget eqLogic allowResize" style="height: #height#;width: #width#;border:#border#;border-radius:#border-radius#;background-color: #background-color#;color: #color#;#style#" data-eqLogic_id="#id#" data-eqLogic_uid="#uid#" data-version="#version#" >
-	<center class="widget-name"><a href="#eqLink#" style="font-size : 1.5em;#hideEqLogicName#">#name_display#</a></center>
-	<div style="position : relative; left: 0px; margin-top: 10px;">
+	<center class="widget-name"><a href="#eqLink#" style="font-size : 1.5em;#hideEqLogicName#">#name_display#</a>
+<span class="cmd refresh pull-right cursor" data-cmd_id="#refresh#"><i class="fas fa-sync"></i></span>
+	</center>
+		<div style="position : relative; left: 0px; margin-top: 10px;">
 		<div class="pull-right" style="margin-right: 15px;margin-top: 5px;">
 			<div id="azimuth#id#" style="width: 80px; height: 80px;" class="cmd noRefresh" data-type="info" data-subtype="numeric" data-cmd_id="#azimuth360_id#"></div>
 		</div>
@@ -15,6 +17,15 @@
 	<script>
 		var chart1;
 		var chart2;
+		
+		if ('#refresh#' != ''){
+			$('.eqLogic[data-eqLogic_uid=#uid#] .refresh').on('click', function () {
+				jeedom.cmd.execute({id: '#refresh#'});
+			});
+		}else{
+			$('.eqLogic[data-eqLogic_uid=#uid#] .refresh').remove();
+		}
+		
 		if($('#azimuth#id#').html() != undefined){
 			chart1 = new Highcharts.Chart({
 				chart: {
