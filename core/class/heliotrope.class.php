@@ -227,6 +227,17 @@ class heliotrope extends eqLogic {
             }
             $heliotropeCmd->setConfiguration('type', 'time');
             $heliotropeCmd->save();
+            
+            $heliotropeCmd = darkskyCmd::byEqLogicIdAndLogicalId($this->getId(),'refresh');
+            if (!is_object($heliotropeCmd)) {
+                $heliotropeCmd = new heliotropeCmd();
+                $heliotropeCmd->setName(__('Rafraichir', __FILE__));
+                $heliotropeCmd->setEqLogic_id($this->getId());
+                $heliotropeCmd->setLogicalId('refresh');
+                $heliotropeCmd->setType('action');
+                $heliotropeCmd->setSubType('other');
+                $heliotropeCmd->save();
+            }
 
                 heliotrope::getInformations();
                 heliotrope::getDaily();
@@ -515,6 +526,10 @@ class heliotrope extends eqLogic {
             $replace['#heliosun#'] = "opacity : 0.3";
             $replace['#heliomoon#'] = "opacity : 1";
         }
+        
+        $refresh = $this->getCmd(null, 'refresh');
+        $replace['#refresh#'] = is_object($refresh) ? $refresh->getId() : '';
+        
         if (file_exists( __DIR__ ."/../template/$_version/heliotrope_user.html"))
           return $this->postToHtml($_version, template_replace($replace, getTemplate('core', $version, 'heliotrope_user', 'heliotrope')));
         else
@@ -526,6 +541,10 @@ class heliotrope extends eqLogic {
 class heliotropeCmd extends cmd {
 
     public function execute($_options = null) {
+        if ($this->getLogicalId() == 'refresh') {
+            $eqLogic = $this->getEqLogic();
+            $eqLogic->getInformations();
+        } 
     }
 
 }
