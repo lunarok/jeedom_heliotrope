@@ -228,9 +228,9 @@ class heliotrope extends eqLogic {
             $heliotropeCmd->setConfiguration('type', 'time');
             $heliotropeCmd->save();
             
-            $heliotropeCmd = darkskyCmd::byEqLogicIdAndLogicalId($this->getId(),'refresh');
+            $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($this->getId(),'refresh');
             if (!is_object($heliotropeCmd)) {
-                $heliotropeCmd = new darkskyCmd();
+                $heliotropeCmd = new heliotropeCmd();
                 $heliotropeCmd->setName(__('Rafraichir', __FILE__));
                 $heliotropeCmd->setEqLogic_id($this->getId());
                 $heliotropeCmd->setLogicalId('refresh');
