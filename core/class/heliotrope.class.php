@@ -497,12 +497,10 @@ class heliotrope extends eqLogic {
 
         $id=array();
         $value=array();
-        foreach($this->getCmd() as $cmd){
+        foreach($this->getCmd('info') as $cmd){
             $type_cmd=$cmd->getLogicalId();
             $id[$type_cmd]=$cmd->getId();
-            if ($this->getLogicalId() != 'refresh') {
-                $value[$type_cmd]=$cmd->execCmd();
-            }
+            $value[$type_cmd]=$cmd->execCmd();
         }
 
         $replace['#azimuth360#'] = $value['azimuth360'];
