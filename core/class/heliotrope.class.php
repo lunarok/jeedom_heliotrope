@@ -530,8 +530,8 @@ class heliotrope extends eqLogic {
         $refresh = $this->getCmd(null, 'refresh');
         $replace['#refresh#'] = is_object($refresh) ? $refresh->getId() : '';
         
-        if (file_exists( __DIR__ ."/../template/$_version/heliotrope_user.html"))
-          return $this->postToHtml($_version, template_replace($replace, getTemplate('core', $version, 'heliotrope_user', 'heliotrope')));
+        if (file_exists( __DIR__ ."/../template/$_version/custom.heliotrope.html"))
+          return $this->postToHtml($_version, template_replace($replace, getTemplate('core', $version, 'custom.heliotrope', 'heliotrope')));
         else
         return $this->postToHtml($_version, template_replace($replace, getTemplate('core', $version, 'heliotrope', 'heliotrope')));
     }
