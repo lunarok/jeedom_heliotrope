@@ -1,12 +1,4 @@
 {
-    "plugins\/heliotrope\/plugin_info\/configuration.php": {
-        "Fréquence de calcul de la position solaire": "Frecuencia de cálculo de la posición solar",
-        "1 mn": "1 min",
-        "5 mn": "5 min",
-        "15 mn": "15 min",
-        "30 mn": "30 min",
-        "1 h": "1 h"
-    },
     "plugins\/heliotrope\/desktop\/php\/heliotrope.php": {
         "Ajouter un équipement": "Agregar equipo",
         "Rechercher": "Buscar",
@@ -37,12 +29,12 @@
         "Les heures de lever et coucher du soleil permettent de créer des scénarios ayant besoin de se déclencher en fonction de si il fait jour ou non.": "Las horas de amanecer y atardecer  permiten crear escenarios que se ejecutaran dependiendo de si están definidos o no.",
         "Une utilisation classique est la gestion des volets par rapport au soleil. Quand le soleil se lève on ouvre les volets par exemple.": "Un uso típico es la gestión de las persianas respecto a la altura del sol. Cuando el sol sube las persianas también, por ejemplo.",
         "Les horaires sont calculés de façon journalière. Pour utiliser une heure dans un scénario : ": "Los horarios se calculan diariamente. Para usar una hora en un escenario:",
-        " - sélectionner le mode déclenché et ajouter un déclencheur avec la commande voulue, ex : #Objet##Equipement##Aube Civile#": "-Selecciona el modo de disparo y agregue un disparador con la orden deseada, vg : #Objet##Equipement##Aube Civile#",
-        " - ajouter un bloc avec et choisir le type A, là on peut choisir son heure pour activation par exemple avec une commande info : #Objet##Equipement##Aube Civile#": " -Añadir un bloque de tipo A, puedes elegir la hora de activación por ejemplo con un orden de tipo info : #Objet##Equipement##Aube Civile#",
-        " - si on souhaite modifier la valeur de la commande il existe la commande time_op qui permet par exemple de faire +10": "-Si queremos cambiar el valor de la orden, existe el comando time_op que permite por ejemplo añadir  +10",
+        "sélectionner le mode déclenché et ajouter un déclencheur avec la commande voulue, ex : #Objet##Equipement##Aube Civile#": "Selecciona el modo de disparo y agregue un disparador con la orden deseada, vg : #Objet##Equipement##Aube Civile#",
+        "ajouter un bloc avec et choisir le type A, là on peut choisir son heure pour activation par exemple avec une commande info : #Objet##Equipement##Aube Civile#": "Añadir un bloque de tipo A, puedes elegir la hora de activación por ejemplo con un orden de tipo info : #Objet##Equipement##Aube Civile#",
+        "si on souhaite modifier la valeur de la commande il existe la commande time_op qui permet par exemple de faire +10": "Si queremos cambiar el valor de la orden, existe el comando time_op que permite por ejemplo añadir  +10",
         "Une utilisation classique est la gestion des volets par rapport au soleil. Quand le soleil se couche on ferme les volets par exemple.": "Un uso típico es la gestión de las persianas en relación con el sol. Cuando el sol va bajando cerramos las persianas por ejemplo.",
-        " - sélectionner le mode déclenché et ajouter un déclencheur avec la commande voulue, ex : #Objet##Equipement##Coucher du Soleil#": "- seleccionar el modo de disparo y añadir un disparador con el comando que desee, ex: \n #Objet ##Equipement ##Coucher du Soleil #",
-        " - ajouter un bloc avec et choisir le type A, là on peut choisir son heure pour activation par exemple avec une commande info : #Objet##Equipement##Coucher du Soleil#": " -Añadir un bloque de tipo A, puedes elegir la hora de activación por ejemplo con un orden de tipo info : #Objet##Equipement##Coucher du Soleil#"
+        "sélectionner le mode déclenché et ajouter un déclencheur avec la commande voulue, ex : #Objet##Equipement##Coucher du Soleil#": "seleccionar el modo de disparo y añadir un disparador con el comando que desee, ex: \n #Objet ##Equipement ##Coucher du Soleil #",
+        "ajouter un bloc avec et choisir le type A, là on peut choisir son heure pour activation par exemple avec une commande info : #Objet##Equipement##Coucher du Soleil#": "Añadir un bloque de tipo A, puedes elegir la hora de activación por ejemplo con un orden de tipo info : #Objet##Equipement##Coucher du Soleil#"
     },
     "plugins\/heliotrope\/desktop\/js\/heliotrope.js": {
         "Historiser": "Historizar"

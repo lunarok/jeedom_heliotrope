@@ -19,50 +19,61 @@
 require_once dirname(__FILE__) . '/../../../core/php/core.inc.php';
 
 function heliotrope_install() {
-    $cron = cron::byClassAndFunction('heliotrope', 'pull');
-    if (!is_object($cron)) {
-      $cron = new cron();
-      $cron->setClass('heliotrope');
-      $cron->setFunction('pull');
-      $cron->setEnable(1);
-      $cron->setDeamon(0);
-      $cron->setSchedule('*/5 * * * *');
-      $cron->save();
-    }
-    $cron = cron::byClassAndFunction('heliotrope', 'daily');
-    if (is_object($cron)) {
-        $cron->remove();
-    }
+	$cron = cron::byClassAndFunction('heliotrope', 'pull');
+	if (is_object($cron)) {
+		$cron->remove();
+	}
+	$cron = cron::byClassAndFunction('heliotrope', 'daily');
+	if (is_object($cron)) {
+		$cron->remove();
+	}
 }
 
 function heliotrope_update() {
-    $cron = cron::byClassAndFunction('heliotrope', 'pull');
-    if (!is_object($cron)) {
-      $cron = new cron();
-      $cron->setClass('heliotrope');
-      $cron->setFunction('pull');
-      $cron->setEnable(1);
-      $cron->setDeamon(0);
-      $cron->setSchedule('*/5 * * * *');
-      $cron->save();
-    }
-    $cron = cron::byClassAndFunction('heliotrope', 'daily');
-    if (is_object($cron)) {
-        $cron->remove();
-    }
-    foreach (eqLogic::byType('heliotrope') as $heliotrope) {
-      $heliotrope->save();
-    }
+	$cron = cron::byClassAndFunction('heliotrope', 'pull');
+	if (is_object($cron)) {
+		$cron->remove();
+	}
+	$cron = cron::byClassAndFunction('heliotrope', 'daily');
+	if (is_object($cron)) {
+		$cron->remove();
+	}
+	foreach (eqLogic::byType('heliotrope') as $heliotrope) {
+		$cmd = $heliotrope->getCmd('info', 'aubeciv');
+		if (is_object($cmd)) {
+			$cmd->setLogicalId('civil_twilight_begin')->save();
+		}
+		$cmd = $heliotrope->getCmd('info', 'crepciv');
+		if (is_object($cmd)) {
+			$cmd->setLogicalId('civil_twilight_end')->save();
+		}
+		$cmd = $heliotrope->getCmd('info', 'aubenau');
+		if (is_object($cmd)) {
+			$cmd->setLogicalId('nautical_twilight_begin')->save();
+		}
+		$cmd = $heliotrope->getCmd('info', 'crepnau');
+		if (is_object($cmd)) {
+			$cmd->setLogicalId('civil_twilight_end')->save();
+		}
+		$cmd = $heliotrope->getCmd('info', 'crepast');
+		if (is_object($cmd)) {
+			$cmd->setLogicalId('astronomical_twilight_begin')->save();
+		}
+		$cmd = $heliotrope->getCmd('info', 'crepast');
+		if (is_object($cmd)) {
+			$cmd->setLogicalId('astronomical_twilight_end')->save();
+		}
+		$heliotrope->save();
+	}
 }
 
 function heliotrope_remove() {
-    $cron = cron::byClassAndFunction('heliotrope', 'pull');
-    if (is_object($cron)) {
-        $cron->remove();
-    }
-    $cron = cron::byClassAndFunction('heliotrope', 'daily');
-    if (is_object($cron)) {
-        $cron->remove();
-    }
+	$cron = cron::byClassAndFunction('heliotrope', 'pull');
+	if (is_object($cron)) {
+		$cron->remove();
+	}
+	$cron = cron::byClassAndFunction('heliotrope', 'daily');
+	if (is_object($cron)) {
+		$cron->remove();
+	}
 }
-?>

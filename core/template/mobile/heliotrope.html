@@ -11,7 +11,7 @@
 		<span style="margin-left: 5px" title="Coucher"><i class="fas fa-moon fa-1x"></i> : #sunset#</span>
 	</center>
 <script>
-	if ('#refresh#' != ''){
+	if ('#refresh#' !== ''){
 			$('.eqLogic[data-eqLogic_uid=#uid#] .refresh').on('click', function () {
 				jeedom.cmd.execute({id: '#refresh#'});
 			});
