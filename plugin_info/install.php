@@ -53,7 +53,7 @@ function heliotrope_update() {
 		}
 		$cmd = $heliotrope->getCmd('info', 'crepnau');
 		if (is_object($cmd)) {
-			$cmd->setLogicalId('civil_twilight_end')->save();
+			$cmd->setLogicalId('nautical_twilight_end')->save();
 		}
 		$cmd = $heliotrope->getCmd('info', 'aubeast');
 		if (is_object($cmd)) {
