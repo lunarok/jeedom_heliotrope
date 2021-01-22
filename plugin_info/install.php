@@ -55,7 +55,7 @@ function heliotrope_update() {
 		if (is_object($cmd)) {
 			$cmd->setLogicalId('civil_twilight_end')->save();
 		}
-		$cmd = $heliotrope->getCmd('info', 'crepast');
+		$cmd = $heliotrope->getCmd('info', 'aubeast');
 		if (is_object($cmd)) {
 			$cmd->setLogicalId('astronomical_twilight_begin')->save();
 		}
