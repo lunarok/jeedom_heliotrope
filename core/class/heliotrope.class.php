@@ -37,8 +37,9 @@ class heliotrope extends eqLogic {
 	// Return altitude correction for altitude due to atmospheric refraction.
 	// http://en.wikipedia.org/wiki/Atmospheric_refraction
 	public static function correctForRefraction($d) {
-		if (!($d > -0.5))
-			$d = -0.5;  // Function goes ballistic when negative.
+		if (!($d > -0.5)) {
+			$d = -0.5; // Function goes ballistic when negative.
+		}
 		return (0.017 / tan(deg2rad($d + 10.3 / ($d + 5.11))));
 	}
 
@@ -48,12 +49,16 @@ class heliotrope extends eqLogic {
 		$dSec = $t - 946728000;
 		$meanLongitudeDeg = fmod((280.461 + 0.9856474 * $dSec / 86400), 360);
 		$meanAnomalyDeg = fmod((357.528 + 0.9856003 * $dSec / 86400), 360);
-		$eclipticLongitudeDeg = $meanLongitudeDeg + 1.915 * sin(deg2rad($meanAnomalyDeg)) + 0.020 * sin(2 * deg2rad($meanAnomalyDeg));
+		$deg2radMeanAnomalyDeg = deg2rad($meanAnomalyDeg);
+		$eclipticLongitudeDeg = $meanLongitudeDeg + 1.915 * sin($deg2radMeanAnomalyDeg) + 0.020 * sin(2 * $deg2radMeanAnomalyDeg);
 		$eclipticObliquityDeg = 23.439 - 0.0000004 * $dSec / 86400;
-		$sunAbsY = cos(deg2rad($eclipticObliquityDeg)) * sin(deg2rad($eclipticLongitudeDeg));
-		$sunAbsX = cos(deg2rad($eclipticLongitudeDeg));
+		$deg2radEclipticObliquityDeg = deg2rad($eclipticObliquityDeg);
+		$deg2radEclipticLongitudeDeg = deg2rad($eclipticLongitudeDeg);
+		$deg2radEclipticLongitudeDegSin = sin($deg2radEclipticLongitudeDeg);
+		$sunAbsY = cos($deg2radEclipticObliquityDeg) * $deg2radEclipticLongitudeDegSin;
+		$sunAbsX = cos($deg2radEclipticLongitudeDeg);
 		$rightAscensionRad = atan2($sunAbsY, $sunAbsX);
-		$declinationRad = asin(sin(deg2rad($eclipticObliquityDeg)) * sin(deg2rad($eclipticLongitudeDeg)));
+		$declinationRad = asin(sin($deg2radEclipticObliquityDeg) * $deg2radEclipticLongitudeDegSin);
 		return array(rad2deg($rightAscensionRad), rad2deg($declinationRad));
 	}
 
@@ -63,13 +68,21 @@ class heliotrope extends eqLogic {
 
 	public static function absoluteToRelativeDeg($t, $rightAscensionDeg, $declinationDeg, float $latitude, float $longitude) {
 		$dSec = $t - 946728000;
-		$midnightUtc = $dSec - fmod($dSec, 86400);
-		$siderialUtcHours = fmod((18.697374558 + 0.06570982441908 * $midnightUtc / 86400 + (1.00273790935 * (fmod($dSec, 86400)) / 3600)), 24);
+		$fmodDSec86400 = fmod($dSec, 86400);
+		$midnightUtc = $dSec - $fmodDSec86400;
+		$siderialUtcHours = fmod((18.697374558 + 0.06570982441908 * $midnightUtc / 86400 + (1.00273790935 * $fmodDSec86400 / 3600)), 24);
 		$siderialLocalDeg = fmod((($siderialUtcHours * 15) + $longitude), 360);
 		$hourAngleDeg = fmod(($siderialLocalDeg - $rightAscensionDeg), 360);
-		$altitudeRad = asin(sin(deg2rad($declinationDeg)) * sin(deg2rad($latitude)) + cos(deg2rad($declinationDeg)) * cos(deg2rad($latitude)) * cos(deg2rad($hourAngleDeg)));
-		$azimuthY = -cos(deg2rad($declinationDeg)) * cos(deg2rad($latitude)) * sin(deg2rad($hourAngleDeg));
-		$azimuthX = sin(deg2rad($declinationDeg)) - sin(deg2rad($latitude)) * sin($altitudeRad);
+		$deg2radHourAngleDeg = deg2rad($hourAngleDeg);
+		$deg2radDeclinationDeg = deg2rad($declinationDeg);
+		$deg2radDeclinationDegSin = sin($deg2radDeclinationDeg);
+		$deg2radDeclinationDegCos = cos($deg2radDeclinationDeg);
+		$deg2radLatitude = deg2rad($latitude);
+		$deg2radLatitudeSin = sin($deg2radLatitude);
+		$deg2radLatitudeCos = cos($deg2radLatitude);
+		$altitudeRad = asin($deg2radDeclinationDegSin * $deg2radLatitudeSin + $deg2radDeclinationDegCos * $deg2radLatitudeCos * cos($deg2radHourAngleDeg));
+		$azimuthY = -$deg2radDeclinationDegCos * $deg2radLatitudeCos * sin($deg2radHourAngleDeg);
+		$azimuthX = $deg2radDeclinationDegSin - $deg2radLatitudeSin * sin($altitudeRad);
 		$azimuthRad = atan2($azimuthY, $azimuthX);
 		return array(rad2deg($azimuthRad), rad2deg($altitudeRad));
 	}
@@ -101,7 +114,6 @@ class heliotrope extends eqLogic {
 		$this->createCmd('refresh', __('Rafraichir', __FILE__), 'action', 'other', false)->save();
 
 		$configurationList['type'] = 'time';
-
 		$this->createCmd('daytext', __('Phase du jour en cours texte', __FILE__), 'info', 'string', false, null, $configurationList)->save();
 		$configurationList['repeatEventManagement'] = 'always';
 		$this->createCmd('zenith', __('Zenith du Soleil', __FILE__), 'info', 'time', false, null, $configurationList)->save();
@@ -227,21 +239,6 @@ class heliotrope extends eqLogic {
 		$this->checkAndUpdateCmd('daylen', ($daylen / 3600 % 24) . ($daylen / 60 % 60));
 	}
 
-	public function getGeoloc($_infos = '') {
-		$return = array();
-		foreach (eqLogic::byType('geoloc') as $geoloc) {
-			foreach (geolocCmd::byEqLogicId($geoloc->getId()) as $geoinfo) {
-				$mode = $geoinfo->getConfiguration('mode');
-				if ($mode == 'fixe' || $mode == 'dynamic') {
-					$return[$geoinfo->getId()] = array(
-						'value' => $geoinfo->getName(),
-					);
-				}
-			}
-		}
-		return $return;
-	}
-
 	public function toHtml($_version = 'dashboard') {
 		$replace = $this->preToHtml($_version);
 		if (!is_array($replace)) {
@@ -265,11 +262,11 @@ class heliotrope extends eqLogic {
 			}
 		}
 
+		$fileTemplate = __CLASS__;
 		if (file_exists(__DIR__ . "/../template/$_version/custom.heliotrope.html")) {
-			return $this->postToHtml($_version, template_replace($replace, getTemplate('core', $version, 'custom.heliotrope', __CLASS__)));
-		} else {
-			return $this->postToHtml($_version, template_replace($replace, getTemplate('core', $version, __CLASS__, __CLASS__)));
+			$fileTemplate = 'custom.heliotrope';
 		}
+		return $this->postToHtml($_version, template_replace($replace, getTemplate('core', $version, $fileTemplate, __CLASS__)));
 	}
 }
 
@@ -286,7 +283,7 @@ class heliotropeCmd extends cmd {
 			$eqLogic->getInformations();
 			break;
 		default :
-			log::add(__CLASS__, 'info', 'TODO: Créer la commande ' . $this->getLogicalId());
+			log::add(__CLASS__, 'info', 'TODO: Créer la commande ' . $this->getLogicalId() . ' - ' . print_r($_options, true));
 		}
 	}
 
