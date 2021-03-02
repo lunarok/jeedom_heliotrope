@@ -90,9 +90,7 @@ function addCmdToTable(_cmd) {
 		var _cmd = {configuration: {}};
 	}
 
-	if (init(_cmd.configuration.type) !== 'lever' && init(_cmd.configuration.type) !== 'coucher') {
-		var disabled = (init(_cmd.configuration.virtualAction) == '1') ? 'disabled' : '';
-		var tr = '<tr class="cmd" data-cmd_id="' + init(_cmd.id) + '">';
+	var tr = '<tr class="cmd" data-cmd_id="' + init(_cmd.id) + '">';
 		tr += '<td>';
 		tr += '<span class="cmdAttr" data-l1key="id"></span>';
 		tr += '</td>';
@@ -110,58 +108,17 @@ function addCmdToTable(_cmd) {
 		}
 		tr += '</td>';
 		tr += '</tr>';
-		$('#table_cmd tbody').append(tr);
-		$('#table_cmd tbody tr:last').setValues(_cmd, '.cmdAttr');
 
+	let type = init(_cmd.configuration.type);
+	let table;
+	if (type === 'lever') {
+		table = "#table_lever";
+	} else if(type === 'coucher') {
+		table = "#table_coucher";
+	}else {
+		table = "#table_cmd";
 	}
 
-	if (init(_cmd.configuration.type) === 'lever') {
-		var disabled = (init(_cmd.configuration.virtualAction) == '1') ? 'disabled' : '';
-		var tr = '<tr class="cmd" data-cmd_id="' + init(_cmd.id) + '">';
-		tr += '<td>';
-		tr += '<span class="cmdAttr" data-l1key="id"></span>';
-		tr += '</td>';
-		tr += '<td>';
-		tr += '<span class="cmdAttr" data-l1key="name"></span></td>';
-		tr += '<td>';
-		if (_cmd.subType === 'numeric') {
-			tr += '<span><label class="checkbox-inline"><input type="checkbox" class="cmdAttr checkbox-inline" data-l1key="isHistorized" checked/>{{Historiser}}</label></span>';
-		}
-		tr += '</td>';
-		tr += '<td>';
-		if (is_numeric(_cmd.id)) {
-			tr += '<a class="btn btn-default btn-xs cmdAction" data-action="configure"><i class="fas fa-cogs"></i></a> ';
-			tr += '<a class="btn btn-default btn-xs cmdAction" data-action="test"><i class="fas fa-rss"></i>{{Tester}}</a>';
-		}
-		tr += '</td>';
-		tr += '</tr>';
-		$('#table_lever tbody').append(tr);
-		$('#table_lever tbody tr:last').setValues(_cmd, '.cmdAttr');
-
-	}
-
-	if (init(_cmd.configuration.type) === 'coucher') {
-		var disabled = (init(_cmd.configuration.virtualAction) == '1') ? 'disabled' : '';
-		var tr = '<tr class="cmd" data-cmd_id="' + init(_cmd.id) + '">';
-		tr += '<td>';
-		tr += '<span class="cmdAttr" data-l1key="id"></span>';
-		tr += '</td>';
-		tr += '<td>';
-		tr += '<span class="cmdAttr" data-l1key="name"></span></td>';
-		tr += '<td>';
-		if (_cmd.subType === 'numeric') {
-			tr += '<span><label class="checkbox-inline"><input type="checkbox" class="cmdAttr checkbox-inline" data-l1key="isHistorized" checked/>{{Historiser}}</label></span>';
-		}
-		tr += '</td>';
-		tr += '<td>';
-		if (is_numeric(_cmd.id)) {
-			tr += '<a class="btn btn-default btn-xs cmdAction" data-action="configure"><i class="fas fa-cogs"></i></a> ';
-			tr += '<a class="btn btn-default btn-xs cmdAction" data-action="test"><i class="fas fa-rss"></i>{{Tester}}</a>';
-		}
-		tr += '</td>';
-		tr += '</tr>';
-		$('#table_coucher tbody').append(tr);
-		$('#table_coucher tbody tr:last').setValues(_cmd, '.cmdAttr');
-
-	}
+	$(table + ' tbody').append(tr);
+	$(table + ' tbody tr:last').setValues(_cmd, '.cmdAttr');
 }
