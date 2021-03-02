@@ -19,10 +19,9 @@
 require_once __DIR__ . '/../../../core/php/core.inc.php';
 
 function heliotrope_pre_update() {
-  $srcDir	 = __DIR__ . '/../core/template/dashboard/';
-  $file = 'heliotrope';
-  if (file_exists($srcDir .$file .'_user.html')) {
-    shell_exec('cp '.$srcDir .$file .'_user.html ' .$srcDir .'custom.' .$file .'.html');
-  }
+	$srcDir = __DIR__ . '/../core/template/dashboard/';
+	$file = 'heliotrope';
+	if (file_exists($srcDir . $file . '_user.html')) {
+		shell_exec('cp ' . $srcDir . $file . '_user.html ' . $srcDir . 'custom.' . $file . '.html');
+	}
 }
-?>
