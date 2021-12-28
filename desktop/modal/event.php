@@ -132,35 +132,42 @@ echo '</form>';
 ?>
 
 <script>
-$('#bt_selectCmd').on('click', function () {
-    jeedom.cmd.getSelectModal({cmd: {type: 'action'}}, function (result) {
-        $('#command').atCaret('insert', result.human);
-    });
-});
+	$('#bt_selectCmd').on('click', function() {
+		jeedom.cmd.getSelectModal({
+			cmd: {
+				type: 'action'
+			}
+		}, function(result) {
+			$('#command').atCaret('insert', result.human);
+		});
+	});
 
-$('#bt_configureParamSave').off('click').on('click',function(){
+	$('#bt_configureParamSave').off('click').on('click', function() {
 
-	$.ajax({// fonction permettant de faire de l'ajax
-	type: "POST", // methode de transmission des données au fichier php
-	url: "plugins/heliotrope/core/ajax/heliotrope.ajax.php", // url du fichier php
-	data: {
-		action: "setEvent",
-		id: id,
-	},
-	dataType: 'json',
-	error: function (request, status, error) {
-		handleAjaxError(request, status, error);
-	},
-	success: function (data) { // si l'appel a bien fonctionné
-	if (data.state != 'ok') {
-		$('#div_alert').showAlert({message: data.result, level: 'danger'});
-		return;
-	} else {
-		window.location.href = 'index.php?v=d&p=heliotrope&m=heliotrope&id=' + id + '#commandtab';
-	}
-}
-});
-});
+		$.ajax({ // fonction permettant de faire de l'ajax
+			type: "POST", // methode de transmission des données au fichier php
+			url: "plugins/heliotrope/core/ajax/heliotrope.ajax.php", // url du fichier php
+			data: {
+				action: "setEvent",
+				id: id,
+			},
+			dataType: 'json',
+			error: function(request, status, error) {
+				handleAjaxError(request, status, error);
+			},
+			success: function(data) { // si l'appel a bien fonctionné
+				if (data.state != 'ok') {
+					$('#div_alert').showAlert({
+						message: data.result,
+						level: 'danger'
+					});
+					return;
+				} else {
+					window.location.href = 'index.php?v=d&p=heliotrope&m=heliotrope&id=' + id + '#commandtab';
+				}
+			}
+		});
+	});
 </script>
 <?php include_file('core', 'scenario.class', 'js'); ?>
 <?php include_file('desktop', 'scenario', 'js'); ?>
