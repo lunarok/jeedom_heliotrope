@@ -91,7 +91,6 @@ function addCmdToTable(_cmd) {
   }
 
   if (init(_cmd.configuration.type) != 'lever' && init(_cmd.configuration.type) != 'coucher') {
-    var disabled = (init(_cmd.configuration.virtualAction) == '1') ? 'disabled' : '';
     var tr = '<tr class="cmd" data-cmd_id="' + init(_cmd.id) + '">';
     tr += '<td>';
     tr += '<span class="cmdAttr" data-l1key="id"></span>';
@@ -116,7 +115,6 @@ function addCmdToTable(_cmd) {
   }
 
   if (init(_cmd.configuration.type) == 'lever') {
-    var disabled = (init(_cmd.configuration.virtualAction) == '1') ? 'disabled' : '';
     var tr = '<tr class="cmd" data-cmd_id="' + init(_cmd.id) + '">';
     tr += '<td>';
     tr += '<span class="cmdAttr" data-l1key="id"></span>';
@@ -141,7 +139,6 @@ function addCmdToTable(_cmd) {
   }
 
   if (init(_cmd.configuration.type) == 'coucher') {
-    var disabled = (init(_cmd.configuration.virtualAction) == '1') ? 'disabled' : '';
     var tr = '<tr class="cmd" data-cmd_id="' + init(_cmd.id) + '">';
     tr += '<td>';
     tr += '<span class="cmdAttr" data-l1key="id"></span>';
