@@ -9,53 +9,53 @@ $eqLogics = eqLogic::byType('heliotrope');
 ?>
 
 <div class="row row-overflow">
-  <div class="col-lg-2 col-sm-3 col-sm-4" id="hidCol" style="display: none;">
-    <div class="bs-sidebar">
-      <ul id="ul_eqLogic" class="nav nav-list bs-sidenav">
-        <li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
-        <?php
-        foreach ($eqLogics as $eqLogic) {
-          echo '<li class="cursor li_eqLogic" data-eqLogic_id="' . $eqLogic->getId() . '"><a>' . $eqLogic->getHumanName(true) . '</a></li>';
-        }
-        ?>
-      </ul>
-    </div>
-  </div>
-
-  <div class="col-lg-12 eqLogicThumbnailDisplay" id="listCol">
-    <legend><i class="fas fa-cog"></i>  {{Gestion}}</legend>
-    <div class="eqLogicThumbnailContainer">
-
-      <div class="cursor eqLogicAction" data-action="add">
-          <i class="fas fa-plus-circle"></i>
-          <br/>
-        <span>{{Ajouter}}</span>
-      </div>
-      <div class="cursor eqLogicAction" data-action="gotoPluginConf">
-        <i class="fas fa-wrench"></i>
-        <br/>
-        <span>{{Configuration}}</span>
-      </div>
-
+    <div class="col-lg-2 col-sm-3 col-sm-4" id="hidCol" style="display: none;">
+        <div class="bs-sidebar">
+            <ul id="ul_eqLogic" class="nav nav-list bs-sidenav">
+                <li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%" /></li>
+                <?php
+                foreach ($eqLogics as $eqLogic) {
+                    echo '<li class="cursor li_eqLogic" data-eqLogic_id="' . $eqLogic->getId() . '"><a>' . $eqLogic->getHumanName(true) . '</a></li>';
+                }
+                ?>
+            </ul>
+        </div>
     </div>
 
-    <input class="form-control" placeholder="{{Rechercher}}" id="in_searchEqlogic" />
+    <div class="col-lg-12 eqLogicThumbnailDisplay" id="listCol">
+        <legend><i class="fas fa-cog"></i> {{Gestion}}</legend>
+        <div class="eqLogicThumbnailContainer">
 
-    <legend><i class="fas fa-home" id="butCol"></i> {{Mes Equipements}}</legend>
-    <div class="eqLogicThumbnailContainer">
-      <?php
-      foreach ($eqLogics as $eqLogic) {
-        $opacity = ($eqLogic->getIsEnable()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
-        echo '<div class="eqLogicDisplayCard cursor" data-eqLogic_id="' . $eqLogic->getId() . '" style="background-color : #ffffff ; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
-        echo "<center>";
-        echo '<img src="plugins/heliotrope/plugin_info/heliotrope_icon.png" height="105" width="95" />';
-        echo "</center>";
-        echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $eqLogic->getHumanName(true, true) . '</center></span>';
-        echo '</div>';
-      }
-      ?>
+            <div class="cursor eqLogicAction" data-action="add">
+                <i class="fas fa-plus-circle"></i>
+                <br />
+                <span>{{Ajouter}}</span>
+            </div>
+            <div class="cursor eqLogicAction" data-action="gotoPluginConf">
+                <i class="fas fa-wrench"></i>
+                <br />
+                <span>{{Configuration}}</span>
+            </div>
+
+        </div>
+
+        <input class="form-control" placeholder="{{Rechercher}}" id="in_searchEqlogic" />
+
+        <legend><i class="fas fa-home" id="butCol"></i> {{Mes Equipements}}</legend>
+        <div class="eqLogicThumbnailContainer">
+            <?php
+            foreach ($eqLogics as $eqLogic) {
+                $opacity = ($eqLogic->getIsEnable()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
+                echo '<div class="eqLogicDisplayCard cursor" data-eqLogic_id="' . $eqLogic->getId() . '" style="background-color : #ffffff ; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
+                echo "<center>";
+                echo '<img src="plugins/heliotrope/plugin_info/heliotrope_icon.png" height="105" width="95" />';
+                echo "</center>";
+                echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $eqLogic->getHumanName(true, true) . '</center></span>';
+                echo '</div>';
+            }
+            ?>
+        </div>
     </div>
-  </div>
 
 
 
@@ -72,18 +72,18 @@ $eqLogics = eqLogic::byType('heliotrope');
         </ul>
         <div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
             <div role="tabpanel" class="tab-pane active" id="eqlogictab">
-                <br/>
+                <br />
                 <form class="form-horizontal">
                     <fieldset>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">{{Héliotrope}}</label>
                             <div class="col-sm-3">
                                 <input type="text" class="eqLogicAttr form-control" data-l1key="id" style="display : none;" />
-                                <input type="text" class="eqLogicAttr form-control" data-l1key="name" placeholder="{{Nom de l'équipement heliotrope}}"/>
+                                <input type="text" class="eqLogicAttr form-control" data-l1key="name" placeholder="{{Nom de l'équipement heliotrope}}" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label" >{{Objet parent}}</label>
+                            <label class="col-sm-3 control-label">{{Objet parent}}</label>
                             <div class="col-sm-3">
                                 <select class="form-control eqLogicAttr" data-l1key="object_id">
                                     <option value="">{{Aucun}}</option>
@@ -109,10 +109,10 @@ $eqLogics = eqLogic::byType('heliotrope');
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label" ></label>
+                            <label class="col-sm-3 control-label"></label>
                             <div class="col-sm-8">
-                                <label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="isEnable" checked/>{{Activer}}</label>
-                                <label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="isVisible" checked/>{{Visible}}</label>
+                                <label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="isEnable" checked />{{Activer}}</label>
+                                <label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="isVisible" checked />{{Visible}}</label>
                             </div>
                         </div>
 
@@ -129,8 +129,8 @@ $eqLogics = eqLogic::byType('heliotrope');
                                                 echo '<option value="' . $geoloc->getId() . '">' . $geoloc->getName() . '</option>';
                                             }
                                         }
-                                    } 
-                                    if ((config::byKey('info::latitude','core','91') != '91') && (config::byKey('info::longitude','core','361') != '361')) {
+                                    }
+                                    if ((config::byKey('info::latitude', 'core', '91') != '91') && (config::byKey('info::longitude', 'core', '361') != '361')) {
                                         echo '<option value="jeedom">Configuration Jeedom</option>';
                                         $none = 1;
                                     }
@@ -145,7 +145,7 @@ $eqLogics = eqLogic::byType('heliotrope');
                         <div class="form-group">
                             <label class="col-sm-3 control-label">{{Angle de calcul}}</label>
                             <div class="col-sm-3">
-                                <input type="text" class="eqLogicAttr configuration form-control" data-l1key="configuration" data-l2key="zenith" placeholder="90.58"/>
+                                <input type="text" class="eqLogicAttr configuration form-control" data-l1key="configuration" data-l2key="zenith" placeholder="90.58" />
                             </div>
                         </div>
 
@@ -154,7 +154,7 @@ $eqLogics = eqLogic::byType('heliotrope');
             </div>
 
             <div role="tabpanel" class="tab-pane" id="infotab">
-                <br/>
+                <br />
                 <table id="table_cmd" class="table table-bordered table-condensed">
                     <thead>
                         <tr>
@@ -176,7 +176,7 @@ $eqLogics = eqLogic::byType('heliotrope');
             </div>
 
             <div role="tabpanel" class="tab-pane" id="levertab">
-                <br/>
+                <br />
                 <table id="table_lever" class="table table-bordered table-condensed">
                     <thead>
                         <tr>
@@ -201,7 +201,7 @@ $eqLogics = eqLogic::byType('heliotrope');
             </div>
 
             <div role="tabpanel" class="tab-pane" id="couchertab">
-                <br/>
+                <br />
                 <table id="table_coucher" class="table table-bordered table-condensed">
                     <thead>
                         <tr>

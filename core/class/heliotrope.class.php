@@ -227,7 +227,7 @@ class heliotrope extends eqLogic {
             }
             $heliotropeCmd->setConfiguration('type', 'time');
             $heliotropeCmd->save();
-            
+
             $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($this->getId(),'refresh');
             if (!is_object($heliotropeCmd)) {
                 $heliotropeCmd = new heliotropeCmd();
@@ -526,10 +526,10 @@ class heliotrope extends eqLogic {
             $replace['#heliosun#'] = "opacity : 0.3";
             $replace['#heliomoon#'] = "opacity : 1";
         }
-        
+
         $refresh = $this->getCmd(null, 'refresh');
         $replace['#refresh#'] = is_object($refresh) ? $refresh->getId() : '';
-        
+
         if (file_exists( __DIR__ ."/../template/$_version/custom.heliotrope.html"))
           return $this->postToHtml($_version, template_replace($replace, getTemplate('core', $version, 'custom.heliotrope', 'heliotrope')));
         else
@@ -544,9 +544,7 @@ class heliotropeCmd extends cmd {
         if ($this->getLogicalId() == 'refresh') {
             $eqLogic = $this->getEqLogic();
             $eqLogic->getInformations();
-        } 
+        }
     }
 
 }
-
-?>
