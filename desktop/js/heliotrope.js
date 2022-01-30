@@ -98,6 +98,7 @@ function addCmdToTable(_cmd) {
     tr += '<td>';
     tr += '<span class="cmdAttr" data-l1key="name"></span></td>';
     tr += '<td>';
+    tr += '<span><label class="checkbox-inline"><input type="checkbox" class="cmdAttr checkbox-inline" data-l1key="isVisible" checked/>{{Afficher}}</label></span> ';
     if (_cmd.subType == 'numeric') {
       tr += '<span><label class="checkbox-inline"><input type="checkbox" class="cmdAttr checkbox-inline" data-l1key="isHistorized" checked/>{{Historiser}}</label></span>';
     }
@@ -111,7 +112,6 @@ function addCmdToTable(_cmd) {
     tr += '</tr>';
     $('#table_cmd tbody').append(tr);
     $('#table_cmd tbody tr:last').setValues(_cmd, '.cmdAttr');
-
   }
 
   if (init(_cmd.configuration.type) == 'lever') {
@@ -122,6 +122,7 @@ function addCmdToTable(_cmd) {
     tr += '<td>';
     tr += '<span class="cmdAttr" data-l1key="name"></span></td>';
     tr += '<td>';
+    tr += '<span><label class="checkbox-inline"><input type="checkbox" class="cmdAttr checkbox-inline" data-l1key="isVisible" checked/>{{Afficher}}</label></span> ';
     if (_cmd.subType == 'numeric') {
       tr += '<span><label class="checkbox-inline"><input type="checkbox" class="cmdAttr checkbox-inline" data-l1key="isHistorized" checked/>{{Historiser}}</label></span>';
     }
@@ -135,7 +136,6 @@ function addCmdToTable(_cmd) {
     tr += '</tr>';
     $('#table_lever tbody').append(tr);
     $('#table_lever tbody tr:last').setValues(_cmd, '.cmdAttr');
-
   }
 
   if (init(_cmd.configuration.type) == 'coucher') {
@@ -146,6 +146,7 @@ function addCmdToTable(_cmd) {
     tr += '<td>';
     tr += '<span class="cmdAttr" data-l1key="name"></span></td>';
     tr += '<td>';
+    tr += '<span><label class="checkbox-inline"><input type="checkbox" class="cmdAttr checkbox-inline" data-l1key="isVisible" checked/>{{Afficher}}</label></span> ';
     if (_cmd.subType == 'numeric') {
       tr += '<span><label class="checkbox-inline"><input type="checkbox" class="cmdAttr checkbox-inline" data-l1key="isHistorized" checked/>{{Historiser}}</label></span>';
     }
@@ -159,6 +160,5 @@ function addCmdToTable(_cmd) {
     tr += '</tr>';
     $('#table_coucher tbody').append(tr);
     $('#table_coucher tbody tr:last').setValues(_cmd, '.cmdAttr');
-
   }
 }
