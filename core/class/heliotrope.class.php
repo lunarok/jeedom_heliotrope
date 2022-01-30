@@ -506,17 +506,20 @@ class heliotrope extends eqLogic {
     $replace['#aubeast#'] = substr_replace($value['aubeast'], ':', -2, 0);
     $replace['#crepast#'] = substr_replace($value['crepast'], ':', -2, 0);
     $replace['#zenith#'] = substr_replace($value['zenith'], ':', -2, 0);
-    $h = floor($value['daylen'] / 60); $mn = $value['daylen'] % 60;
-    $daylen = (($h)? "${h}h " : '') .(($mn)? "${mn}min " : '');
-      // Calcul variation durée jour
-    $sunInfo = date_sun_info(strtotime('today noon'), $latitude, $longitude);
-    $sunInfoHier = date_sun_info(strtotime('yesterday noon'), $latitude, $longitude);
-    $daylenToday = $sunInfo['sunset'] - $sunInfo['sunrise'];
-    $daylenHier = $sunInfoHier['sunset'] - $sunInfoHier['sunrise'];
-    if($daylen == '') $daylenTxt = "Durée nuit: 24h ";
-    else $daylenTxt = "Durée jour: $daylen ";
-    if($daylenToday - $daylenHier != 0) $daylenTxt .= sprintf('%+ds',$daylenToday - $daylenHier);
-    $replace['#daylenTxt#'] = $daylenTxt;
+    if($display['daylen'] == "none") $replace['#daylenTxt#'] = '';
+    else {
+      $h = floor($value['daylen'] / 60); $mn = $value['daylen'] % 60;
+      $daylen = (($h)? "${h}h " : '') .(($mn)? "${mn}min " : '');
+        // Calcul variation durée jour
+      $sunInfo = date_sun_info(strtotime('today noon'), $latitude, $longitude);
+      $sunInfoHier = date_sun_info(strtotime('yesterday noon'), $latitude, $longitude);
+      $daylenToday = $sunInfo['sunset'] - $sunInfo['sunrise'];
+      $daylenHier = $sunInfoHier['sunset'] - $sunInfoHier['sunrise'];
+      if($daylen == '') $daylenTxt = "Durée nuit: 24h ";
+      else $daylenTxt = "Durée jour: $daylen ";
+      if($daylenToday - $daylenHier != 0) $daylenTxt .= sprintf('%+ds',$daylenToday - $daylenHier);
+      $replace['#daylenTxt#'] = $daylenTxt;
+    }
 
     $replace['#collectDate#'] = $this->getStatus('lastCommunication', date('Y-m-d H:i:s'));
 
