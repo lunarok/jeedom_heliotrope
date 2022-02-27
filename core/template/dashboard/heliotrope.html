@@ -3,26 +3,27 @@
 		<span class="warning" title="#alert_name#">
 			<i class='#alert_icon#'></i>
 		</span>
-    <span class="pull-right cursor" style="color: var(--eqTitle-color) !important;">#latitude# &nbsp; #longitude#</span> &nbsp; 
+    <span class="pull-right cursor" style="color: var(--eqTitle-color) !important;">#latitude# &nbsp; #longitude# &nbsp;<!-- <a href="#suncalcUrl#" target="blank"><i class="fas fa-info-circle"></i></a>--></span> &nbsp; 
     <span class="cmd refresh pull-right cursor" data-cmd_id="#refresh_id#">
       <i class="fas fa-sync"></i>
     </span>
 		<span class="reportModeVisible">#name_display# <span class="object_name">#object_name#</span></span>
 		<a href="#eqLink#" class="reportModeHidden">#name_display# <span class="object_name">#object_name#</span></a>
   </center>
-	<div class="#isVerticalAlign#">
-    <div style="position : relative; left: 0px; margin-top: 10px;">
+  <template>elevationWidth: 300 elevationHeight: 200 azimuthSize: 120</template>
+  <div class="#isVerticalAlign#">
+    <center>
         <!-- Graphique elevation/heure -->
-      <div class="pull-left cursor" style="margin-left: 5px;margin-top: 0px;margin-right: 5px">
-        <div id="sunAlt#id#" style="display:#sunAlt_display#; width: calc(#width# - 10px); height: calc(#width# *2.5/4);" class="cmd noRefresh" data-type="info" data-subtype="numeric" data-cmd_id="#sunAlt_id#"></div>
+      <div class="cmd cmd-widget #sunAlt_history# noResize" style="display:#sunAlt_display#;" data-type="info" data-subtype="numeric" data-template="custom" data-cmd_id="#sunAlt_id#" data-version="#version#" data-eqLogic_id="#id#">
+        <div id="sunAlt#id#" style="width: #elevationWidth#px; height: #elevationHeight#px;">
+        </div>
       </div>
         <!-- Rose des vents positions soleil -->
-      <center>
-      <div style="margin-right: 15px;margin-top: 5px;">
-        <div id="azimuth#id#" style="display:#azimuth360_display#; width: 120px; height: 120px;" class="cmd noRefresh" data-type="info" data-subtype="numeric" data-cmd_id="#azimuth360_id#"></div>
+      <div class="cmd cmd-widget #sunAzt_history# noResize" style="display:#sunAzt_display#;" data-type="info" data-subtype="numeric" data-template="custom" data-cmd_id="#sunAzt_id#" data-version="#version#" data-eqLogic_id="#id#">
+        <div id="sunAzt#id#" style="width: #azimuthSize#px; height: #azimuthSize#px;">
+        </div>
       </div>
-      </center>
-    </div>
+    </center>
   </div>
     <!-- TODO prevent multiload -->
   <script type="text/javascript" src="3rdparty/highstock/modules/annotations.js"></script>
@@ -37,8 +38,8 @@
 
     var chart1;
     var chart2;
-    if($('#azimuth#id#').html() != undefined){
-      chart1 = new Highcharts.Chart('azimuth#id#',{
+    if($('#sunAzt#id#').html() != undefined){
+      chart1 = new Highcharts.Chart('sunAzt#id#',{
         chart: {
           type: 'gauge',
           backgroundColor: 'transparent',
@@ -87,7 +88,9 @@
             }
           ]
         },
-        series: [{ name: 'Azimut', data: [#azimuth360#]
+        series: [{ name: 'Azimut',
+          data: [{ y: #azimuth360#,
+          }],
         }]
       });
     }
@@ -102,12 +105,17 @@
               spacingTop: 0, spacingLeft: 0, spacingRight: 0, spacingBottom: 0
         },
         title: { text: null },
-        credits: { enabled: false },
+        // credits: { enabled: false },
+        // credits: { enabled: true, text: 'V' + Highcharts.version },
+        credits: { enabled: true,
+          text: Intl.DateTimeFormat().resolvedOptions().timeZone,
+          position: { x: 0 }
+        },
         exporting : { enabled: false },
         subtitle: { text: '#daylenTxt#',
           floating: true,
           verticalAlign: 'bottom',
-          y: -8
+          y: -2
         },
         xAxis: {
           showFirstLabel: false,
@@ -132,23 +140,35 @@
             formatter: function () { return this.value + '°'; },
             x: -4,
           },
-          /*
           plotLines: [{
-                value: #minElev#,
-                color: '#3C73A5',
-                width: 1,
-                label: {
-                    text: 'Elévation minimum année #minElev#°'
-                }
-            }, {
-                value: #maxElev#,
-                color: '#3C73A5',
-                width: 1,
-                label: {
-                    text: 'Elévation maximum année #maxElev#°'
-                }
-            }]
-          */
+            value: #minElev#,
+            color: '#bandColor1#',
+            width: 1,
+            dashStyle: 'Dot',
+            label: {
+              text: '#minElev#°',
+              verticalAlign: 'top',
+              style: {
+                color: '#bandColor1#',
+                fontWeight: 'bold',
+              },
+              x: 2, y: -2,
+            }
+          }, {
+            value: #maxElev#,
+            color: '#bandColor2#',
+            width: 1,
+            dashStyle: 'Dot',
+            label: {
+              text: '#maxElev#°',
+              verticalAlign: 'top',
+              style: {
+                color: '#bandColor2#',
+                fontWeight: 'bold',
+              },
+              x: 2, y: 10,
+            }
+          }]
         },
         tooltip: { crosshairs: true, shared: true,
           headerFormat: '<b>{point.msg}</b><br>',
@@ -158,15 +178,14 @@
           series: { dataLabels: { enabled: false }},
         },
         annotations: [
-          { // draggable: '',
-            labelOptions: {
+          { labelOptions: {
               shape: 'connector',
               padding: 0,
               distance: 2,
               verticalAlign: 'bottom',
             },
             labels: [
-              { point: 'transit',
+              { point: 'transit', // Zenith
                 text: '{point.msg}',
                 style: {
                   color: 'var(--txt-color) !important;',
@@ -179,6 +198,7 @@
           { labelOptions: {
               shape: 'connector',
               padding: 0,
+              y: -6,
               verticalAlign: 'bottom',
             },
             labels: [
@@ -195,7 +215,7 @@
                 style: {
                   color: 'var(--txt-color) !important;',
                 },
-                align: 'left',
+                align: 'center',
                 borderColor: 'transparent', // pour effacer le trait de liaison
               } 
             ]
