@@ -46,12 +46,9 @@ class heliotrope extends eqLogic {
   }
 
   public function postUpdate() {
-    foreach (eqLogic::byType(__CLASS__, true) as $heliotrope) {
-      $name = $heliotrope->getName();
-      $id = $heliotrope->getId();
-      $w = intval($heliotrope->getDisplay('width'));
-      $h = intval($heliotrope->getDisplay('height'));
-      $array = $heliotrope->getDisplay('parameters');
+    if(is_object($this) {
+        // dimensionnement mini des graphiques suivant dimension des tuiles
+      $array = $this->getDisplay('parameters');
       if(!is_array($array)) $array = array();
       if(!isset($array['elevationWidth'])) $w1 = 0;
       else $w1 = $array['elevationWidth'];
@@ -59,27 +56,33 @@ class heliotrope extends eqLogic {
       else $h1 = $array['elevationHeight'];
       if(!isset($array['azimuthSize'])) $s1 = 0;
       else $s1 = $array['azimuthSize'];
-      log::add(__CLASS__,'error',__FUNCTION__ . " $id $name W=$w H=$h\nW1=$w1 H1=$h1 S1=$s1");
       if($w1==0 && $h1==0 && $s1==0) {
-      if($h > 400) { // alt on azt
-        $s1 = 120; $w1 = $w; $h1 = $h -120 - 30;
+        $name = $this->getName();
+        $w = intval($this->getDisplay('width'));
+        $h = intval($this->getDisplay('height'));
+        log::add(__CLASS__,'debug',__FUNCTION__ . " [$name] W=$w H=$h\nW1=$w1 H1=$h1 S1=$s1");
+        if($h > 400) { // alt on azt
+          $s1 = 120; $w1 = $w; $h1 = $h -120 - 30;
+        }
+        else { // azt to the right of alt
+          $s1 = 100; $w1 = $w - 110; $h1 = $h - 30;
+        }
+        if($w1< 300) $w1=300;
+        if($h1< 200) $h1=200;
+        log::add(__CLASS__,'debug',"New display W=$w1 H=$h1 S=$s1");
+        $array['elevationWidth'] = $w1;
+        $array['elevationHeight'] = $h1;
+        $array['azimuthSize'] = $s1;
+        $this->setDisplay('parameters',$array);
+        $this->save();
       }
-      else { // azt to the right of alt
-        $s1 = 100; $w1 = $w - 110; $h1 = $h - 30;
-      }
-      log::add(__CLASS__,'error',"New display W=$w1 H=$h1 S=$s1");
-      $array['elevationWidth'] = $w1;
-      $array['elevationHeight'] = $h1;
-      $array['azimuthSize'] = $s1;
-      $heliotrope->setDisplay('parameters',$array);
-    // $heliotrope->save();
-  }
-
-      $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($heliotrope->getId(), 'azimuth360');
+        // creation/maj des commandes
+      $eqLogicId = $this->getId();
+      $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($eqLogicId 'azimuth360');
       if (!is_object($heliotropeCmd)) {
         $heliotropeCmd = new heliotropeCmd();
         $heliotropeCmd->setName(__('Azimuth 360 du Soleil', __FILE__));
-        $heliotropeCmd->setEqLogic_id($this->id);
+        $heliotropeCmd->setEqLogic_id($eqLogicId);
         $heliotropeCmd->setLogicalId('azimuth360');
         $heliotropeCmd->setType('info');
         $heliotropeCmd->setSubType('numeric');
@@ -88,11 +91,11 @@ class heliotrope extends eqLogic {
       $heliotropeCmd->setConfiguration('repeatEventManagement', 'always');
       $heliotropeCmd->save();
 
-      $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($heliotrope->getId(), 'altitude');
+      $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($eqLogicId 'altitude');
       if (!is_object($heliotropeCmd)) {
         $heliotropeCmd = new heliotropeCmd();
         $heliotropeCmd->setName(__('Altitude du Soleil', __FILE__));
-        $heliotropeCmd->setEqLogic_id($this->id);
+        $heliotropeCmd->setEqLogic_id($eqLogicId);
         $heliotropeCmd->setLogicalId('altitude');
         $heliotropeCmd->setType('info');
         $heliotropeCmd->setSubType('numeric');
@@ -101,11 +104,11 @@ class heliotrope extends eqLogic {
       $heliotropeCmd->setConfiguration('repeatEventManagement', 'always');
       $heliotropeCmd->save();
 
-      $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($heliotrope->getId(), 'sunrise');
+      $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($eqLogicId 'sunrise');
       if (!is_object($heliotropeCmd)) {
         $heliotropeCmd = new heliotropeCmd();
         $heliotropeCmd->setName(__('Lever du Soleil', __FILE__));
-        $heliotropeCmd->setEqLogic_id($this->id);
+        $heliotropeCmd->setEqLogic_id($eqLogicId);
         $heliotropeCmd->setLogicalId('sunrise');
         $heliotropeCmd->setType('info');
         $heliotropeCmd->setSubType('numeric');
@@ -114,11 +117,11 @@ class heliotrope extends eqLogic {
       $heliotropeCmd->setConfiguration('repeatEventManagement', 'always');
       $heliotropeCmd->save();
 
-      $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($heliotrope->getId(), 'sunset');
+      $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($eqLogicId 'sunset');
       if (!is_object($heliotropeCmd)) {
         $heliotropeCmd = new heliotropeCmd();
         $heliotropeCmd->setName(__('Coucher du Soleil', __FILE__));
-        $heliotropeCmd->setEqLogic_id($this->id);
+        $heliotropeCmd->setEqLogic_id($eqLogicId);
         $heliotropeCmd->setLogicalId('sunset');
         $heliotropeCmd->setType('info');
         $heliotropeCmd->setSubType('numeric');
@@ -127,11 +130,11 @@ class heliotrope extends eqLogic {
       $heliotropeCmd->setConfiguration('repeatEventManagement', 'always');
       $heliotropeCmd->save();
 
-      $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($heliotrope->getId(), 'aubeciv');
+      $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($eqLogicId 'aubeciv');
       if (!is_object($heliotropeCmd)) {
         $heliotropeCmd = new heliotropeCmd();
         $heliotropeCmd->setName(__('Aube Civile', __FILE__));
-        $heliotropeCmd->setEqLogic_id($this->id);
+        $heliotropeCmd->setEqLogic_id($eqLogicId);
         $heliotropeCmd->setLogicalId('aubeciv');
         $heliotropeCmd->setType('info');
         $heliotropeCmd->setSubType('numeric');
@@ -140,11 +143,11 @@ class heliotrope extends eqLogic {
       $heliotropeCmd->setConfiguration('repeatEventManagement', 'always');
       $heliotropeCmd->save();
 
-      $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($heliotrope->getId(), 'crepciv');
+      $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($eqLogicId 'crepciv');
       if (!is_object($heliotropeCmd)) {
         $heliotropeCmd = new heliotropeCmd();
         $heliotropeCmd->setName(__('Crépuscule Civil', __FILE__));
-        $heliotropeCmd->setEqLogic_id($this->id);
+        $heliotropeCmd->setEqLogic_id($eqLogicId);
         $heliotropeCmd->setLogicalId('crepciv');
         $heliotropeCmd->setType('info');
         $heliotropeCmd->setSubType('numeric');
@@ -153,11 +156,11 @@ class heliotrope extends eqLogic {
       $heliotropeCmd->setConfiguration('repeatEventManagement', 'always');
       $heliotropeCmd->save();
 
-      $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($heliotrope->getId(), 'aubenau');
+      $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($eqLogicId 'aubenau');
       if (!is_object($heliotropeCmd)) {
         $heliotropeCmd = new heliotropeCmd();
         $heliotropeCmd->setName(__('Aube Nautique', __FILE__));
-        $heliotropeCmd->setEqLogic_id($this->id);
+        $heliotropeCmd->setEqLogic_id($eqLogicId);
         $heliotropeCmd->setLogicalId('aubenau');
         $heliotropeCmd->setType('info');
         $heliotropeCmd->setSubType('numeric');
@@ -166,11 +169,11 @@ class heliotrope extends eqLogic {
       $heliotropeCmd->setConfiguration('repeatEventManagement', 'always');
       $heliotropeCmd->save();
 
-      $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($heliotrope->getId(), 'crepnau');
+      $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($eqLogicId 'crepnau');
       if (!is_object($heliotropeCmd)) {
         $heliotropeCmd = new heliotropeCmd();
         $heliotropeCmd->setName(__('Crépuscule Nautique', __FILE__));
-        $heliotropeCmd->setEqLogic_id($this->id);
+        $heliotropeCmd->setEqLogic_id($eqLogicId);
         $heliotropeCmd->setLogicalId('crepnau');
         $heliotropeCmd->setType('info');
         $heliotropeCmd->setSubType('numeric');
@@ -179,11 +182,11 @@ class heliotrope extends eqLogic {
       $heliotropeCmd->setConfiguration('repeatEventManagement', 'always');
       $heliotropeCmd->save();
 
-      $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($heliotrope->getId(), 'aubeast');
+      $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($eqLogicId 'aubeast');
       if (!is_object($heliotropeCmd)) {
         $heliotropeCmd = new heliotropeCmd();
         $heliotropeCmd->setName(__('Aube Astronomique', __FILE__));
-        $heliotropeCmd->setEqLogic_id($this->id);
+        $heliotropeCmd->setEqLogic_id($eqLogicId);
         $heliotropeCmd->setLogicalId('aubeast');
         $heliotropeCmd->setType('info');
         $heliotropeCmd->setSubType('numeric');
@@ -192,11 +195,11 @@ class heliotrope extends eqLogic {
       $heliotropeCmd->setConfiguration('repeatEventManagement', 'always');
       $heliotropeCmd->save();
 
-      $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($heliotrope->getId(), 'crepast');
+      $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($eqLogicId 'crepast');
       if (!is_object($heliotropeCmd)) {
         $heliotropeCmd = new heliotropeCmd();
         $heliotropeCmd->setName(__('Crépuscule Astronomique', __FILE__));
-        $heliotropeCmd->setEqLogic_id($this->id);
+        $heliotropeCmd->setEqLogic_id($eqLogicId);
         $heliotropeCmd->setLogicalId('crepast');
         $heliotropeCmd->setType('info');
         $heliotropeCmd->setSubType('numeric');
@@ -205,11 +208,11 @@ class heliotrope extends eqLogic {
       $heliotropeCmd->setConfiguration('repeatEventManagement', 'always');
       $heliotropeCmd->save();
 
-      $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($heliotrope->getId(), 'zenith');
+      $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($eqLogicId 'zenith');
       if (!is_object($heliotropeCmd)) {
         $heliotropeCmd = new heliotropeCmd();
         $heliotropeCmd->setName(__('Zenith du Soleil', __FILE__));
-        $heliotropeCmd->setEqLogic_id($this->id);
+        $heliotropeCmd->setEqLogic_id($eqLogicId);
         $heliotropeCmd->setLogicalId('zenith');
         $heliotropeCmd->setType('info');
         $heliotropeCmd->setSubType('numeric');
@@ -218,11 +221,11 @@ class heliotrope extends eqLogic {
       $heliotropeCmd->setConfiguration('repeatEventManagement', 'always');
       $heliotropeCmd->save();
 
-      $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($heliotrope->getId(), 'daylen');
+      $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($eqLogicId 'daylen');
       if (!is_object($heliotropeCmd)) {
         $heliotropeCmd = new heliotropeCmd();
         $heliotropeCmd->setName(__('Durée du jour en minutes', __FILE__));
-        $heliotropeCmd->setEqLogic_id($this->id);
+        $heliotropeCmd->setEqLogic_id($eqLogicId);
         $heliotropeCmd->setLogicalId('daylen');
         $heliotropeCmd->setType('info');
         $heliotropeCmd->setSubType('numeric');
@@ -231,11 +234,11 @@ class heliotrope extends eqLogic {
       $heliotropeCmd->setConfiguration('repeatEventManagement', 'always');
       $heliotropeCmd->save();
 
-      $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($heliotrope->getId(), 'daystatus');
+      $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($eqLogicId 'daystatus');
       if (!is_object($heliotropeCmd)) {
         $heliotropeCmd = new heliotropeCmd();
         $heliotropeCmd->setName(__('Phase du jour en cours numérique', __FILE__));
-        $heliotropeCmd->setEqLogic_id($this->id);
+        $heliotropeCmd->setEqLogic_id($eqLogicId);
         $heliotropeCmd->setLogicalId('daystatus');
         $heliotropeCmd->setType('info');
         $heliotropeCmd->setSubType('numeric');
@@ -243,11 +246,11 @@ class heliotrope extends eqLogic {
       $heliotropeCmd->setConfiguration('type', 'time');
       $heliotropeCmd->save();
 
-      $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($heliotrope->getId(), 'daytext');
+      $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($eqLogicId 'daytext');
       if (!is_object($heliotropeCmd)) {
         $heliotropeCmd = new heliotropeCmd();
         $heliotropeCmd->setName(__('Phase du jour en cours texte', __FILE__));
-        $heliotropeCmd->setEqLogic_id($this->id);
+        $heliotropeCmd->setEqLogic_id($eqLogicId);
         $heliotropeCmd->setLogicalId('daytext');
         $heliotropeCmd->setType('info');
         $heliotropeCmd->setSubType('string');
@@ -255,11 +258,11 @@ class heliotrope extends eqLogic {
       $heliotropeCmd->setConfiguration('type', 'time');
       $heliotropeCmd->save();
 
-      $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($this->getId(), 'refresh');
+      $heliotropeCmd = heliotropeCmd::byEqLogicIdAndLogicalId($eqLogicId 'refresh');
       if (!is_object($heliotropeCmd)) {
         $heliotropeCmd = new heliotropeCmd();
         $heliotropeCmd->setName(__('Rafraichir', __FILE__));
-        $heliotropeCmd->setEqLogic_id($this->getId());
+        $heliotropeCmd->setEqLogic_id($eqLogicId);
         $heliotropeCmd->setLogicalId('refresh');
         $heliotropeCmd->setType('action');
         $heliotropeCmd->setSubType('other');
@@ -480,6 +483,7 @@ class heliotrope extends eqLogic {
   }
 
   public function toHtml($_version = 'dashboard') {
+    $t0 = microtime(true);
     if($this->getConfiguration('useHelioTemplate','1') == '0')
       return parent::toHtml($_version);
     $replace = $this->preToHtml($_version);
@@ -491,6 +495,14 @@ class heliotrope extends eqLogic {
         return '';
     }
 
+    if($this->getLatitudeLongitude($latitude,$longitude)) {
+      log::add(__CLASS__, 'warning', __FUNCTION__ ." Latitude et longitude non connues.");
+      return;
+    }
+    else {
+      log::add(__CLASS__, 'debug', __FUNCTION__ ." Latitude: $latitude Longitude: $longitude");
+    }
+
     $id = array(); $value = array(); $display = array(); $history = array();
     foreach ($this->getCmd('info') as $cmd) {
       $type_cmd = $cmd->getLogicalId();
@@ -499,14 +511,9 @@ class heliotrope extends eqLogic {
       $display[$type_cmd] = ($cmd->getIsVisible()) ? "visible" : "none";
       $history[$type_cmd] = ($cmd->getIsHistorized() == 1) ? 'history cursor' : '';
     }
-
-    if($this->getLatitudeLongitude($latitude,$longitude)) {
-      log::add(__CLASS__, 'error', __FUNCTION__ ." Latitude et longitude non connues.");
-      return;
-    }
-    else {
-      log::add(__CLASS__, 'debug', __FUNCTION__ ." Latitude: $latitude Longitude: $longitude");
-    }
+    if(!isset($replace['#elevationWidth#'])) $replace['#elevationWidth#']=320;
+    if(!isset($replace['#elevationHeight#'])) $replace['#elevationHeight#']=220;
+    if(!isset($replace['#azimuthSize#'])) $replace['#azimuthSize#']=120;
 
       // latitude longitude dans le titre de la tuile
     $lat = round($latitude,1);
@@ -645,6 +652,9 @@ log::add(__CLASS__,'debug',"AztSunrise: $aztsunrise AztSunset: $aztsunset");
     $refresh = $this->getCmd(null, 'refresh');
     $replace['#refresh#'] = is_object($refresh) ? $refresh->getId() : '';
 
+    $t1 = microtime(true);
+    $duration = round($t1-$t0,3);
+    log::add(__CLASS__, 'debug', "END OF toHtml Duration: ${duration}s. Memory_usage: ".memory_get_usage());
     if (file_exists(__DIR__ . "/../template/$_version/custom." .__CLASS__ .".html"))
       return $this->postToHtml($_version, template_replace($replace, getTemplate('core', $version, 'custom.'.__CLASS__, __CLASS__)));
     else
