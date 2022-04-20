@@ -67,6 +67,8 @@ class heliotrope extends eqLogic {
         else { // azt to the right of alt
           $s1 = 100; $w1 = $w - 110; $h1 = $h - 30;
         }
+        if($w1< 100) $w1=250;
+        if($h1< 100) $h1=200;
         log::add(__CLASS__,'debug',"New display W=$w1 H=$h1 S=$s1");
         $array['elevationWidth'] = $w1;
         $array['elevationHeight'] = $h1;
