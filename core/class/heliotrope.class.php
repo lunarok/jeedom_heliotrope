@@ -46,7 +46,7 @@ class heliotrope extends eqLogic {
   }
 
   public function postUpdate() {
-    if(is_object($this) {
+    if(is_object($this)) {
         // dimensionnement mini des graphiques suivant dimension des tuiles
       $array = $this->getDisplay('parameters');
       if(!is_array($array)) $array = array();
