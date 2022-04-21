@@ -1,22 +1,29 @@
-<div class="eqLogic-widget eqLogic allowResize" style="height: #height#;width: #width#;border:#border#;border-radius:#border-radius#;background-color: #background-color#;color: #color#;#style#" data-eqLogic_id="#id#" data-eqLogic_uid="#uid#" data-version="#version#" >
-		<center class="widget-name"><a href="#eqLink#" style="font-size : 1.5em;#hideEqLogicName#">#name_display#</a>
-<span class="cmd refresh pull-right cursor" data-cmd_id="#refresh#"><i class="fas fa-sync"></i></span>
-	</center><br />
-	<center style="margin-top: 5px;">
-		<span style="margin-left: 0px" title="Azimuth"><i class="fas fa-compass fa-1x"></i> : #azimuth360#°</span>
+<div class="eqLogic eqLogic-widget #class#" data-eqLogic_id="#id#" data-eqType="#eqType#" data-version="#version#" data-eqLogic_uid="#uid#" data-translate-category="#translate_category#" data-category="#category#" data-tags="#tags#" style="#style#">
+  <span class="cmd refresh pull-right cursor" data-cmd_id="#refresh_id#">
+    <i class="fas fa-sync"></i>
+  </span>
+  <center>
+    <span class="widget-name">
+      <span class="warning" title="#alert_name#">
+        <i class='#alert_icon#'></i>
+      </span>
+      <span>#name_display# <span class="object_name">#object_name#</span></span><br/>
+    </span>
+    <div style="padding: 5px;">
+		<span style="margin-left: 0px" title="Azimut"><i class="fas fa-compass fa-1x"></i> : #azimuth360#°</span>
 		<span style="margin-left: 5px" title="Altitude"><i class="fas fa-adjust fa-1x"></i> : #altitude#°</span>
-	</center>
-	<center style="margin-top: 5px;">
+      <br/>
 		<span style="margin-left: 0px" title="Lever"><i class="fas fa-sun fa-1x"></i> : #sunrise#</span>
 		<span style="margin-left: 5px" title="Coucher"><i class="fas fa-moon fa-1x"></i> : #sunset#</span>
+    </div>
 	</center>
-<script>
-	if ('#refresh#' != ''){
+  <script>
+	  if ('#refresh_id#' != '') {
 			$('.eqLogic[data-eqLogic_uid=#uid#] .refresh').on('click', function () {
-				jeedom.cmd.execute({id: '#refresh#'});
-			});
-		}else{
-			$('.eqLogic[data-eqLogic_uid=#uid#] .refresh').remove();
+				jeedom.cmd.execute({id: '#refresh_id#'})
+			})
+		} else {
+			$('.eqLogic[data-eqLogic_uid=#uid#] .refresh').remove()
 		}
 	</script>
 </div>
