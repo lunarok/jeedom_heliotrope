@@ -594,6 +594,7 @@ class heliotrope extends eqLogic {
       if($t < $now) $serie[] = $msg;
       else $serie2[] = $msg;
     }
+      // Ajout Lever, Zenith, Coucher ... sur la courbe
     $types = array();
     $types[] = array("sunI" => 'sunrise', "txtDsp" => 'Lever', "cmdJ"=>'sunrise');
     $types[] = array("sunI" => 'transit', "txtDsp" => 'Zénith', "cmdJ"=>'zenith');
@@ -604,18 +605,30 @@ class heliotrope extends eqLogic {
     $types[] = array("sunI" => 'civil_twilight_end', "txtDsp" => 'Crépuscule', "cmdJ"=>'crepciv');
     $types[] = array("sunI" => 'nautical_twilight_end', "txtDsp" => 'Fin crépuscule nautique', "cmdJ"=>'crepnau');
     $types[] = array("sunI" => 'astronomical_twilight_end', "txtDsp" => 'Fin crépuscule astronomique', "cmdJ"=>'crepast');
-
     $sun_info = date_sun_info($now, $latitude, $longitude);
     $nb = count($types);
+    $sunriseTxt = ''; $sunsetTxt = ''; $zenithTxt = '';
     for($i=0;$i<$nb;$i++) {
       $type = $types[$i]['sunI'];
       $t = $sun_info[$type];
-      if($t === true || $t === false) continue; // Jour ou nuit H24
+      if($t === true || $t === false) continue; // Valeur non atteinte de la journee
       self::getAltAzt($t,$latitude,$longitude,$alt,$azt);
-      if($type == 'sunrise') $aztsunrise = $azt;
-      else if($type == 'sunset') $aztsunset = $azt;
       $texte = $types[$i]['txtDsp'];
-      if($display[$types[$i]['cmdJ']] == "none") continue;
+      if($type == 'sunrise') {
+        $aztsunrise = $azt;
+        if($display[$types[$i]['cmdJ']] != "none")
+          $sunriseTxt = $texte .': '.date('G:i:s',$t) .'<br/>';
+      }
+      else if($type == 'sunset') {
+        $aztsunset = $azt;
+        if($display[$types[$i]['cmdJ']] != "none")
+          $sunsetTxt = $texte .': '.date('G:i:s',$t) .'<br/>';
+      }
+      else if($type == 'transit') {
+        if($display[$types[$i]['cmdJ']] != "none")
+          $zenithTxt = $texte .': '.date('G:i:s',$t) .'<br/>';
+      }
+      // if($display[$types[$i]['cmdJ']] == "none") continue;
       $msg = '{ "x":' .$t*1000 .',"y":'.$alt .',"z":' .$azt .',"id":"'.$type.'","msg":"' .$texte .': '.date('G:i:s',$t) .'"}';
       if($t > $now) $serie2[] = $msg; else $serie[] = $msg;
     }
@@ -625,6 +638,9 @@ class heliotrope extends eqLogic {
     else if( $sun_info['sunrise'] === false ) { // nuit toute la journée
       $aztsunrise = 180; $aztsunset = 180;
     }
+    $replace['#sunriseTxt#'] = $sunriseTxt;
+    $replace['#sunsetTxt#'] = $sunsetTxt;
+    $replace['#zenithTxt#'] = $zenithTxt;
     $replace['#aztsunrise#'] = round($aztsunrise,3);
     if($aztsunset < $aztsunrise) $aztsunset += 360; 
     $replace['#aztsunset#'] = round($aztsunset,3);

@@ -25,8 +25,6 @@
       </div>
     </center>
   </div>
-    <!-- TODO prevent multiload -->
-  <script type="text/javascript" src="3rdparty/highstock/modules/annotations.js"></script>
   <script>
 		if ('#refresh_id#' != ''){
 			$('.eqLogic[data-eqLogic_uid=#uid#] .refresh').on('click', function () {
@@ -112,9 +110,11 @@
           position: { x: 0 }
         },
         exporting : { enabled: false },
-        subtitle: { text: '#daylenTxt#',
+        subtitle: { text: '#sunriseTxt##zenithTxt##sunsetTxt##daylenTxt#',
           floating: true,
           verticalAlign: 'bottom',
+          style: { color: 'var(--txt-color) !important;'
+          },
           y: -2
         },
         xAxis: {
@@ -177,50 +177,6 @@
         plotOptions: {
           series: { dataLabels: { enabled: false }},
         },
-        annotations: [
-          { labelOptions: {
-              shape: 'connector',
-              padding: 0,
-              distance: 2,
-              verticalAlign: 'bottom',
-            },
-            labels: [
-              { point: 'transit', // Zenith
-                text: '{point.msg}',
-                style: {
-                  color: 'var(--txt-color) !important;',
-                },
-                align: 'center',
-                borderColor: 'transparent', // efface le trait de liaison
-              },
-            ]
-          },
-          { labelOptions: {
-              shape: 'connector',
-              padding: 0,
-              y: -6,
-              verticalAlign: 'bottom',
-            },
-            labels: [
-              { point: 'sunrise',
-                text: '{point.msg}',
-                style: {
-                  color: 'var(--txt-color) !important;',
-                },
-                align: 'right',
-                borderColor: 'transparent', // efface le trait de liaison
-              }, 
-              { point: 'sunset',
-                text: '{point.msg}',
-                style: {
-                  color: 'var(--txt-color) !important;',
-                },
-                align: 'center',
-                borderColor: 'transparent', // pour effacer le trait de liaison
-              } 
-            ]
-          }
-        ],
         series: [
           { showInLegend: false,
             name: 'Elévation soleil',
