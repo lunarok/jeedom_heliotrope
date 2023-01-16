@@ -276,14 +276,14 @@ class heliotrope extends eqLogic {
 
     // Return altitude correction for altitude due to atmospheric refraction.
     // http://en.wikipedia.org/wiki/Atmospheric_refraction
-  public function correctForRefraction($d) {
+  public static function correctForRefraction($d) {
     if (!($d > -0.5))      $d = -0.5;  // Function goes ballistic when negative.
     return (0.017 / tan(deg2rad($d + 10.3 / ($d + 5.11))));
   }
 
     // Return the right ascension of the sun at Unix epoch t.
     // http://bodmas.org/kepler/sun.html
-  public function sunAbsolutePositionDeg($t) {
+  public static function sunAbsolutePositionDeg($t) {
     $dSec = $t - 946728000;
     $meanLongitudeDeg = fmod((280.461 + 0.9856474 * $dSec / 86400), 360);
     $meanAnomalyDeg = fmod((357.528 + 0.9856003 * $dSec / 86400), 360);
@@ -299,7 +299,7 @@ class heliotrope extends eqLogic {
     // Convert an object's RA/Dec to altazimuth coordinates.
     // http://answers.yahoo.com/question/index?qid=20070830185150AAoNT4i
     // http://www.jgiesen.de/astro/astroJS/siderealClock/
-  public function absoluteToRelativeDeg($t, $rightAscensionDeg, $declinationDeg, $latitude, $longitude) {
+  public static function absoluteToRelativeDeg($t, $rightAscensionDeg, $declinationDeg, $latitude, $longitude) {
     $longitude = (float) $longitude;
     $latitude = (float) $latitude;
     $dSec = $t - 946728000;
