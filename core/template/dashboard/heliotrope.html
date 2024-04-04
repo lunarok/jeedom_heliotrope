@@ -11,11 +11,10 @@
 		<a href="#eqLink#" class="reportModeHidden">#name_display# <span class="object_name">#object_name#</span></a>
   </center>
   <template>elevationWidth: 300 elevationHeight: 200 azimuthSize: 120</template>
-  <div class="#isVerticalAlign#">
-    <center>
+  <div class="cmds #isVerticalAlign#">
         <!-- Graphique elevation/heure -->
       <div class="cmd cmd-widget #sunAlt_history# noResize" style="display:#sunAlt_display#;" data-type="info" data-subtype="numeric" data-template="custom" data-cmd_id="#sunAlt_id#" data-version="#version#" data-eqLogic_id="#id#">
-        <div id="sunAlt#id#" style="width: #elevationWidth#px; height: #elevationHeight#px;">
+        <div id="sunAlt#id#" style="margin-top:10px;width:#elevationWidth#px;height:#elevationHeight#px;">
         </div>
       </div>
         <!-- Rose des vents positions soleil -->
@@ -23,7 +22,6 @@
         <div id="sunAzt#id#" style="width: #azimuthSize#px; height: #azimuthSize#px;">
         </div>
       </div>
-    </center>
   </div>
   <script>
 		if ('#refresh_id#' != ''){
@@ -113,8 +111,8 @@
         subtitle: { text: '#sunriseTxt##zenithTxt##sunsetTxt##daylenTxt#',
           floating: true,
           verticalAlign: 'bottom',
-          style: { color: 'var(--txt-color) !important;'
-          },
+          // style: { color: 'var(--txt-color) !important;'
+          // },
           y: -2
         },
         xAxis: {
