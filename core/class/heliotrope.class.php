@@ -463,7 +463,7 @@ class heliotrope extends eqLogic {
     return $return;
   }
 
-  public function setupCron() {
+  public static function setupCron() {
     $setting = config::byKey('cron', __CLASS__);
     $cron = cron::byClassAndFunction(__CLASS__, 'pull');
     if (!is_object($cron)) {
