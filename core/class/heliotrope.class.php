@@ -22,24 +22,15 @@ class heliotrope extends eqLogic {
 
   public static function pull() {
     foreach (eqLogic::byType(__CLASS__, true) as $heliotrope) {
-      log::add(__CLASS__, 'debug', 'info ' .__FUNCTION__ .' ' .$heliotrope->getName());
+      log::add(__CLASS__, 'debug', __FUNCTION__ .' ' .$heliotrope->getName());
       $heliotrope->getInformations();
     }
   }
-  /*
-  public static function cron() {
-    foreach (eqLogic::byType(__CLASS__, true) as $heliotrope) {
-      log::add(__CLASS__, 'debug', 'info ' .__FUNCTION__ .' ' .$heliotrope->getName());
-      $heliotrope->getDaily();
-      $heliotrope->getInformations();
-    }
-  }
-   */
 
   public static function cronHourly() {
     if (date('G')  == 3) {
       foreach (eqLogic::byType(__CLASS__, true) as $heliotrope) {
-        log::add(__CLASS__, 'debug', 'info ' .__FUNCTION__ .' ' .$heliotrope->getName());
+        log::add(__CLASS__, 'debug', __FUNCTION__ .' ' .$heliotrope->getName());
         $heliotrope->getDaily();
         $heliotrope->getInformations();
       }
@@ -48,41 +39,41 @@ class heliotrope extends eqLogic {
 
   public static function start() {
     foreach (eqLogic::byType(__CLASS__, true) as $heliotrope) {
-      log::add(__CLASS__, 'debug', 'info ' .__FUNCTION__ .' ' .$heliotrope->getName());
+      log::add(__CLASS__, 'debug', __FUNCTION__ .' ' .$heliotrope->getName());
       $heliotrope->getDaily();
       $heliotrope->getInformations();
     }
   }
 
   public function postUpdate() {
-    if(is_object($this)) {
+    if (is_object($this)) {
         // dimensionnement mini des graphiques suivant dimension des tuiles
       $array = $this->getDisplay('parameters');
-      if(!is_array($array)) $array = array();
-      if(!isset($array['elevationWidth'])) $w1 = 0;
+      if (!is_array($array)) $array = array();
+      if (!isset($array['elevationWidth'])) $w1 = 0;
       else $w1 = $array['elevationWidth'];
-      if(!isset($array['elevationHeight'])) $h1 = 0;
+      if (!isset($array['elevationHeight'])) $h1 = 0;
       else $h1 = $array['elevationHeight'];
-      if(!isset($array['azimuthSize'])) $s1 = 0;
+      if (!isset($array['azimuthSize'])) $s1 = 0;
       else $s1 = $array['azimuthSize'];
-      if($w1==0 && $h1==0 && $s1==0) {
+      if ($w1==0 && $h1==0 && $s1==0) {
         $name = $this->getName();
         $w = intval($this->getDisplay('width'));
         $h = intval($this->getDisplay('height'));
         log::add(__CLASS__,'debug',__FUNCTION__ . " [$name] W=$w H=$h\nW1=$w1 H1=$h1 S1=$s1");
-        if($h > 400) { // alt on azt
+        if ($h > 400) { // alt on azt
           $s1 = 120; $w1 = $w; $h1 = $h -120 - 30;
         }
         else { // azt to the right of alt
           $s1 = 100; $w1 = $w - 110; $h1 = $h - 30;
         }
-        if($w1< 100) $w1=250;
-        if($h1< 100) $h1=200;
+        if ($w1< 100) $w1=250;
+        if ($h1< 100) $h1=200;
         log::add(__CLASS__,'debug',"New display W=$w1 H=$h1 S=$s1");
         $array['elevationWidth'] = $w1;
         $array['elevationHeight'] = $h1;
         $array['azimuthSize'] = $s1;
-        $this->setDisplay('parameters',$array);
+        $this->setDisplay('parameters', $array);
         $this->save();
       }
         // creation/maj des commandes
@@ -343,7 +334,7 @@ class heliotrope extends eqLogic {
   }
 
   public function getInformations() {
-    if($this->getLatitudeLongitude($latitude,$longitude)) {
+    if ($this->getLatitudeLongitude($latitude, $longitude)) {
       log::add(__CLASS__, 'error', __FUNCTION__ ." Latitude et longitude non connues.");
         return;
       }
@@ -352,7 +343,7 @@ class heliotrope extends eqLogic {
     }
 
       // MAJ position actuelle du soleil
-    self::getAltAzt(time(),$latitude,$longitude,$altitude,$azimuth360);
+    self::getAltAzt(time(), $latitude, $longitude, $altitude, $azimuth360);
     $this->checkAndUpdateCmd('azimuth360', round($azimuth360));
     $this->checkAndUpdateCmd('altitude', round($altitude, 1));
 
@@ -415,7 +406,7 @@ class heliotrope extends eqLogic {
   }
 
   public function getDaily() {
-    if($this->getLatitudeLongitude($latitude,$longitude)) {
+    if ($this->getLatitudeLongitude($latitude, $longitude)) {
       log::add(__CLASS__, 'error', __FUNCTION__ ." Latitude et longitude non connues.");
         return;
       }
@@ -425,13 +416,13 @@ class heliotrope extends eqLogic {
 
       // Calcul lever, coucher, durée jour
     $sun_info = date_sun_info(time(), $latitude, $longitude);
-    $sunrise = date('Gi',$sun_info['sunrise']);
+    $sunrise = date('Gi', $sun_info['sunrise']);
     $this->checkAndUpdateCmd('sunrise', $sunrise);
-    if( $sun_info['sunrise'] === true ) { // jour toute la journée
+    if ($sun_info['sunrise'] === true ) { // jour toute la journée
       $daylen =24*60;
       log::add(__CLASS__, 'debug', __FUNCTION__,"Lat: $latitude Sunrise True");
     }
-    else if( $sun_info['sunrise'] === false ) { // nuit toute la journée
+    else if ($sun_info['sunrise'] === false ) { // nuit toute la journée
       $daylen =0;
       log::add(__CLASS__, 'debug', __FUNCTION__,"Lat: $latitude Sunrise False");
     }
@@ -441,20 +432,20 @@ class heliotrope extends eqLogic {
     $this->checkAndUpdateCmd('daylen', $daylen);
     $zenith = date("Gi", $sun_info['transit']);
     $this->checkAndUpdateCmd('zenith', $zenith);
-    $sunset = date('Gi',$sun_info['sunset']);
+    $sunset = date('Gi', $sun_info['sunset']);
     $this->checkAndUpdateCmd('sunset', $sunset);
       // Calcul aubes et crepsucules civil nautique, astronomique
-    $aubeciv = date('Gi',$sun_info['civil_twilight_begin']);
+    $aubeciv = date('Gi', $sun_info['civil_twilight_begin']);
     $this->checkAndUpdateCmd('aubeciv', $aubeciv);
-    $crepciv = date('Gi',$sun_info['civil_twilight_end']);
+    $crepciv = date('Gi', $sun_info['civil_twilight_end']);
     $this->checkAndUpdateCmd('crepciv', $crepciv);
-    $aubenau = date('Gi',$sun_info['nautical_twilight_begin']);
+    $aubenau = date('Gi', $sun_info['nautical_twilight_begin']);
     $this->checkAndUpdateCmd('aubenau', $aubenau);
-    $crepnau = date('Gi',$sun_info['nautical_twilight_end']);
+    $crepnau = date('Gi', $sun_info['nautical_twilight_end']);
     $this->checkAndUpdateCmd('crepnau', $crepnau);
-    $aubeast = date('Gi',$sun_info['astronomical_twilight_begin']);
+    $aubeast = date('Gi', $sun_info['astronomical_twilight_begin']);
     $this->checkAndUpdateCmd('aubeast', $aubeast);
-    $crepast = date('Gi',$sun_info['astronomical_twilight_end']);
+    $crepast = date('Gi', $sun_info['astronomical_twilight_end']);
     $this->checkAndUpdateCmd('crepast', $crepast);
 
     $this->refreshWidget();
@@ -463,11 +454,11 @@ class heliotrope extends eqLogic {
   public function getGeoloc($_infos = '') {
     $return = array();
     foreach (eqLogic::byType('geoloc') as $geoloc) {
-        foreach (geolocCmd::byEqLogicId($geoloc->getId()) as $geoinfo) {
-            if ($geoinfo->getConfiguration('mode') == 'fixe' || $geoinfo->getConfiguration('mode') == 'dynamic') {
-                $return[$geoinfo->getId()] = array( 'value' => $geoinfo->getName());
-            }
+      foreach (geolocCmd::byEqLogicId($geoloc->getId()) as $geoinfo) {
+        if ($geoinfo->getConfiguration('mode') == 'fixe' || $geoinfo->getConfiguration('mode') == 'dynamic') {
+          $return[$geoinfo->getId()] = array( 'value' => $geoinfo->getName());
         }
+      }
     }
     return $return;
   }
@@ -493,7 +484,7 @@ class heliotrope extends eqLogic {
 
   public function toHtml($_version = 'dashboard') {
     $t0 = microtime(true);
-    if($this->getConfiguration('useHelioTemplate','1') == '0')
+    if ($this->getConfiguration('useHelioTemplate','1') == '0')
       return parent::toHtml($_version);
     $replace = $this->preToHtml($_version);
     if (!is_array($replace)) {
@@ -504,7 +495,7 @@ class heliotrope extends eqLogic {
       return '';
     }
 
-    if($this->getLatitudeLongitude($latitude,$longitude)) {
+    if ($this->getLatitudeLongitude($latitude, $longitude)) {
       log::add(__CLASS__, 'warning', __FUNCTION__ ." Latitude et longitude non connues.");
       return;
     }
@@ -520,9 +511,9 @@ class heliotrope extends eqLogic {
       $display[$type_cmd] = ($cmd->getIsVisible()) ? "visible" : "none";
       $history[$type_cmd] = ($cmd->getIsHistorized() == 1) ? 'history cursor' : '';
     }
-    if(!isset($replace['#elevationWidth#'])) $replace['#elevationWidth#']=320;
-    if(!isset($replace['#elevationHeight#'])) $replace['#elevationHeight#']=220;
-    if(!isset($replace['#azimuthSize#'])) $replace['#azimuthSize#']=120;
+    if (!isset($replace['#elevationWidth#'])) $replace['#elevationWidth#']=320;
+    if (!isset($replace['#elevationHeight#'])) $replace['#elevationHeight#']=220;
+    if (!isset($replace['#azimuthSize#'])) $replace['#azimuthSize#']=120;
 
       // latitude longitude dans le titre de la tuile
     $lat = round($latitude,1);
@@ -554,7 +545,7 @@ class heliotrope extends eqLogic {
     $replace['#aubeast#'] = substr_replace($value['aubeast'], ':', -2, 0);
     $replace['#crepast#'] = substr_replace($value['crepast'], ':', -2, 0);
     $replace['#zenith#'] = substr_replace($value['zenith'], ':', -2, 0);
-    if($display['daylen'] == "none") $replace['#daylenTxt#'] = '';
+    if ($display['daylen'] == "none") $replace['#daylenTxt#'] = '';
     else {
       $valueDaylen = isset($value['daylen'])? intval($value['daylen']) : 0;
       $h = floor($valueDaylen / 60); $mn = $valueDaylen % 60;
@@ -564,9 +555,9 @@ class heliotrope extends eqLogic {
       $sunInfoHier = date_sun_info(strtotime('yesterday noon'), $latitude, $longitude);
       $daylenToday = $sunInfo['sunset'] - $sunInfo['sunrise'];
       $daylenHier = $sunInfoHier['sunset'] - $sunInfoHier['sunrise'];
-      if($daylen == '') $daylenTxt = "Durée nuit: 24h ";
+      if ($daylen == '') $daylenTxt = "Durée nuit: 24h ";
       else $daylenTxt = "Durée jour: $daylen ";
-      if($daylenToday - $daylenHier != 0) $daylenTxt .= sprintf('%+ds',$daylenToday - $daylenHier);
+      if ($daylenToday - $daylenHier != 0) $daylenTxt .= sprintf('%+ds', $daylenToday - $daylenHier);
       $replace['#daylenTxt#'] = $daylenTxt;
     }
 
@@ -577,8 +568,8 @@ class heliotrope extends eqLogic {
     $replace['#paneEnd#'] = 0; // $inclin-$latitude;
 // log::add(__CLASS__,'error',"AltMinYear: ". $replace['#paneStart#']." AltMaxYear: ". $replace['#paneEnd#']);
     $minElev = max(-90-$inclin+$latitude,90);
-    if($minElev < -90) $minElev += 360;
-    if($minElev > 90) $minElev -= 360;
+    if ($minElev < -90) $minElev += 360;
+    if ($minElev > 90) $minElev -= 360;
 
     $replace['#minElev#'] = round(max(-90-$inclin+$latitude,-90),2);
     $replace['#maxElev#'] = round(min(90+$inclin-$latitude,90),2);
@@ -596,12 +587,12 @@ class heliotrope extends eqLogic {
     $date = strtotime('today midnight');
     $now = time();
     // $date = strtotime('2022-06-21 00:00:00'); $now = strtotime('2022-06-21 12:00:00');
-    // message::add(__CLASS__, "Sunrise: " .date('H:i:s',$sunrise) ." Zenith: " .date('H:i:s',$transit) ." Sunset: " .date('H:i:s',$sunset));
+    // message::add(__CLASS__, "Sunrise: " .date('H:i:s', $sunrise) ." Zenith: " .date('H:i:s', $transit) ." Sunset: " .date('H:i:s', $sunset));
     for($i=0;$i<49;$i++) {
       $t = $date+$i*1800;
-      self::getAltAzt($t,$latitude,$longitude,$alt,$azt);
-      $msg = '{ "x":' .$t*1000 .',"y": ' .$alt .',"z":' .$azt .',"msg":"'.date('G:i',$t) .'"}';
-      if($t < $now) $serie[] = $msg;
+      self::getAltAzt($t, $latitude, $longitude, $alt, $azt);
+      $msg = '{ "x":' .$t*1000 .',"y": ' .$alt .',"z":' .$azt .',"msg":"'.date('G:i', $t) .'"}';
+      if ($t < $now) $serie[] = $msg;
       else $serie2[] = $msg;
     }
       // Ajout Lever, Zenith, Coucher ... sur la courbe
@@ -621,52 +612,52 @@ class heliotrope extends eqLogic {
     for($i=0;$i<$nb;$i++) {
       $type = $types[$i]['sunI'];
       $t = $sun_info[$type];
-      if($t === true || $t === false) continue; // Valeur non atteinte de la journee
-      self::getAltAzt($t,$latitude,$longitude,$alt,$azt);
+      if ($t === true || $t === false) continue; // Valeur non atteinte de la journee
+      self::getAltAzt($t, $latitude, $longitude, $alt, $azt);
       $texte = $types[$i]['txtDsp'];
-      if($type == 'sunrise') {
+      if ($type == 'sunrise') {
         $aztsunrise = $azt;
-        if($display[$types[$i]['cmdJ']] != "none")
-          $sunriseTxt = $texte .': '.date('G:i:s',$t) .'<br/>';
+        if ($display[$types[$i]['cmdJ']] != "none")
+          $sunriseTxt = $texte .': '.date('G:i:s', $t) .'<br/>';
       }
-      else if($type == 'sunset') {
+      else if ($type == 'sunset') {
         $aztsunset = $azt;
-        if($display[$types[$i]['cmdJ']] != "none")
-          $sunsetTxt = $texte .': '.date('G:i:s',$t) .'<br/>';
+        if ($display[$types[$i]['cmdJ']] != "none")
+          $sunsetTxt = $texte .': '.date('G:i:s', $t) .'<br/>';
       }
-      else if($type == 'transit') {
-        if($display[$types[$i]['cmdJ']] != "none")
-          $zenithTxt = $texte .': '.date('G:i:s',$t) .'<br/>';
+      else if ($type == 'transit') {
+        if ($display[$types[$i]['cmdJ']] != "none")
+          $zenithTxt = $texte .': '.date('G:i:s', $t) .'<br/>';
       }
-      // if($display[$types[$i]['cmdJ']] == "none") continue;
-      $msg = '{ "x":' .$t*1000 .',"y":'.$alt .',"z":' .$azt .',"id":"'.$type.'","msg":"' .$texte .': '.date('G:i:s',$t) .'"}';
-      if($t > $now) $serie2[] = $msg; else $serie[] = $msg;
+      // if ($display[$types[$i]['cmdJ']] == "none") continue;
+      $msg = '{ "x":' .$t*1000 .',"y":'.$alt .',"z":' .$azt .',"id":"'.$type.'","msg":"' .$texte .': '.date('G:i:s', $t) .'"}';
+      if ($t > $now) $serie2[] = $msg; else $serie[] = $msg;
     }
-    if( $sun_info['sunrise'] === true ) { // jour toute la journée
+    if ( $sun_info['sunrise'] === true ) { // jour toute la journée
       $aztsunrise = 0; $aztsunset = 360;
     }
-    else if( $sun_info['sunrise'] === false ) { // nuit toute la journée
+    else if ( $sun_info['sunrise'] === false ) { // nuit toute la journée
       $aztsunrise = 180; $aztsunset = 180;
     }
     $replace['#sunriseTxt#'] = $sunriseTxt;
     $replace['#sunsetTxt#'] = $sunsetTxt;
     $replace['#zenithTxt#'] = $zenithTxt;
     $replace['#aztsunrise#'] = round($aztsunrise,3);
-    if($aztsunset < $aztsunrise) $aztsunset += 360; 
+    if ($aztsunset < $aztsunrise) $aztsunset += 360; 
     $replace['#aztsunset#'] = round($aztsunset,3);
-log::add(__CLASS__,'debug',"AztSunrise: $aztsunrise AztSunset: $aztsunset");
+    log::add(__CLASS__,'debug',"AztSunrise: $aztsunrise AztSunset: $aztsunset");
 
     // Heure actuelle dans les 2 courbes
-    self::getAltAzt($now,$latitude,$longitude,$alt,$azt);
-    $msg = '{ "x":' .$now*1000 .',"y":'.$alt .',"z":' .$azt .',"msg":"Maintenant '.date('G:i',$now) .'"}';
-    $msg2 = '{ "x":' .$now*1000 .',"y":'.$alt .',"marker": { "symbol": \'url(plugins/'.__CLASS__ .'/core/template/sun.png)\'},"z":' .$azt .',"msg":"Maintenant '.date('G:i',$now) .'"}';
+    self::getAltAzt($now, $latitude, $longitude, $alt, $azt);
+    $msg = '{ "x":' .$now*1000 .',"y":'.$alt .',"z":' .$azt .',"msg":"Maintenant '.date('G:i', $now) .'"}';
+    $msg2 = '{ "x":' .$now*1000 .',"y":'.$alt .',"marker": { "symbol": \'url(plugins/'.__CLASS__ .'/core/template/sun.png)\'},"z":' .$azt .',"msg":"Maintenant '.date('G:i', $now) .'"}';
     $serie[] = $msg; $serie2[] = $msg2;
     sort($serie); sort($serie2);
-    $replace['#altSerie#'] = implode(',',$serie);
-    $replace['#altSerie2#'] = implode(',',$serie2);
+    $replace['#altSerie#'] = implode(',', $serie);
+    $replace['#altSerie2#'] = implode(',', $serie2);
 
       // inversion couleurs jour/nuit suivant hemisphere
-    if($latitude > 0) {
+    if ($latitude > 0) {
       $replace['#bandColor1#'] = '#3C73A5';
       $replace['#bandColor2#'] = '#8EBEEB';
     }
@@ -688,7 +679,7 @@ log::add(__CLASS__,'debug',"AztSunrise: $aztsunrise AztSunset: $aztsunset");
   }
 
   public static function getAltAzt($time, $lat, $lon, &$alt, &$azt) {
-    list($ra,$dec)=self::sunAbsolutePositionDeg($time);
+    list($ra, $dec)=self::sunAbsolutePositionDeg($time);
     list($az, $alt) = self::absoluteToRelativeDeg($time, $ra, $dec, $lat, $lon);
     $alt=$alt+self::correctForRefraction($alt);
     if (0 > $az)  $az += 360;
