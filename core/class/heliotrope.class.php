@@ -60,7 +60,7 @@ class heliotrope extends eqLogic {
         $name = $this->getName();
         $w = intval($this->getDisplay('width'));
         $h = intval($this->getDisplay('height'));
-        log::add(__CLASS__,'debug',__FUNCTION__ . " [$name] W=$w H=$h\nW1=$w1 H1=$h1 S1=$s1");
+        log::add(__CLASS__, 'debug',__FUNCTION__ . " [$name] W=$w H=$h\nW1=$w1 H1=$h1 S1=$s1");
         if ($h > 400) { // alt on azt
           $s1 = 120; $w1 = $w; $h1 = $h -120 - 30;
         }
@@ -69,7 +69,7 @@ class heliotrope extends eqLogic {
         }
         if ($w1< 100) $w1=250;
         if ($h1< 100) $h1=200;
-        log::add(__CLASS__,'debug',"New display W=$w1 H=$h1 S=$s1");
+        log::add(__CLASS__, 'debug',"New display W=$w1 H=$h1 S=$s1");
         $array['elevationWidth'] = $w1;
         $array['elevationHeight'] = $h1;
         $array['azimuthSize'] = $s1;
@@ -476,7 +476,7 @@ class heliotrope extends eqLogic {
     if ($setting == '60') {
       $cron->setSchedule('0 * * * *');
     } else {
-      $cron->setSchedule('*/' .$setting . ' * * * *');
+      $cron->setSchedule('*/' .$setting .' * * * *');
     }
     $cron->save();
     return true;
@@ -484,7 +484,7 @@ class heliotrope extends eqLogic {
 
   public function toHtml($_version = 'dashboard') {
     $t0 = microtime(true);
-    if ($this->getConfiguration('useHelioTemplate','1') == '0')
+    if ($this->getConfiguration('useHelioTemplate', '1') == '0')
       return parent::toHtml($_version);
     $replace = $this->preToHtml($_version);
     if (!is_array($replace)) {
@@ -566,7 +566,7 @@ class heliotrope extends eqLogic {
     $inclin = 23+26/60;
     $replace['#paneStart#'] = -180; // -180-$inclin+$latitude;
     $replace['#paneEnd#'] = 0; // $inclin-$latitude;
-// log::add(__CLASS__,'error',"AltMinYear: ". $replace['#paneStart#']." AltMaxYear: ". $replace['#paneEnd#']);
+// log::add(__CLASS__, 'error',"AltMinYear: ". $replace['#paneStart#']." AltMaxYear: ". $replace['#paneEnd#']);
     $minElev = max(-90-$inclin+$latitude,90);
     if ($minElev < -90) $minElev += 360;
     if ($minElev > 90) $minElev -= 360;
@@ -645,7 +645,7 @@ class heliotrope extends eqLogic {
     $replace['#aztsunrise#'] = round($aztsunrise,3);
     if ($aztsunset < $aztsunrise) $aztsunset += 360; 
     $replace['#aztsunset#'] = round($aztsunset,3);
-    log::add(__CLASS__,'debug',"AztSunrise: $aztsunrise AztSunset: $aztsunset");
+    log::add(__CLASS__, 'debug',"AztSunrise: $aztsunrise AztSunset: $aztsunset");
 
     // Heure actuelle dans les 2 courbes
     self::getAltAzt($now, $latitude, $longitude, $alt, $azt);
