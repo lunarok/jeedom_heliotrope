@@ -497,11 +497,11 @@ class heliotrope extends eqLogic {
       return parent::toHtml($_version);
     $replace = $this->preToHtml($_version);
     if (!is_array($replace)) {
-        return $replace;
+      return $replace;
     }
     $version = jeedom::versionAlias($_version);
     if ($this->getDisplay('hideOn' . $version) == 1) {
-        return '';
+      return '';
     }
 
     if($this->getLatitudeLongitude($latitude,$longitude)) {
@@ -687,7 +687,7 @@ log::add(__CLASS__,'debug',"AztSunrise: $aztsunrise AztSunset: $aztsunset");
       return $this->postToHtml($_version, template_replace($replace, getTemplate('core', $version, __CLASS__, __CLASS__)));
   }
 
-  public static function getAltAzt($time,$lat,$lon,&$alt,&$azt) {
+  public static function getAltAzt($time, $lat, $lon, &$alt, &$azt) {
     list($ra,$dec)=self::sunAbsolutePositionDeg($time);
     list($az, $alt) = self::absoluteToRelativeDeg($time, $ra, $dec, $lat, $lon);
     $alt=$alt+self::correctForRefraction($alt);
